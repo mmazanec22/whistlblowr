@@ -1,9 +1,11 @@
 = render 'layouts/project-six-header'
+%div.container-fluid
 
-%div.main-content.category.page
+  %div.main-content.category.page
 
-  %h1 Formy Form!
+    %h1 Formy Form!
 
-  %form
-    %input
-    %input
+    =form_tag('/testforms', role: "form", class: "form-horizontal") do
+      =text_area_tag 'complaint', nil, class: "form-control mobile-form-textarea", placeholder: "Description of complaint", rows: 1
+      =submit_tag "Submit"
+

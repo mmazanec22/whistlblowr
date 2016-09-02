@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+.mobile-form-textarea {
+  font-size: 3em;
+  height: 50% !important;
+  /*overflow: hidden;*/
+}
+
+.hiddendiv {
+  display: none;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* future version of deprecated 'word-wrap' */
+  padding-top: 1.2rem;
+  /* prevents text jump on Enter keypress */
+}
+
