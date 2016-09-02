@@ -20,6 +20,7 @@ gem "fog-aws"
 gem 'figaro'
 gem "mini_magick"
 gem 'cowsay'
+gem 'haml'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
