@@ -5,6 +5,7 @@ class MediaUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  process :validate_dimensions
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog
@@ -56,26 +57,35 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   process :strip
 
-  process quality: 90
+  process quality: 85
 
-  process :store_dimensions
-
-  process :resize_to_fit_by_percentage => 0.5
+  # process :store_dimensions
+  #
+  # process :resize_to_fit_by_percentage => 0.5
 
   private
 
-  def resize_to_fit_by_percentage(percentage)
-    resize_to_fit model.width*percentage, nil
-  end
-
-
-  def store_dimensions
-    if file && model
-      p "******************************************************"
-      p model[:media]
-      model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+  def validate_dimensions
+    manipulate! do |img|
+      if img.dimensions.any?{|i| i > 8000 }
+        raise CarrierWave::ProcessingError, "dimensions too large"
+      end
+      img
     end
   end
+
+  # def resize_to_fit_by_percentage(percentage)
+  #   resize_to_fit model.width*percentage, nil
+  # end
+  #
+  #
+  # def store_dimensions
+  #   if file && model
+  #     p "******************************************************"
+  #     p model[:media]
+  #     model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+  #   end
+  # end
 
   def quality(percentage)
    manipulate! do |img|
