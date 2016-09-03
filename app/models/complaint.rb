@@ -1,5 +1,6 @@
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
+  validates_integrity_of :media
   before_save :create_key
 
   belongs_to :user
