@@ -1,11 +1,26 @@
-%h2 Complaints
+%div.center-align
 
-%table
-  %th Description
-  %th Allegation Types
-  %th Complainant Name
-  %th Complainant Phone
-  %th Complainant Email
--@complaints.each do |complaint|
-  %tr= complaint.allegation_types_as_nice_string
-  %tr= complaint.content
+  %h2 Complaints
+
+  %table.bordered.responsive-table.complaint-table
+    %th Allegation Types
+    %th Description
+    %th Complainant Name
+    %th Complainant Phone
+    %th Complainant Email
+    %th Complaint Attachments
+    -@complaints.each do |complaint|
+      %tr
+        %td= complaint.allegation_types_as_nice_string || ""
+        %td= complaint.content
+        %td= complaint.user.name
+        %td= complaint.user.phone
+        %td= complaint.user.email
+        -if complaint.media[0]
+          %td
+            -complaint.media_urls.each do |url|
+              %a{ :href => url, :title => "Linky link" }
+                %strong
+                  Linky Link
+        -else
+          %td None

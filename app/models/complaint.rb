@@ -7,6 +7,14 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
 
+
+  def media_urls
+    # signer = Aws::S3::Presigner.new
+    # urls = self.media.map{|obj| signer.presigned_url(obj, bucket: ENV['S3_BUCKET_NAME'], key: ENV['S3_KEY']).to_s}
+    urls = self.media.map{|obj| obj}
+    urls
+  end
+
   def add_allegations
   end
 

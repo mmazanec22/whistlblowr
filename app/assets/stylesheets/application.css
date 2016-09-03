@@ -24,6 +24,15 @@ img.logo {
   width: 50%;
 }
 
-#complaint_form {
 
+.complaint-table {
+  border-collapse:collapse;
+  width: 80%;
+  text-align: center;
+  margin: 7%;
+}
+
+.complaint-table td{
+  word-wrap:break-word;
+  padding: 2%;
 }
