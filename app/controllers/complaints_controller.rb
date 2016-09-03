@@ -4,7 +4,7 @@ class ComplaintsController < ApplicationController
   # before_action :authenticate_investigator!
 
   def index
-    @complaints = Complaints.all
+    @complaints = Complaint.all
   end
 
   def new
