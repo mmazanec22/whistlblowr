@@ -2,17 +2,13 @@
 = form_for @complaint, url: "/complaints" do |f|
 
   %h2 Complaint
-  = f.fields_for :complaint do |field|
-    = field.label :content
-    %br
-    = field.text_field :content
-    %br
+  = f.label :content
+  %br
+  = f.text_field :content
+  %br
 
-  = f.fields_for :allegation_type do |field|
-    = field.label :allegations
-    %br
-    = field.text_field :allegation_nature
-    %br
+  =f.file_field :media, multiple: true
+
 
   %h4 Optional Contact Info
   = f.fields_for :user do |field|
