@@ -2029,7 +2029,7 @@ $(document).ready(function(){
         }
         else {
           // Insert as text;
-          toast.innerHTML = html;
+          toast.innerHTML = html; 
         }
         // Bind hammer
         var hammerHandler = new Hammer(toast, {prevent_default: false});
@@ -2841,8 +2841,6 @@ $(document).ready(function(){
       var fontSize = $textarea.css('font-size');
       var lineHeight = $textarea.css('line-height');
 
-      console.log("line height "+lineHeight )
-
       if (fontSize) { hiddenDiv.css('font-size', fontSize); }
       if (fontFamily) { hiddenDiv.css('font-family', fontFamily); }
       if (lineHeight) { hiddenDiv.css('line-height', lineHeight); }
@@ -2859,8 +2857,6 @@ $(document).ready(function(){
 
       // When textarea is hidden, width goes crazy.
       // Approximate with half of window size
-
-
 
       if ($textarea.is(':visible')) {
         hiddenDiv.css('width', $textarea.width());
