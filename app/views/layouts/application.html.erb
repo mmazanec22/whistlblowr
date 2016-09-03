@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Whistlblowr</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Whistlblowr</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<div id="logo-wrapper">
+  <%= image_tag("p6.logo.svg", class: "logo")  %>
+</div>
+
+
+<body>
+  <%= yield %>
+</body>
 </html>

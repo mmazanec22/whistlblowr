@@ -1,0 +1,8 @@
+/ %div.main-content.category.page
+%div.row
+  %div.form-container
+    =form_tag('/testforms', role: "form", class: "col s12") do
+      %div.row
+        %div.input-field.col.s12
+          =text_area_tag 'complaint', nil, class: "materialize-textarea flow-text", placeholder: "Description of complaint", id: "textarea1"
+          =submit_tag "Submit"
