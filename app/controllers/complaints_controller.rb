@@ -1,4 +1,5 @@
 require "cowsay"
+require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
   # before_action :authenticate_investigator!
@@ -9,16 +10,17 @@ class ComplaintsController < ApplicationController
 
   def new
     @complaint = Complaint.new
+    allegation =  Allegation.new
+    @complaint.allegations << allegation
+    @allegations = @complaint.allegations
   end
 
   def create
-    params.inspect
-    p "===================================="
-    p params
-    puts Cowsay.say user_params[:complaint]
-    @user = User.new(user_params[:user])
-    puts Cowsay.say @user
-    @complaint = Complaint.new()
+    puts Cowsay.say(complaint_params)
+    @complaint = Complaint.new(complaint_params)
+    @complaint.user = return_user
+    puts @complaint.save
+    binding.pry
   end
 
   def show
@@ -36,6 +38,12 @@ class ComplaintsController < ApplicationController
   private
 
     def complaint_params
+      params.require(:complaint).permit(:content, {media: []})
+    end
+
+    def return_user
+      up = user_params[:user]
+      User.find_or_create_by(up)
     end
 
     def allegation_type_params
@@ -45,6 +53,6 @@ class ComplaintsController < ApplicationController
     end
 
     def user_params
-      params.require(:complaint).permit( user[:name] , user[:email], user[:phone])
+      params.require(:complaint).permit(user: [:name, :email, :phone])
     end
 end
