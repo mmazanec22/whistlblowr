@@ -1,0 +1,19 @@
+
+language: ruby
+rbenv:
+ - 2.3.1
+ - jruby
+ - rbx-2
+
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
+
+
+# uncomment and edit the following line if your project needs to run something other than `rake`:
+script: bundle exec rspec spec
