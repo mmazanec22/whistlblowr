@@ -19,10 +19,12 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
     @complaint.save
+    flash.now[:notice] = @complaint.key
+    render 'show'
   end
 
   def show
-
+    @complaint = Complaint.find_by(key: params[:complaint_key])
   end
 
   def edit
@@ -42,12 +44,6 @@ class ComplaintsController < ApplicationController
     def return_user
       up = user_params[:user]
       User.find_or_create_by(up)
-    end
-
-    def allegation_type_params
-    end
-
-    def medium_params
     end
 
     def user_params

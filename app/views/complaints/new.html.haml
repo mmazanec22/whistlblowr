@@ -25,3 +25,10 @@
     = field.text_field :email
     %br
   = f.submit "Submit"
+
+%h2 View an Existing Complaint:
+
+= form_tag '/complaints/find', method: "get" do
+  = label_tag(:complaint_key, "Secret Complaint Key:")
+  = text_field_tag(:complaint_key)
+  = submit_tag("View")
