@@ -35,3 +35,9 @@ complaint_content.each do |c|
     allegation = Allegation.create(complaint_id: complaint.id, allegation_type_id: AllegationType.all.sample.id)
   end
 end
+
+# medium_attributes = {media_type: picture, url: "http://www.businesscat.happyjar.com/wp-content/uploads/2014/08/2014-08-08-Keyboard.png", description: "cat"}
+
+# Complaint.all.each do |c|
+#   c.media << Medium.new(medium_attributes).to_json
+# end
