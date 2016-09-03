@@ -1,34 +1,35 @@
-=# render partial: "/user_errors"
-= form_for @complaint, url: "/complaints" do |f|
+%div.row
+  %div.form-container
+    %h5 Enter a New Complaint:
+    = form_for @complaint, url: "/complaints", role: "form", class: "col s12" do |f|
+      %div.row
+        %div.input-field.col.s12
+          = f.text_area :content, class: "materialize-textarea flow-text", placeholder: "Description of complaint", id: "textarea1"
+          %br
 
-  %h2 Complaint
-  = f.label :content
-  %br
-  = f.text_field :content
-  %br
+        =f.file_field :media, multiple: true
 
-  =f.file_field :media, multiple: true
+      %div.row
+        %div.input-field.col.s12
+          %p Contact Info (Optional)
+          = f.fields_for :user do |field|
+            = field.label :name
+            %br
+            = field.text_field :name
+            %br
+            = field.label :phone
+            %br
+            = field.text_field :phone
+            %br
+            = field.label :email
+            %br
+            = field.text_field :email
+            %br
+          = f.submit "Submit"
 
-
-  %h4 Optional Contact Info
-  = f.fields_for :user do |field|
-    = field.label :name
-    %br
-    = field.text_field :name
-    %br
-    = field.label :phone
-    %br
-    = field.text_field :phone
-    %br
-    = field.label :email
-    %br
-    = field.text_field :email
-    %br
-  = f.submit "Submit"
-
-%h2 View an Existing Complaint:
-
-= form_tag '/complaints/find', method: "get" do
-  = label_tag(:complaint_key, "Secret Complaint Key:")
-  = text_field_tag(:complaint_key)
-  = submit_tag("View")
+  %h4 View an Existing Complaint:
+  %div.form-container
+    = form_tag '/complaints/find', method: "get" do
+      = label_tag(:complaint_key, "Secret Complaint Key:")
+      = text_field_tag(:complaint_key)
+      = submit_tag("View")
