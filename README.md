@@ -24,4 +24,4 @@ Things you may want to cover:
 * ...
 
 
-## Ruby 2.2.0
+## Ruby 2.3.1

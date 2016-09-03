@@ -1,7 +1,7 @@
 
 language: ruby
 rbenv:
- - 2.2.0
+ - 2.3.1
  - jruby
  - rbx-2
 
@@ -12,7 +12,11 @@ services:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - bundle exec rake db:create RAILS_ENV=test
+  - bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
 
+# bundler_args: binstubs=./bundler stubs
 
 
 # uncomment and edit the following line if your project needs to run something other than `rake`:
