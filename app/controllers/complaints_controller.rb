@@ -16,11 +16,9 @@ class ComplaintsController < ApplicationController
   end
 
   def create
-    puts Cowsay.say(complaint_params)
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
-    puts @complaint.save
-    binding.pry
+    @complaint.save
   end
 
   def show
