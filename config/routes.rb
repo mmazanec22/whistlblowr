@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get '/testforms' => 'testforms#index'
 
+  get '/complaints' => 'complaints#index'
+
   root "complaints#new"
 
   get "complaints/new" => "complaints#new"
