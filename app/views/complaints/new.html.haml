@@ -1,5 +1,5 @@
 =# render partial: "/user_errors"
-= form_for @complaint, url: "/complaints" do |f|
+= form_for @complaint, url: "/complaints", id:"complaint_form"  do |f|
 
   %h2 Complaint
   = f.label :content
