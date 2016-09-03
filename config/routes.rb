@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   get "complaints/new" => "complaints#new"
 
-  post "complaints" => "create"
+  post "complaints" => "complaints#create"
 
 end

@@ -1,3 +1,5 @@
+require "cowsay"
+
 class ComplaintsController < ApplicationController
   # before_action :authenticate_investigator!
 
@@ -7,12 +9,15 @@ class ComplaintsController < ApplicationController
 
   def new
     @complaint = Complaint.new
-    @user = User.new
-
-    @allegation_type = AllegationType.new
   end
 
   def create
+    params.inspect
+    p "===================================="
+    p params
+    puts Cowsay.say user_params[:complaint]
+    @user = User.new(user_params[:user])
+    puts Cowsay.say @user
     @complaint = Complaint.new()
   end
 
@@ -30,13 +35,16 @@ class ComplaintsController < ApplicationController
 
   private
 
-  def complaint_params
-  end
+    def complaint_params
+    end
 
-  def allegation_type_params
-  end
+    def allegation_type_params
+    end
 
-  def medium_params
-  end
+    def medium_params
+    end
 
+    def user_params
+      params.require(:complaint).permit( user[:name] , user[:email], user[:phone])
+    end
 end
