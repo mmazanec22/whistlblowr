@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   root "complaints#index"
 
+  get "complaints/new" => "complaints#new"
+
+  post "complaints" => "complaints#create"
+
 end
