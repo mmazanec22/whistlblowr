@@ -3,12 +3,8 @@ class Complaint < ApplicationRecord
   before_save :create_key
 
   belongs_to :user
-  # has_many :media
   has_many :allegations
   has_many :allegation_types, through: :allegations
-
-
-  accepts_nested_attributes_for :allegations
 
   def add_allegations
   end
@@ -17,7 +13,11 @@ class Complaint < ApplicationRecord
   end
 
   def create_key
-    self.key = SecureRandom.hex(5)
+    rand_key = SecureRandom.hex(5)
+    until Complaint.find_by(key: rand_key) == nil
+      rand_key = SecureRandom.hex(5)
+    end
+    self.key = rand_key
   end
 
   def allegation_types_as_nice_string
