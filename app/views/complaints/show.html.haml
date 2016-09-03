@@ -1,0 +1,13 @@
+
+%div.single-complaint
+
+  - if flash[:notice]
+    %div.new-complaint-notice
+      %p.complaint-key="Complaint key: #{flash[:notice]}"
+      %p="Save this key! It is your password to communicate anonymously with the Project Six team and see the status of your request(?). You can revisit this page by providing this key on the submission page."
+
+  %span Details of Complaint:
+  %br
+  %span= @complaint.content
+  %br
+  %span= "Created: #{@complaint.created_at.strftime("%Y/%m/%d")}"
