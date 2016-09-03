@@ -7,6 +7,7 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
 
+
   accepts_nested_attributes_for :allegations
 
   def add_allegations
@@ -19,5 +20,12 @@ class Complaint < ApplicationRecord
     self.key = SecureRandom.hex(5)
   end
 
+  def allegation_types_as_nice_string
+    return_string = ""
+    self.allegation_types.each do |a_t|
+      return_string += "#{a_t.allegation_nature}, "
+    end
+    return return_string
+  end
 
 end

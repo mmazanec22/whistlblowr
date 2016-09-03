@@ -1,0 +1,11 @@
+%h2 Complaints
+
+%table
+  %th Description
+  %th Allegation Types
+  %th Complainant Name
+  %th Complainant Phone
+  %th Complainant Email
+-@complaints.each do |complaint|
+  %tr= complaint.allegation_types_as_nice_string
+  %tr= complaint.content
