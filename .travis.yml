@@ -11,8 +11,8 @@ before_install:
   - sudo apt-get install postgresql-9.5
 services:
 - postgresql
-# before_script:
-# - psql -c 'create database travis_ci_test;' -U postgres
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
 # - cp config/database.yml.travis config/database.yml
 script: bundle exec rspec spec
 env:
