@@ -21,7 +21,8 @@ class ComplaintsController < ApplicationController
     @complaint.user = return_user
     @complaint.save
     flash.now[:notice] = @complaint.key
-    render 'show'
+    # render 'show'
+    redirect_to complaints_find_path(:complaint_key => @complaint.key)
   end
 
   def show
