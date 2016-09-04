@@ -1,5 +1,5 @@
 %div.row
-  %div.form-container
+  %div.complaint-container.col.s12
     %h5 Enter a New Complaint:
     = form_for @complaint, url: "/complaints", role: "form", class: "col s12" do |f|
       %div.row
@@ -7,29 +7,41 @@
           = f.text_area :content, class: "materialize-textarea flow-text", placeholder: "Description of complaint", id: "textarea1"
           %br
 
-        =f.file_field :media, multiple: true
 
       %div.row
         %div.input-field.col.s12
           %p Contact Info (Optional)
           = f.fields_for :user do |field|
-            = field.label :name
+            = field.text_field :name, placeholder: "Name"
             %br
-            = field.text_field :name
+            = field.text_field :phone, placeholder: "Phone"
             %br
-            = field.label :phone
+            = field.text_field :email, placeholder: "E-Mail"
             %br
-            = field.text_field :phone
-            %br
-            = field.label :email
-            %br
-            = field.text_field :email
-            %br
-          = f.submit "Submit"
+      %div.row
+        %div.input-field.file-field.col.s12
+          %div.btn
+            %span Add Files
+            =f.file_field :media, multiple: true
+          %div.file-path-wrapper
+            =f.text_field :media_cache, class: "file-path validate"
+          / %br
+          / %br
+          / %br
+          / %br
+          / %p Attach Files (Optional)            
+          / =f.file_field :media, multiple: true
+      %div.row
+        %div.input-field.file-field.col.s12
+          = f.submit "Submit", class: "btn"
 
-  %h4 View an Existing Complaint:
-  %div.form-container
+
+%div.row
+  %div.complaint-container.col.s12
+    %h5 View an Existing Complaint:
     = form_tag '/complaints/find', method: "get" do
-      = label_tag(:complaint_key, "Secret Complaint Key:")
-      = text_field_tag(:complaint_key)
-      = submit_tag("View")
+      %div.row
+        %div.input-field.col.s12
+          / #= label_tag(:complaint_key, "Secret Complaint Key")
+          = text_field_tag 'complaint_key', nil, placeholder: 'Secret Complaint Key'
+          = submit_tag "View", class: "btn"
