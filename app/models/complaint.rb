@@ -49,4 +49,9 @@ class Complaint < ApplicationRecord
     return return_string[0..-4]
   end
 
+  def allegation_types_as_string
+    return_string = self.allegation_types.map{|a| a.allegation_nature.split(" ").join("-")}.join(" ")
+    return_string
+  end
+
 end

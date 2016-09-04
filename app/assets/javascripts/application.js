@@ -21,6 +21,7 @@ $(document).ready(function(){
     event.preventDefault();
 
     var $clickedButton = $(this)
+    console.log($clickedButton)
     var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class")
 
     var route = $(this).attr("action");
@@ -35,25 +36,29 @@ $(document).ready(function(){
 
     request.done(function(response){
       $(clickedButtonTrClass).find(".current-status").removeClass("disabled")
+      console.log($(clickedButtonTrClass).find(".current-status"))
       $(clickedButtonTrClass).find(".current-status").removeClass("current-status")
 
       $clickedButton.addClass("current-status")
       $clickedButton.addClass("disabled")
     })
   })
+  $('select').material_select();
+  $(".status-form").change(function(){
+    var filterBy = $(".status-form :selected").val()
+    $(".table-row").hide()
+    $("tr."+filterBy).show()
+    if(filterBy=="All"){
+      $("tr").show()
+    }
+  })
+
+  $(".allegation-form").change(function(){
+    var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
+    $(".table-row").hide()
+    $("tr."+filterBy).show()
+    if(filterBy=="All"){
+      $("tr").show()
+    }
+  })
 })
-
-$(document).ready(function() {
-    $('select').material_select();
-});
-
-$(document).ready(function() {
-    $(".status-form").change(function(){
-      var filterBy = $(".status-form :selected").val()
-      $(".table-row").hide()
-      $("tr."+filterBy).show()
-      if(filterBy=="All"){
-        $("tr").show()
-      }
-    })
-});

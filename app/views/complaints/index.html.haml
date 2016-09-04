@@ -7,14 +7,18 @@
       Status
       = form_tag complaints_path, method: "get", class: "status-form" do
         = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses))
-    %th Allegation Types
+    %th
+      Allegation Types
+      = form_tag complaints_path, method: "get", class: "allegation-form" do
+        = select_tag "filter[allegation]", options_for_select((["All"]).concat(AllegationType.all.map{|a| a.allegation_nature}))
+
     %th Description
     %th Complainant Name
     %th Complainant Phone
     %th Complainant Email
     %th Complaint Attachments
     -@complaints.each do |complaint|
-      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.status}"}
+      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.status} #{complaint.allegation_types_as_string}"}
         %td
           =button_to complaint.status, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', class: "btn disabled current-status status-button"
           -complaint.possible_other_statuses.each do |st|
