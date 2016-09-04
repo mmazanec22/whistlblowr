@@ -11,11 +11,11 @@
     %th Complainant Email
     %th Complaint Attachments
     -@complaints.each do |complaint|
-      %tr
+      %tr{class: "complaint-id-#{complaint.id}"}
         %td
-          = complaint.status
+          %button.btn.disabled.current-status= complaint.status
           -complaint.possible_other_statuses.each do |st|
-            = button_to st, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put'
+            = button_to st, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put', class: "btn status-button"
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name

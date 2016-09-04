@@ -32,11 +32,15 @@ class ComplaintsController < ApplicationController
   end
 
   def update
-    p Cowsay.say(params)
     @complaint = Complaint.find_by(key: params[:complaint_key])
     @complaint.status = params[:status]
     @complaint.save
-    redirect_to complaints_path
+    if request.xhr?
+      p "stuff"
+      "done"
+    else
+      redirect_to complaints_path
+    end
   end
 
   def delete
