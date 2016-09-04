@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     var $clickedButton = $(this)
     console.log($clickedButton)
-    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class")
+    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
 
     var route = $(this).attr("action");
     var verb = $(this).attr("method");
@@ -43,6 +43,7 @@ $(document).ready(function(){
       $clickedButton.addClass("disabled")
     })
   })
+
   $('select').material_select();
   $(".status-form").change(function(){
     var filterBy = $(".status-form :selected").val()
