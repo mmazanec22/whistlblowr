@@ -11,7 +11,7 @@
     %th Complaint Attachments
     -@complaints.each do |complaint|
       %tr
-        %td= complaint.allegation_types_as_nice_string || ""
+        %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name
         %td= complaint.user.phone
@@ -21,6 +21,6 @@
             -complaint.media.each do |url|
               %a{ :href => url, :title => "View attachment" }
                 %strong
-                  Linky Link
+                  View attachment
         -else
           %td None
