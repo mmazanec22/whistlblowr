@@ -1,16 +1,24 @@
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
   validates_integrity_of :media
+  validate :file_size
   before_save :create_key
 
   belongs_to :user
   has_many :allegations
   has_many :allegation_types, through: :allegations
+  has_many :messages
+
+  POSSIBLE_STATUSES = ["New", "Active", "Closed"]
 
   def add_allegations
   end
 
   def make_user
+  end
+
+  def possible_other_statuses #returns non-current status options
+    return POSSIBLE_STATUSES.reject {|st| st == self.status}
   end
 
   def content_shortened
@@ -36,6 +44,16 @@ class Complaint < ApplicationRecord
       return_string += "#{a.allegation_nature}, \n"
     end
     return return_string[0..-4]
+  end
+
+  private
+
+  def file_size
+    upload_limit = 15
+    media_total = media.reduce(0) { |total, medium| total + medium.file.size.to_f }
+    if media_total > upload_limit.megabytes.to_f
+      errors.add(:media, "You cannot upload more than #{upload_limit.to_f}MB")
+    end
   end
 
 end

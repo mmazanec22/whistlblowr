@@ -6,7 +6,9 @@ class MediaUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   process :validate_dimensions
+
   # Choose what kind of storage to use for this uploader:
+
   # storage :file
   # storage :fog
 
@@ -17,12 +19,8 @@ class MediaUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def content_type_whitelist
-    /image\//
-  end
-
   def extension_white_list
-    %w(jpg jpeg png gif)
+    %w(jpg jpeg png gif pdf mp3 wav)
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -56,15 +54,16 @@ class MediaUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  process :strip
+  # process :strip
 
-  process quality: 85
+  # process quality: 85
 
   # process :store_dimensions
   #
   # process :resize_to_fit_by_percentage => 0.5
 
   private
+
 
   def validate_dimensions
     manipulate! do |img|

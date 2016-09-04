@@ -15,4 +15,32 @@
 //= require turbolinks
 //= require_tree .
 
+//ajaxify the statuses on the comments index page AKA inspector interface
+$(document).ready(function(){
+
+  $(".status-button").on("click", function(event){
+    event.preventDefault();
+
+    var $clickedButton = $(this)
+    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class")
+
+    var route = $(this).attr("action");
+    var verb = $(this).attr("method");
+    var formData = $(this).serialize();
+
+    var request = $.ajax({
+      url: route,
+      method: verb,
+      data: formData
+    })
+
+    request.done(function(response){
+      $(clickedButtonTrClass).find(".current-status").removeClass("disabled")
+      $(clickedButtonTrClass).find(".current-status").removeClass("current-status")
+
+      $clickedButton.addClass("current-status")
+      $clickedButton.addClass("disabled")
+    })
+  })
+})
 
