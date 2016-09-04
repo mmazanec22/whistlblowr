@@ -6,9 +6,12 @@ class ComplaintsController < ApplicationController
 
   def index
     @complaints = Complaint.all
-    if params[:status_filter]
-    else
-      @filters = []
+    if request.xhr?
+      if params[:filter_criterion] == "All"
+        ""
+      else
+        Complaint.find_by(status: params[:filter_criterion]).to_json
+      end
     end
   end
 

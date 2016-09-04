@@ -8,7 +8,11 @@ class Complaint < ApplicationRecord
   has_many :allegation_types, through: :allegations
   has_many :messages
 
-  POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+  # POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+
+  def self.possible_statuses
+    ["New", "Active", "Closed"]
+  end
 
   def add_allegations
   end
@@ -17,7 +21,7 @@ class Complaint < ApplicationRecord
   end
 
   def possible_other_statuses #returns non-current status options
-    return POSSIBLE_STATUSES.reject {|st| st == self.status}
+    return Complaint.possible_statuses.reject {|st| st == self.status}
   end
 
   def content_shortened

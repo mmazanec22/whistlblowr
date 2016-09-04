@@ -46,3 +46,17 @@ $(document).ready(function(){
 $(document).ready(function() {
     $('select').material_select();
 });
+
+$(document).ready(function() {
+    $(".status-form").change(function(){
+      var filterBy = {filter_criterion: $(".status-form :selected").val()}
+      var route = $(this).attr("action");
+      var verb = $(this).attr("method");
+
+      var request = $.ajax({
+        url: route,
+        method: verb,
+        data: filterBy
+      })
+    })
+});

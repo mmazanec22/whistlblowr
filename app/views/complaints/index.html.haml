@@ -5,8 +5,8 @@
   %table.bordered.responsive-table.complaint-table
     %th
       Status
-      = form_tag complaints_path, method: "get" do
-        = select_tag "filter[status]", options_for_select(Complaint::POSSIBLE_STATUSES)
+      = form_tag complaints_path, method: "get", class: "status-form" do
+        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses))
     %th Allegation Types
     %th Description
     %th Complainant Name
