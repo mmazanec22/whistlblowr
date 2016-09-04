@@ -30,7 +30,7 @@ User.create!(phone: "4852958475")
 complaint_content = ["I saw my alderman embezzling money while demanding oral sex from an intern", "My alderman bribed people to campaign on city property", "My alderman used grant money to buy equipment for her husband's company to which she then awarded a contract"]
 
 complaint_content.each do |c|
-  complaint = Complaint.create!(key: SecureRandom.hex, content: c, user_id: User.all.sample.id)
+  complaint = Complaint.create!(content: c, user_id: User.all.sample.id)
   2.times do
     allegation = Allegation.create(complaint_id: complaint.id, allegation_type_id: AllegationType.all.sample.id)
   end

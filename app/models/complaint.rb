@@ -7,19 +7,20 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
 
-
-  def media_urls
-    # signer = Aws::S3::Presigner.new
-    # urls = self.media.map{|obj| signer.presigned_url(obj, bucket: ENV['S3_BUCKET_NAME'], key: ENV['S3_KEY']).to_s}
-    urls = self.media.map{|obj| obj}
-    urls
-  end
-
   def add_allegations
   end
 
   def make_user
   end
+
+  def content_shortened
+    return "#{self.content[0..20]} ..." if self.content.length>20
+    return self.content
+  end
+
+# when we allow different types of media, it would be nice to have the media index link to the object tell what kind of medium it is
+  # def medium_type(medium_object)
+  # end
 
   def create_key
     rand_key = SecureRandom.hex(5)
@@ -31,10 +32,10 @@ class Complaint < ApplicationRecord
 
   def allegation_types_as_nice_string
     return_string = ""
-    self.allegation_types.each do |a_t|
-      return_string += "#{a_t.allegation_nature}, "
+    self.allegation_types.each do |a|
+      return_string += "#{a.allegation_nature}, \n"
     end
-    return return_string
+    return return_string[0..-4]
   end
 
 end

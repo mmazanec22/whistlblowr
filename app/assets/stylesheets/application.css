@@ -36,10 +36,11 @@ img.logo {
   border-collapse:collapse;
   width: 80%;
   text-align: center;
-  margin: 7%;
+  margin: 0 auto;
+  white-space:pre-line;
 }
 
-.complaint-table td{
+.complaint-table td th{
   word-wrap:break-word;
   padding: 2%;
 }
