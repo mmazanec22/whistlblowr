@@ -1,19 +1,27 @@
-
 language: ruby
 rbenv:
- - 2.3.1
- - jruby
- - rbx-2
-
-
+- 2.3.1
+- jruby
+- rbx-2
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
-
-
-
-# uncomment and edit the following line if your project needs to run something other than `rake`:
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+- bundle exec rake db:create RAILS_ENV=test
+- bundle exec rake db:migrate
+- bundle exec rake db:seed
+- bundle exec rake db:test:prepare
 script: bundle exec rspec spec
+deploy:
+  provider: s3
+  access_key_id:
+    secure: D4E6OoJ8Oze31fRrt7pYTX10QRdwypTRhhZpCjv/HwF2Bac3rpkr38RjMccZlYTcmBg1JZFC2yVCwXQIhR5Q+54W4r4Z3ZyLi45ADFRvFMcywIxWP1Tx5KrG6zfnXEoT+a+GA6lHwmehssMWWif2lzhLIYhHCQPqGg9KsPWQCpuBjc9oUQQdn7Mf9XcBFmwETSBmW5QxXcAPLg6jXFz62L8FCA7iUJa8F6actPanB9u7kMit9aD0gpGkoEXqSqKLjiiG76Cd31a/hRM8Tx2Afsbz1caNw9b/1iSxgla5PG61A1vTeLoDR8ZKyT12wSlaSgPYq/J25IIuwK8y8y4+zMVsA0zsdoAUKdJhLBwyKVmzOjBS03RyHb+JFvptUfg1ubTzuOyzgyNaYeQ5vJDkJDExj+wxPVAnZGnIgLmUNBqj81fYQS6KfAGZj3my57QYWglaQSHRH+eRl13Kw9GpGrDHruyxGfR57udSk2XIxqBmbEyVVUK3tDVwpKsCTBDsjPRWHkdlRDWbuBu2AjoWIVDRsKUkPytREqyQuLPy7A5E75GWQAh0I4f+U88jNCBCi/edh32kSPyy+jnL5034Fi11AVk159Hj1udus15KSRSeY+9DjkyZ/M0g/3/8hTwidaauO47Hy+ddWvOelREcsOq0nThd0GuTVpDCni4o2OU=
+  secret_access_key:
+    secure: Xux7PBP/e9p7LU6y5IZA3spS99UlLX80pwlpR3X5D86Oizyd+8hzWuREGhUgA3134vvxcQzQHbR64x4gMH7OhC808asuCR5X6liiiJzcqtua/tgBwej/hmJJ8YPtzjv50fip+fW05aC1nLflUehxd+lhRXJCBj5wdhbRgLS0a9Mkp+GOqghYSHXLjQ9duhydz3kRYXsA0jjeEWIIQK4XwPXAirV5/fOHlNBR5y6qC4w6L159XNwIRw1v5xVK0of/SjXMmvasH/XaTQGWq94WpyfY2MegHJVJY5bX/vxIipDlkwftJGDnj5RpJHtFSrjRqc8pwceVTpRg5grfqant6eLIheOC4YyRq/DwxUIMl9tapWKte+/QE04VxLD8NXo+tEWy/AD/Nsyvr41S1Ihr8CZTnEFGKPjIt7GCd07fNaFz8uDz+vfOzyDhM0veVUck3G0O8RY/GfOBQruszNJnIaheYipvKY1EylAXGzEljJNHJHpDluqLDMa/v7/vhWsG/LCW5Qqp6zftSIH8ZFDLx7oRAC+hS78C1iECc+DnvMnkT9RPIpZil8ggvOI282lD9oSxKtIllVJuowRT0P+dqN1TfEdPrKbmQi7KOxmhCj50cCWx7FKLRPzb5Dxxxgx+qtHi6WsVQ0YowUrORx7jM/PndaW/mxDi3S6wXAMfk5g=
+  bucket:
+    secure: pMbmPtHBZcLeIsMLv6/W1HaHPfVVPG8f1570srNPL+NXK6Qf/+qDfwSbLa3OjbhmUtyT2wCSc0HVZbrFWOUUC0cSP7ZSoHUXotxSZCUtM48Ybpf33IOl9j7lZoxQ8HbFLffCyRWTg2ve1SK9WJ4abRSmsdXBgtKn8UUzfWTAhFayKdScwnZC+oYjNOKWLRe1P9i8qzZDRfbkhe/Hg5IFXG/Qh5Ytjxs5IHAnBqrikWVdJII/9EDczJD+U+4eop6eR+q6EaEU3SN0JqB49N8l+Fvmv30G82Otveka+9AROEST45SnfPrJ1iHVJVOCvpewIbojoLn0HC21BT/HvVO3yrL6d+nHfDbDK9eArGmuU77XcavRppGfQzDFRRNHZwwkB2+E3x+NCF6v1kHP/K8OkqmXpv4oZjmW7LfbRJdGeI0QN3rRGKsNqIW9gJYRh1AiccYgZgzPkyaIQqPYKQA8x+DLxJRB8nh6HdIL0WgIW5+d9Sn3wxxeWYyix3fpjByiCmouZqmUjqoldncSSFmM2SdyHz+0mPa2LxCRgeg9PFrJhBHIlUxBWUDn3QCtzf7PddDpDPGhcIRyUfgr4QuXPJcCCXfENLpJCbV4ucpOpwbdmS2ek01Oe0OtAU5sFey5IL1pnWo9tIyQvrI2D91NUD4HDrYjbbcH7jSQYSserpQ=
+  acl: public_read_write
+  on:
+    repo: mmazanec22/whistlblowr
+    branch: travis

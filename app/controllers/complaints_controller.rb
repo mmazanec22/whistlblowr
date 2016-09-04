@@ -1,4 +1,6 @@
 require "cowsay"
+require 'rails_helper'
+
 require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
