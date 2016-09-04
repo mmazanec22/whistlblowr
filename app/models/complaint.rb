@@ -1,5 +1,6 @@
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
+  validates :content, presence: true
   validates_integrity_of :media
   validate :file_size
   before_save :create_key
