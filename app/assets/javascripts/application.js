@@ -28,6 +28,9 @@ $(document).ready(function(){
     var route = $(this).attr("action");
     var verb = $(this).attr("method");
     var formData = $(this).serialize();
+    console.log($(this))
+    console.log(verb)
+    console.log(route)
 
     var request = $.ajax({
       url: route,

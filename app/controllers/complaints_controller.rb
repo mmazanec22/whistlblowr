@@ -35,9 +35,9 @@ class ComplaintsController < ApplicationController
   end
 
   def update
+    p Cowsay.say(params)
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.status = params[:status]
-    @complaint.save
+    @complaint.update_attribute(status: params[:status])
     if request.xhr?
       "done"
     else
