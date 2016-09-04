@@ -1,6 +1,7 @@
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
   validates_integrity_of :media
+  validate :file_size
   before_save :create_key
 
   belongs_to :user
@@ -36,6 +37,16 @@ class Complaint < ApplicationRecord
       return_string += "#{a.allegation_nature}, \n"
     end
     return return_string[0..-4]
+  end
+
+  private
+
+  def file_size
+    upload_limit = 5
+    media_total = media.reduce(0) { |total, medium| total + medium.file.size.to_f }
+    if media_total > upload_limit.megabytes.to_f
+      errors.add(:media, "You cannot upload more than #{upload_limit.to_f}MB")
+    end
   end
 
 end
