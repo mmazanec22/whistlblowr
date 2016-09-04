@@ -2,9 +2,11 @@
   %div.single-complaint.complaint-container.col.s12.z-depth-2
 
     - if flash[:notice]
-      %div.new-complaint-notice
-        %p.complaint-key="Complaint key: #{flash[:notice]}"
-        %p="Save this key! It is your password to communicate anonymously with the Project Six team and see the status of your request(?). You can revisit this page by providing this key on the submission page."
+      %div.new-complaint-notice.row.col.s12
+        %p.complaint-key="Secret Complaint Key: #{flash[:notice]}"
+        %p Save this key! You can revisit this page by providing this value on the submission page:
+        =image_tag("retrieve-complaint.png", class: "retrieve-complaint")
+        %p If you have not provided contact information, the Project Six team may try to communicate with you using the anonymous messaging below.
 
     %div.row
       %div.col.s12
@@ -35,16 +37,16 @@
 %div.row
   %div.complaint-container.col.s12.z-depth-2
     %h5 Create a new Message:
-    = form_for([@complaint, @message]) do |f|
+    = form_for(@message, remote: true) do |f|
       %div.row
         = f.hidden_field(:complaint_id, :value => @complaint.id)
         %div.input-field.col.s12
-          = f.text_area :text, class: "materialize-textarea flow-text", placeholder: "Message", id: "textarea1"
+          = f.text_area :text, class: "materialize-textarea flow-text message-body", placeholder: "Message", id: "textarea1"
       %div.row
         %div.input-field.file-field.col.s12
-          = f.submit "Send", class: "btn"
+          = f.submit "Send", class: "btn", :id=>"send-message"
     %h5 Messages:
-    - @complaint.messages.each do |message|
-      %div.card-panel.teal.lighten-4
-        %div.message-sender="From: #{message.messageable.to_s}"
-        %div.message-body=message.text
+    %div#message-container
+      - @complaint.messages.each do |message|
+        =render partial: "messages/show", locals: {message: message}
+

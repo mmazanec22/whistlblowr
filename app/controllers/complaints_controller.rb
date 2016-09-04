@@ -16,11 +16,13 @@ class ComplaintsController < ApplicationController
   end
 
   def create
+    @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
     @complaint.save
-    flash.now[:notice] = @complaint.key
-    render 'show'
+    flash[:notice] = @complaint.key
+    # render 'show'
+    redirect_to complaints_find_path(:complaint_key => @complaint.key)
   end
 
   def show

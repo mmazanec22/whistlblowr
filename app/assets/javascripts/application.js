@@ -17,6 +17,7 @@
 
 //ajaxify the statuses on the comments index page AKA inspector interface
 $(document).ready(function(){
+
   $(".status-button").on("click", function(event){
     event.preventDefault();
 
