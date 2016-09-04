@@ -45,7 +45,8 @@
       %div.row
         %div.input-field.file-field.col.s12
           = f.submit "Send", class: "btn", :id=>"send-message"
-    %h5 Messages:
+    -if @complaint.messages.length>0
+      %h5 Messages:
     %div#message-container
       - @complaint.messages.each do |message|
         =render partial: "messages/show", locals: {message: message}

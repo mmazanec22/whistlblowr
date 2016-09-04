@@ -75,6 +75,18 @@ img.logo {
   border: 1px solid #FFA8C1;
 }
 
+.error-msgs {
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #FFA8C1;
+}
+
+.error {
+  padding: 3px 0px;
+  color: red;
+  font-size: .8em;
+}
+
 .complaint-key {
   font-size: 2em;
 }

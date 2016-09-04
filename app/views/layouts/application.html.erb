@@ -16,6 +16,17 @@
 <body>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<div class="container">
+
+  <% if @errors %>
+      <div class="row">
+        <div class="error-msgs push-s3 col s6 z-depth-2">
+    <% @errors.each do |error| %>
+        <div class="error"><%= error %></div>
+    <% end %>
+      </div>
+    </div>
+  <% end %>
+
   	<%= yield %>
   </div>
 </body>
