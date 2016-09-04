@@ -27,7 +27,21 @@ img.logo {
 
 @media (max-width: 600px) {
 
+  .input-field textarea {
+    font-size: 1.5em;
+  }
 
+  .complaint-container p {
+    font-size: 1.5em;
+  }
+
+  .input-field input {
+    font-size: 1.5em;
+  }
+
+  .btn span {
+    font-size: 1.5em;
+  }
 
 }
 
@@ -49,3 +63,7 @@ img.logo {
   border: 1px solid black;
 }
 
+.message-sender {
+  color: grey;
+  font-style: italic;
+}
