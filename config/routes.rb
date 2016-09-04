@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :investigators
+  devise_for :admins
+  devise_for :investigators, :path_prefix =>'auth'
+
 
   # #instructions to bypass devise ----------------------------
   # resources :investigators, except: :create
