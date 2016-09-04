@@ -35,12 +35,10 @@ $(document).ready(function(){
 
     request.done(function(response){
       $(clickedButtonTrClass).find(".current-status").removeClass("disabled")
-      $(clickedButtonTrClass).find(".current-status").addClass("status-button")
       $(clickedButtonTrClass).find(".current-status").removeClass("current-status")
 
       $clickedButton.addClass("current-status")
       $clickedButton.addClass("disabled")
-      $clickedButton.removeClass("status-button")
     })
   })
 })
