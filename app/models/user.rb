@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :complaints
+  has_many :messages, as: :messageable
 
   def to_s
     contact_info = []

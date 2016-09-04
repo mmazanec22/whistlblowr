@@ -16,22 +16,34 @@ class ComplaintsController < ApplicationController
   end
 
   def create
+    @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
     @complaint.save
     flash.now[:notice] = @complaint.key
-    render 'show'
+    # render 'show'
+    redirect_to complaints_find_path(:complaint_key => @complaint.key)
   end
 
   def show
+    @message = Message.new
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.media.each do |m|
-      p m
-    end
   end
 
   def edit
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+  end
 
+  def update
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+    @complaint.status = params[:status]
+    @complaint.save
+    if request.xhr?
+      p "stuff"
+      "done"
+    else
+      redirect_to complaints_path
+    end
   end
 
   def delete
