@@ -12,6 +12,7 @@ before_install:
 services:
 - postgresql
 before_script:
+- bundle exec rake db:create RAILS_ENV=test
 - psql -c 'create database travis_ci_test;' -U postgres
 - cp config/database.yml.travis config/database.yml
 script: bundle exec rspec spec
