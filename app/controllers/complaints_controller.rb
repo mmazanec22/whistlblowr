@@ -39,7 +39,6 @@ class ComplaintsController < ApplicationController
     @complaint.status = params[:status]
     @complaint.save
     if request.xhr?
-      p "stuff"
       "done"
     else
       redirect_to complaints_path
