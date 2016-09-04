@@ -2,10 +2,16 @@ class MessagesController < ApplicationController
 
 
   def create
-    new_message = Message.new(message_params)
-    new_message.messageable = return_user(new_message)
-    new_message.save
-    redirect_to complaints_find_path(:complaint_key => new_message.complaint.key)
+    @message = Message.new(message_params)
+    @message.messageable = return_user(@message)
+    @message.save
+
+    # binding.pry
+
+    respond_to do |format|
+      format.html { redirect_to complaints_find_path(:complaint_key => @message.complaint.key) }
+      format.js {}
+    end
   end
 
   private
