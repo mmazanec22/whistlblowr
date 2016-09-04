@@ -67,3 +67,18 @@ img.logo {
   color: grey;
   font-style: italic;
 }
+
+.new-complaint-notice {
+  text-align: center;
+  margin-top: 10px;
+  background-color: #FFD1DE;
+  border: 1px solid #FFA8C1;
+}
+
+.complaint-key {
+  font-size: 2em;
+}
+
+.retrieve-complaint {
+  max-width: 270px;
+}
