@@ -9,6 +9,7 @@ class ComplaintsController < ApplicationController
   end
 
   def new
+    @message = Message.new
     @complaint = Complaint.new
     allegation =  Allegation.new
     @complaint.allegations << allegation
