@@ -6,6 +6,10 @@ class ComplaintsController < ApplicationController
 
   def index
     @complaints = Complaint.all
+    if params[:status_filter]
+    else
+      @filters = []
+    end
   end
 
   def new
