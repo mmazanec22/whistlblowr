@@ -28,7 +28,15 @@ class ComplaintsController < ApplicationController
   end
 
   def edit
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+  end
 
+  def update
+    p Cowsay.say(params)
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+    @complaint.status = params[:status]
+    @complaint.save
+    redirect_to complaints_path
   end
 
   def delete

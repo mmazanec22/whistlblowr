@@ -13,9 +13,9 @@
     -@complaints.each do |complaint|
       %tr
         %td
-          = form_for(complaint) do |f|
-            = f.label :complaint.status
-            = f.select(:status, Complaint::COMPLAINT_STATUS)
+          = complaint.status
+          -complaint.possible_other_statuses.each do |st|
+            = button_to st, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put'
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name

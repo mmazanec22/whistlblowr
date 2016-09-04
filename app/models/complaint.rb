@@ -15,6 +15,10 @@ class Complaint < ApplicationRecord
   def make_user
   end
 
+  def possible_other_statuses #returns non-current status options
+    return POSSIBLE_STATUSES.reject {|st| st == self.status}
+  end
+
   def content_shortened
     return "#{self.content[0..20]} ..." if self.content.length>20
     return self.content
