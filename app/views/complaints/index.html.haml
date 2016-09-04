@@ -14,7 +14,7 @@
     %th Complainant Email
     %th Complaint Attachments
     -@complaints.each do |complaint|
-      %tr{class: "complaint-id-#{complaint.id}"}
+      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.status}"}
         %td
           =button_to complaint.status, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', class: "btn disabled current-status status-button"
           -complaint.possible_other_statuses.each do |st|

@@ -49,14 +49,11 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $(".status-form").change(function(){
-      var filterBy = {filter_criterion: $(".status-form :selected").val()}
-      var route = $(this).attr("action");
-      var verb = $(this).attr("method");
-
-      var request = $.ajax({
-        url: route,
-        method: verb,
-        data: filterBy
-      })
+      var filterBy = $(".status-form :selected").val()
+      $(".table-row").hide()
+      $("tr."+filterBy).show()
+      if(filterBy=="All"){
+        $("tr").show()
+      }
     })
 });
