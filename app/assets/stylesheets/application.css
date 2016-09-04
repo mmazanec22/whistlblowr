@@ -49,3 +49,7 @@ img.logo {
   border: 1px solid black;
 }
 
+.message-sender {
+  color: grey;
+  font-style: italic;
+}

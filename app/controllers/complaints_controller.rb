@@ -24,6 +24,7 @@ class ComplaintsController < ApplicationController
   end
 
   def show
+    @message = Message.new
     @complaint = Complaint.find_by(key: params[:complaint_key])
   end
 
