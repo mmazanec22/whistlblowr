@@ -49,7 +49,7 @@ class Complaint < ApplicationRecord
   private
 
   def file_size
-    upload_limit = 5
+    upload_limit = 15
     media_total = media.reduce(0) { |total, medium| total + medium.file.size.to_f }
     if media_total > upload_limit.megabytes.to_f
       errors.add(:media, "You cannot upload more than #{upload_limit.to_f}MB")
