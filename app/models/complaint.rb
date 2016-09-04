@@ -10,7 +10,11 @@ class Complaint < ApplicationRecord
   has_many :allegation_types, through: :allegations
   has_many :messages
 
-  POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+  # POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+
+  def self.possible_statuses
+    ["New", "Active", "Closed"]
+  end
 
   def add_allegations
   end
@@ -19,7 +23,7 @@ class Complaint < ApplicationRecord
   end
 
   def possible_other_statuses #returns non-current status options
-    return POSSIBLE_STATUSES.reject {|st| st == self.status}
+    return Complaint.possible_statuses.reject {|st| st == self.status}
   end
 
   def content_shortened
@@ -47,10 +51,15 @@ class Complaint < ApplicationRecord
     return return_string[0..-4]
   end
 
+  def allegation_types_as_string
+    return_string = self.allegation_types.map{|a| a.allegation_nature.split(" ").join("-")}.join(" ")
+    return_string
+  end
+
   private
 
   def file_size
-    upload_limit = 5
+    upload_limit = 15
     media_total = media.reduce(0) { |total, medium| total + medium.file.size.to_f }
     if media_total > upload_limit.megabytes.to_f
       errors.add(:media, "You cannot upload more than #{upload_limit.to_f}MB")
