@@ -16,6 +16,7 @@ class ComplaintsController < ApplicationController
   end
 
   def create
+    @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
     @complaint.save

@@ -10,10 +10,9 @@ Rails.application.routes.draw do
 
   get "complaints/new" => "complaints#new"
 
-  get 'complaints/find' => 'complaints#show'
+  get 'complaints/find' => 'complaints#show', as: 'complaints_find'
 
   post "complaints" => "complaints#create"
-
 
   post 'messages' => 'messages#create', as: 'complaint_messages'
 
