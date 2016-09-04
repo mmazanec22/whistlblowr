@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160903151609) do
   end
 
   create_table "investigators", force: :cascade do |t|
-    t.string   "username",                           null: false
+    t.string   "username"
     t.string   "email",                              null: false
     t.string   "encrypted_password",                 null: false
     t.string   "reset_password_token"

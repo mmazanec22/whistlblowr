@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   devise_for :investigators
+
+  # #instructions to bypass devise ----------------------------
+  # resources :investigators, except: :create
+  # get 'investigator/new' => "investigator#new"
+  #   # Name it however you want
+  # post 'create_investigator' => 'investigators#create', as: :create_investigator
+  # # end devise bypass -------------------------------------
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/testforms' => 'testforms#index'
@@ -13,6 +21,9 @@ Rails.application.routes.draw do
   get 'complaints/find' => 'complaints#show'
 
   post "complaints" => "complaints#create"
+
+
+
 
 
 end
