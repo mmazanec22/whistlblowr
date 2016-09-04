@@ -54,12 +54,12 @@ $(document).ready(function(){
     }
   })
 
-  $(".allegation-form").change(function(){
-    var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
-    $(".table-row").hide()
-    $("tr."+filterBy).show()
-    if(filterBy=="All"){
-      $("tr").show()
-    }
-  })
+  // $(".allegation-form").change(function(){
+  //   var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
+  //   $(".table-row").hide()
+  //   $("tr."+filterBy).show()
+  //   if(filterBy=="All"){
+  //     $("tr").show()
+  //   }
+  // })
 })

@@ -9,8 +9,8 @@
         = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses))
     %th
       Allegation Types
-      = form_tag complaints_path, method: "get", class: "allegation-form" do
-        = select_tag "filter[allegation]", options_for_select((["All"]).concat(AllegationType.all.map{|a| a.allegation_nature}))
+      / = form_tag complaints_path, method: "get", class: "allegation-form" do
+      /   = select_tag "filter[allegation]", options_for_select((["All"]).concat(AllegationType.all.map{|a| a.allegation_nature}))
 
     %th Description
     %th Complainant Name
