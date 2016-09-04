@@ -14,5 +14,7 @@ Rails.application.routes.draw do
 
   post "complaints" => "complaints#create"
 
+  put "complaints/:id/edit" => "complaints#update", as: "edit_complaint"
+
 
 end

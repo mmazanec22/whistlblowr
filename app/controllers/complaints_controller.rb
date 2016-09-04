@@ -25,13 +25,22 @@ class ComplaintsController < ApplicationController
 
   def show
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.media.each do |m|
-      p m
-    end
   end
 
   def edit
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+  end
 
+  def update
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+    @complaint.status = params[:status]
+    @complaint.save
+    if request.xhr?
+      p "stuff"
+      "done"
+    else
+      redirect_to complaints_path
+    end
   end
 
   def delete
