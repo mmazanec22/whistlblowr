@@ -14,5 +14,6 @@ Rails.application.routes.draw do
 
   post "complaints" => "complaints#create"
 
+  post 'messages' => 'messages#create', as: 'complaint_messages'
 
 end

@@ -28,3 +28,18 @@
           %span=@complaint.user.to_s
 
 %a.waves-effect.waves-light.btn{ href: complaints_path } Back
+
+%br
+%br
+
+%div.row
+  %div.complaint-container.col.s12.z-depth-2
+    %h5 Create a new Message:
+    = form_for([@complaint, @message]) do |f|
+      %div.row
+        %div.input-field.col.s12
+          = f.text_area :text, class: "materialize-textarea flow-text", placeholder: "Message", id: "textarea1"
+      %div.row
+        %div.input-field.file-field.col.s12
+          = f.submit "Send", class: "btn"
+
