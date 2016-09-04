@@ -18,6 +18,10 @@ class Complaint < ApplicationRecord
     return self.content
   end
 
+# when we allow different types of media, it would be nice to have the media index link to the object tell what kind of medium it is
+  # def medium_type(medium_object)
+  # end
+
   def create_key
     rand_key = SecureRandom.hex(5)
     until Complaint.find_by(key: rand_key) == nil

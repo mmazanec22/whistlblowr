@@ -12,16 +12,14 @@
     -@complaints.each do |complaint|
       %tr
         %td= complaint.allegation_types_as_nice_string || ""
-        %td
-          %a{href: "google.com"}
-            %strong= complaint.content_shortened
+        %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name
         %td= complaint.user.phone
         %td= complaint.user.email
         -if complaint.media[0]
           %td
             -complaint.media.each do |url|
-              %a{ :href => url, :title => "Linky link" }
+              %a{ :href => url, :title => "View attachment" }
                 %strong
                   Linky Link
         -else
