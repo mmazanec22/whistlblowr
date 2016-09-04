@@ -37,9 +37,14 @@
     %h5 Create a new Message:
     = form_for([@complaint, @message]) do |f|
       %div.row
+        = f.hidden_field(:complaint_id, :value => @complaint.id)
         %div.input-field.col.s12
           = f.text_area :text, class: "materialize-textarea flow-text", placeholder: "Message", id: "textarea1"
       %div.row
         %div.input-field.file-field.col.s12
           = f.submit "Send", class: "btn"
-
+    %h5 Messages:
+    - @complaint.messages.each do |message|
+      %div.card-panel.teal.lighten-4
+        %div.message-sender="From: #{message.messageable.to_s}"
+        %div.message-body=message.text

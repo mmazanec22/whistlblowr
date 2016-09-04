@@ -6,6 +6,7 @@ class Complaint < ApplicationRecord
   belongs_to :user
   has_many :allegations
   has_many :allegation_types, through: :allegations
+  has_many :messages
 
   def add_allegations
   end
