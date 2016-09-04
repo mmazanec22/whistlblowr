@@ -1,5 +1,5 @@
 %div.row
-  %div.complaint-container.col.s12
+  %div.complaint-container.col.s12.z-depth-2
     %h5 Enter a New Complaint:
     = form_for @complaint, url: "/complaints", role: "form", class: "col s12" do |f|
       %div.row
@@ -14,7 +14,7 @@
           = f.fields_for :user do |field|
             = field.text_field :name, placeholder: "Name"
             %br
-            = field.text_field :phone, placeholder: "Phone"
+            = field.text_field :phone, placeholder: "Phone", type: "tel"
             %br
             = field.text_field :email, placeholder: "E-Mail"
             %br
@@ -29,7 +29,7 @@
           / %br
           / %br
           / %br
-          / %p Attach Files (Optional)            
+          / %p Attach Files (Optional)
           / =f.file_field :media, multiple: true
       %div.row
         %div.input-field.file-field.col.s12
@@ -37,7 +37,7 @@
 
 
 %div.row
-  %div.complaint-container.col.s12
+  %div.complaint-container.col.s12.z-depth-2
     %h5 View an Existing Complaint:
     = form_tag '/complaints/find', method: "get" do
       %div.row
