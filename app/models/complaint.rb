@@ -7,6 +7,8 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
 
+  POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+
   def add_allegations
   end
 

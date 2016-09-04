@@ -3,6 +3,7 @@
   %h2 Complaints
 
   %table.bordered.responsive-table.complaint-table
+    %th Status
     %th Allegation Types
     %th Description
     %th Complainant Name
@@ -11,6 +12,10 @@
     %th Complaint Attachments
     -@complaints.each do |complaint|
       %tr
+        %td
+          = form_for(complaint) do |f|
+            = f.label :complaint.status
+            = f.select(:status, Complaint::COMPLAINT_STATUS)
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name
