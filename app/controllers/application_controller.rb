@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  check_authorization   # This will raise an exception if authorization is not performed in an action.
+  # check_authorization   # This will raise an exception if authorization is not performed in an action.
 
-  # skip_authorization_check  # To skip check_authorization
+  skip_authorization_check  # To skip check_authorization
 end
