@@ -1,12 +1,13 @@
 class Investigators::RegistrationsController < Devise::RegistrationsController
 
-  before_action :authenticate_investigator_admin!, :except => [:registrations]
+  # before_action :authenticate_investigator_admin!, :except => [:registrations]
   # before_filter :authenticate_investigator_admin!
   # before_action :require_no_authentication
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
-  # GET /investigators/sign_up
+  # GET /investigators/sign_
+  up
   # def new
   #   p "hit new ===================================="
   #   if current_investigator.admin

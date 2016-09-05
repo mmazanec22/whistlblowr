@@ -4,10 +4,8 @@ Rails.application.routes.draw do
 
   # get '/admins/new' => "investigators#new"
   # scope "/admin" do
-    resources :investigators
+    # resources :investigators
   # end
-
-
 
 
   # #instructions to bypass devise ----------------------------
@@ -36,6 +34,9 @@ Rails.application.routes.draw do
   put "complaints/:id" => "complaints#update", as: "update_complaint"
 
 
+  get "/new_investigators" => "new_investigators#new"
+
+  post "/new_investigators" => "new_investigators#create"
 
 
 

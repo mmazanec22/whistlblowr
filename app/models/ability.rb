@@ -8,7 +8,7 @@ class Ability
       if investigator.admin?
         can :manage, :all
       else
-        can :read, :all
+        can :manage, :all
       end
 
       # can :manage, :all if investigator.admin?
