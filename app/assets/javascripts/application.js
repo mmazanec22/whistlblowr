@@ -18,12 +18,13 @@
 //ajaxify the statuses on the comments index page AKA inspector interface
 $(document).ready(function(){
 
-  $(".status-button").on("click", function(event){
+  $("form.status-button").on("click", function(event){
     event.preventDefault();
 
-    var $clickedButton = $(this)
-    console.log($clickedButton)
-    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
+    var $clickedButton = $(this).find(".btn")
+    var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
+    var oldTrStatusClassArray = $clickedButton.closest("tr").attr("class").split(" ")
+    var oldTrStatusClass = oldTrStatusClassArray[oldTrStatusClassArray.length-1]
 
     var route = $(this).attr("action");
     var verb = $(this).attr("method");
@@ -32,14 +33,16 @@ $(document).ready(function(){
     var request = $.ajax({
       url: route,
       method: verb,
-      data: formData
-    })
+      data: formData,
+      dataType: 'json'
+    });
 
     request.done(function(response){
-      $(clickedButtonTrClass).find(".current-status").removeClass("disabled")
-      console.log($(clickedButtonTrClass).find(".current-status"))
-      $(clickedButtonTrClass).find(".current-status").removeClass("current-status")
+      $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("disabled")
+      $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("current-status")
 
+      $clickedButton.closest("tr").removeClass(oldTrStatusClass)
+      $clickedButton.closest("tr").addClass(response.status)
       $clickedButton.addClass("current-status")
       $clickedButton.addClass("disabled")
     })

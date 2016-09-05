@@ -6,7 +6,7 @@
     %th
       Status
       = form_tag complaints_path, method: "get", class: "status-form" do
-        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses))
+        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses)), class: "filter-menu"
     %th
       Allegation Types
       / = form_tag complaints_path, method: "get", class: "allegation-form" do
@@ -18,11 +18,11 @@
     %th Complainant Email
     %th Complaint Attachments
     -@complaints.each do |complaint|
-      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.status} #{complaint.allegation_types_as_string}"}
+      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
         %td
-          =button_to complaint.status, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', class: "btn disabled current-status status-button"
+          =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status disabled current-status"
           -complaint.possible_other_statuses.each do |st|
-            = button_to st, edit_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put', class: "btn status-button"
+            = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status"
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name

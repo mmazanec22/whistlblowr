@@ -4068,11 +4068,11 @@ input[type=range] + .thumb {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
-  /*background-color: blue;*/
+  background-color: #B8B8B8;
   width: 100%;
-  height: 200px;
+  height: 150px;
   line-height: 200px;
+  margin-bottom: 10px;
 }
 
 nav a {

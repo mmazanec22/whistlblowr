@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   post 'messages' => 'messages#create', as: 'messages'
 
-  put "complaints/:id/edit" => "complaints#update", as: "edit_complaint"
+  put "complaints/:id" => "complaints#update", as: "update_complaint"
 
 
 

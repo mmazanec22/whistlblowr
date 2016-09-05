@@ -3,7 +3,7 @@ class Complaint < ApplicationRecord
   validates :content, presence: true
   validates_integrity_of :media
   validate :file_size
-  before_save :create_key
+  after_initialize :create_key
 
   belongs_to :user
   has_many :allegations
@@ -16,18 +16,12 @@ class Complaint < ApplicationRecord
     ["New", "Active", "Closed"]
   end
 
-  def add_allegations
-  end
-
-  def make_user
-  end
-
   def possible_other_statuses #returns non-current status options
     return Complaint.possible_statuses.reject {|st| st == self.status}
   end
 
   def content_shortened
-    return "#{self.content[0..20]} ..." if self.content.length>20
+    return "#{self.content[0..30]} ..." if self.content.length>20
     return self.content
   end
 
@@ -40,7 +34,7 @@ class Complaint < ApplicationRecord
     until Complaint.find_by(key: rand_key) == nil
       rand_key = SecureRandom.hex(5)
     end
-    self.key = rand_key
+    self.key = rand_key if !self.key
   end
 
   def allegation_types_as_nice_string

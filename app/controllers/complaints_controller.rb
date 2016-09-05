@@ -5,7 +5,7 @@ class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
 
   def index
-    @complaints = Complaint.all
+    @complaints = Complaint.all.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   def new
@@ -13,12 +13,14 @@ class ComplaintsController < ApplicationController
     allegation =  Allegation.new
     @complaint.allegations << allegation
     @allegations = @complaint.allegations
+    @allegations_list = AllegationType.all
   end
 
   def create
     @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
+    add_allegation_types
     if @complaint.save
       flash[:notice] = @complaint.key
       redirect_to complaints_find_path(:complaint_key => @complaint.key)
@@ -39,12 +41,10 @@ class ComplaintsController < ApplicationController
 
   def update
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.status = params[:status]
-    @complaint.save
-    if request.xhr?
-      "done"
-    else
-      redirect_to complaints_path
+    @complaint.update_attribute(:status, params[:status])
+    respond_to do |format|
+      format.js {render json: @complaint, status_code: "200"}
+      format.html {redirect_to complaints_path}
     end
   end
 
@@ -53,6 +53,13 @@ class ComplaintsController < ApplicationController
   end
 
   private
+
+    def add_allegation_types
+      params[:complaint][:allegation_types].each do |type, value|
+        allegation = AllegationType.find(type.to_i)
+        @complaint.allegation_types << allegation if value.to_i == 1
+      end
+    end
 
     def complaint_params
       params.require(:complaint).permit(:content, {media: []})
@@ -66,4 +73,5 @@ class ComplaintsController < ApplicationController
     def user_params
       params.require(:complaint).permit(user: [:name, :email, :phone])
     end
+
 end
