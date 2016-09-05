@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :investigators, :path_prefix =>'auth'
+  # devise_for :users
+  scope "/admin" do
+    resources :investigators  #(possibly add this too?-> ), :path_prefiex =>'auth'
+  #  https://github.com/plataformatec/devise/wiki/How-To:-Manage-users-through-a-CRUD-interface
+  end
+
+  # or this looks promising http://stackoverflow.com/questions/7075873/devise-how-to-create-a-new-user-being-already-logged-in
 
 
   # #instructions to bypass devise ----------------------------
@@ -27,7 +34,6 @@ Rails.application.routes.draw do
   post 'messages' => 'messages#create', as: 'messages'
 
   put "complaints/:id/edit" => "complaints#update", as: "edit_complaint"
-
 
 
 
