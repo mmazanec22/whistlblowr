@@ -23,7 +23,8 @@ $(document).ready(function(){
 
     var $clickedButton = $(this).find(".btn")
     var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
-    var oldTrStatusClass = $clickedButton.closest("tr").attr("class").split(" ")[2]
+    var oldTrStatusClassArray = $clickedButton.closest("tr").attr("class").split(" ")
+    var oldTrStatusClass = oldTrStatusClassArray[oldTrStatusClassArray.length-1]
 
     var route = $(this).attr("action");
     var verb = $(this).attr("method");

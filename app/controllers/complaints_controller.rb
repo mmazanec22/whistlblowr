@@ -45,11 +45,6 @@ class ComplaintsController < ApplicationController
       format.js {render json: @complaint, status_code: "200"}
       format.html {redirect_to complaints_path}
     end
-    # if request.xhr?
-    #   @complaint.status
-    # else
-    #   redirect_to complaints_path
-    # end
   end
 
   def delete
