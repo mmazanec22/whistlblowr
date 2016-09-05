@@ -16,12 +16,6 @@ class Complaint < ApplicationRecord
     ["New", "Active", "Closed"]
   end
 
-  def add_allegations
-  end
-
-  def make_user
-  end
-
   def possible_other_statuses #returns non-current status options
     return Complaint.possible_statuses.reject {|st| st == self.status}
   end
