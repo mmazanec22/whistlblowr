@@ -4,7 +4,7 @@ require 'capybara/rails'
 feature "complaint form" do
   scenario "user sees complaint form" do
     visit "/"
-    within('h2') do
+    within(first('h5')) do
       expect(page).to have_content "Complaint"
     end
   end
