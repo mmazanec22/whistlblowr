@@ -20,8 +20,10 @@
   text-align: center;
 }
 
-img.logo {
-  width: 50%;
+a.brand-logo img {
+  margin-top: 10px;
+  min-width: 300px;
+  max-height: 100%;
 }
 
 #investigator_nav {
@@ -81,8 +83,8 @@ img.logo {
 .new-complaint-notice {
   text-align: center;
   margin-top: 10px;
-  background-color: #FFD1DE;
-  border: 1px solid #FFA8C1;
+  background-color: #5AC6C6;
+  border: 1px solid #369C9C;
 }
 
 .error-msgs {
