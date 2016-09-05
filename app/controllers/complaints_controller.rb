@@ -38,9 +38,7 @@ class ComplaintsController < ApplicationController
   end
 
   def update
-    puts params
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    # @complaint = Complaint.last if !@complaint
 
     @complaint.update_attribute(:status, params[:status])
     respond_to do |format|
@@ -72,4 +70,9 @@ class ComplaintsController < ApplicationController
     def user_params
       params.require(:complaint).permit(user: [:name, :email, :phone])
     end
+
+    # def status_params
+    #   params.
+    # end
+
 end
