@@ -75,8 +75,29 @@ a.brand-logo img {
   border: 1px solid black;
 }
 
+.btn.status {
+  font-family: 'Averia Sans Libre';
+  background-color: #949397 !important;
+}
+
+.btn.status:hover{
+  border: 2px solid #e23b3b !important;
+}
+
+.btn.current-status {
+  background-color: #e23b3b !important;
+  color: white !important;
+}
+
+.btn.current-status:hover{
+  background-color: #e23b3b !important;
+  color: white !important;
+  border: none !important;
+  transition: none !important;
+}
+
 .message-sender {
-  color: grey;
+  color: gray;
   font-style: italic;
 }
 
