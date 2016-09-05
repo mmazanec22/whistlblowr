@@ -66,8 +66,4 @@ class ComplaintsController < ApplicationController
       params.require(:complaint).permit(user: [:name, :email, :phone])
     end
 
-    # def status_params
-    #   params.
-    # end
-
 end
