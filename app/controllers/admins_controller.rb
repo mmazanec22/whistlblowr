@@ -1,5 +1,10 @@
 require "cowsay"
- class InvestigatorsController < Devise::InvestigatorsController
+ class AdminsController < Devise::InvestigatorsController
+
+  before_filter :authenticate_investigator!
+
+  def index
+  end
 
   def new
     super

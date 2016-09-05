@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
   # check_authorization   # This will raise an exception if authorization is not performed in an action.
 
   skip_authorization_check  # To skip check_authorization
+
 end
