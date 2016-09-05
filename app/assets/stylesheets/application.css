@@ -24,6 +24,16 @@ img.logo {
   width: 50%;
 }
 
+#investigator_nav {
+  display: inline-block;
+  background-color: white;
+  color: #e23b3b;
+  float: right;
+  font-size: 90%;
+  margin-right: 10%;
+  padding: 10px;
+  border: 2px solid #e23b3b;
+}
 
 @media (max-width: 600px) {
 
@@ -73,6 +83,18 @@ img.logo {
   margin-top: 10px;
   background-color: #FFD1DE;
   border: 1px solid #FFA8C1;
+}
+
+.error-msgs {
+  text-align: center;
+  margin-top: 10px;
+  border: 1px solid #FFA8C1;
+}
+
+.error {
+  padding: 3px 0px;
+  color: red;
+  font-size: .8em;
 }
 
 .complaint-key {

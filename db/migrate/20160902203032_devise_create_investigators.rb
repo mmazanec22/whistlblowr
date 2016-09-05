@@ -2,7 +2,7 @@ class DeviseCreateInvestigators < ActiveRecord::Migration[5.0]
   def change
     create_table :investigators do |t|
       ## Database authenticatable
-      t.string :username,           null: false
+      t.string :username
       t.string :email,              null: false
       t.string :encrypted_password, null: false
 
