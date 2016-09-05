@@ -20,8 +20,10 @@
   text-align: center;
 }
 
-img.logo {
-  width: 50%;
+a.brand-logo img {
+  margin-top: 10px;
+  min-width: 300px;
+  max-height: 100%;
 }
 
 #investigator_nav {
