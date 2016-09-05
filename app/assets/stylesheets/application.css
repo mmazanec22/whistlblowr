@@ -64,15 +64,16 @@ a.brand-logo img {
 
 .complaint-table {
   border-collapse:collapse;
-  width: 95%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
   white-space:pre-line;
 }
 
-.complaint-table td th{
-  word-wrap:break-word;
+.complaint-table td, th{
+  /*ord-wrap:break-word;*/
   padding: 2%;
+  min-width: 12%;
 }
 
 .complaint-container {
@@ -82,6 +83,8 @@ a.brand-logo img {
 .btn.status {
   font-family: Montserrat,sans-serif;
   background-color: #949397 !important;
+  min-width: 5%;
+  padding: 0 0.5rem;
 }
 
 .btn.status:hover{

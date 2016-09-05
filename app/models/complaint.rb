@@ -27,7 +27,7 @@ class Complaint < ApplicationRecord
   end
 
   def content_shortened
-    return "#{self.content[0..20]} ..." if self.content.length>20
+    return "#{self.content[0..30]} ..." if self.content.length>20
     return self.content
   end
 
