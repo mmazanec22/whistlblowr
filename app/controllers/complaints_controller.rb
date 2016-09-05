@@ -39,12 +39,11 @@ class ComplaintsController < ApplicationController
 
   def update
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.status = params[:status]
-    @complaint.save
-    if request.xhr?
-      "done"
-    else
-      redirect_to complaints_path
+
+    @complaint.update_attribute(:status, params[:status])
+    respond_to do |format|
+      format.js {render json: @complaint, status_code: "200"}
+      format.html {redirect_to complaints_path}
     end
   end
 
@@ -66,4 +65,5 @@ class ComplaintsController < ApplicationController
     def user_params
       params.require(:complaint).permit(user: [:name, :email, :phone])
     end
+
 end
