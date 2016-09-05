@@ -3,7 +3,7 @@ class Complaint < ApplicationRecord
   validates :content, presence: true
   validates_integrity_of :media
   validate :file_size
-  before_save :create_key
+  after_initialize :create_key
 
   belongs_to :user
   has_many :allegations

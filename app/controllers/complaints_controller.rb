@@ -38,14 +38,20 @@ class ComplaintsController < ApplicationController
   end
 
   def update
-    p Cowsay.say(params)
+    puts params
     @complaint = Complaint.find_by(key: params[:complaint_key])
-    @complaint.update_attribute(status: params[:status])
-    if request.xhr?
-      "done"
-    else
-      redirect_to complaints_path
+    # @complaint = Complaint.last if !@complaint
+
+    @complaint.update_attribute(:status, params[:status])
+    respond_to do |format|
+      format.js {render json: @complaint, status_code: "200"}
+      format.html {redirect_to complaints_path}
     end
+    # if request.xhr?
+    #   @complaint.status
+    # else
+    #   redirect_to complaints_path
+    # end
   end
 
   def delete
