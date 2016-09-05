@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :investigators, :path_prefix =>'auth'
+  # devise_for :admins
+  devise_for :investigators  #, :path_prefix =>'auth'
+
+  scope "/admin" do
+    resources :investigators
+  end
+
+
 
 
   # #instructions to bypass devise ----------------------------

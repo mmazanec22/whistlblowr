@@ -1,8 +1,8 @@
 require "cowsay"
- class InvestigatorController < ApplicationController
+ class InvestigatorsController < Devise::InvestigatorsController
 
   def new
-    @investigator = Investigator.new
+    super
   end
 
   def create
