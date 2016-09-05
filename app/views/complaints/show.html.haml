@@ -16,8 +16,7 @@
       %div.row
         %div.col.s12
           %h5 Allegations:
-          -@complaint.allegation_types.each do |type|
-            = type.allegation_nature
+          = @complaint.allegation_types_as_nice_string
     -if @complaint.media.length > 0
       %div.row
         %div.col.s12
