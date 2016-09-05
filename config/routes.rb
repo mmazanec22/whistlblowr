@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # devise_for :admins
-  devise_for :investigators  #, :path_prefix =>'auth'
+  devise_for :investigators, controllers: { registrations: 'investigators/registrations'}
 
-  scope "/admin" do
+  # get '/admins/new' => "investigators#new"
+  # scope "/admin" do
     resources :investigators
-  end
+  # end
 
 
 

@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(investigator)
     # Define abilities for the passed in user here. For example:
 
       investigator ||= Investigator.new # guest user (not logged in)
@@ -10,6 +10,10 @@ class Ability
       else
         can :read, :all
       end
+
+      # can :manage, :all if investigator.admin?
+
+
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.

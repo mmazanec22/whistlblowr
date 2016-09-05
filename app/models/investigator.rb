@@ -5,4 +5,8 @@ class Investigator < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :messages, as: :messageable
+
+  def admin?
+    self.admin
+  end
 end
