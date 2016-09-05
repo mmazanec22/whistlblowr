@@ -12,7 +12,13 @@
       %div.col.s12
         %h5 Details of Complaint:
         =@complaint.content
-    -if @complaint.media
+    -if @complaint.allegation_types
+      %div.row
+        %div.col.s12
+          %h5 Allegations:
+          -@complaint.allegation_types.each do |type|
+            = type.allegation_nature
+    -if @complaint.media.length > 0
       %div.row
         %div.col.s12
           %h5 Files:
@@ -50,4 +56,3 @@
     %div#message-container
       - @complaint.messages.each do |message|
         =render partial: "messages/show", locals: {message: message}
-
