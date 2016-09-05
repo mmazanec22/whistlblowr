@@ -19,15 +19,18 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
-    @complaint.save
-    flash[:notice] = @complaint.key
-    # render 'show'
-    redirect_to complaints_find_path(:complaint_key => @complaint.key)
+    if @complaint.save
+      flash[:notice] = @complaint.key
+      redirect_to complaints_find_path(:complaint_key => @complaint.key)
+    else
+      @errors = @complaint.errors.full_messages
+      render "new"
+    end
   end
 
   def show
     @message = Message.new
-    @complaint = Complaint.find_by(key: params[:complaint_key])
+    @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
   end
 
   def edit
@@ -39,7 +42,6 @@ class ComplaintsController < ApplicationController
     @complaint.status = params[:status]
     @complaint.save
     if request.xhr?
-      p "stuff"
       "done"
     else
       redirect_to complaints_path

@@ -22,7 +22,8 @@ $(document).ready(function(){
     event.preventDefault();
 
     var $clickedButton = $(this)
-    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class")
+    console.log($clickedButton)
+    var clickedButtonTrClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
 
     var route = $(this).attr("action");
     var verb = $(this).attr("method");
@@ -36,11 +37,30 @@ $(document).ready(function(){
 
     request.done(function(response){
       $(clickedButtonTrClass).find(".current-status").removeClass("disabled")
+      console.log($(clickedButtonTrClass).find(".current-status"))
       $(clickedButtonTrClass).find(".current-status").removeClass("current-status")
 
       $clickedButton.addClass("current-status")
       $clickedButton.addClass("disabled")
     })
   })
-})
 
+  $('select').material_select();
+  $(".status-form").change(function(){
+    var filterBy = $(".status-form :selected").val()
+    $(".table-row").hide()
+    $("tr."+filterBy).show()
+    if(filterBy=="All"){
+      $("tr").show()
+    }
+  })
+
+  // $(".allegation-form").change(function(){
+  //   var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
+  //   $(".table-row").hide()
+  //   $("tr."+filterBy).show()
+  //   if(filterBy=="All"){
+  //     $("tr").show()
+  //   }
+  // })
+})

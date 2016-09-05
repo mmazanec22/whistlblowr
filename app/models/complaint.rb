@@ -1,5 +1,6 @@
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
+  validates :content, presence: true
   validates_integrity_of :media
   validate :file_size
   before_save :create_key
@@ -9,7 +10,11 @@ class Complaint < ApplicationRecord
   has_many :allegation_types, through: :allegations
   has_many :messages
 
-  POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+  # POSSIBLE_STATUSES = ["New", "Active", "Closed"]
+
+  def self.possible_statuses
+    ["New", "Active", "Closed"]
+  end
 
   def add_allegations
   end
@@ -18,7 +23,7 @@ class Complaint < ApplicationRecord
   end
 
   def possible_other_statuses #returns non-current status options
-    return POSSIBLE_STATUSES.reject {|st| st == self.status}
+    return Complaint.possible_statuses.reject {|st| st == self.status}
   end
 
   def content_shortened
@@ -44,6 +49,11 @@ class Complaint < ApplicationRecord
       return_string += "#{a.allegation_nature}, \n"
     end
     return return_string[0..-4]
+  end
+
+  def allegation_types_as_string
+    return_string = self.allegation_types.map{|a| a.allegation_nature.split(" ").join("-")}.join(" ")
+    return_string
   end
 
   private
