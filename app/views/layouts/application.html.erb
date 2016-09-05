@@ -20,7 +20,7 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
     <% if investigator_signed_in? %>
       <li><%= link_to "Index", complaints_path %></li>
-      <li><%= link_to "Add User", new_investigator_registration_path %></li>
+      <li><%= link_to "Add User", new_investigators_path %></li>
       <li><%= link_to "Logout", destroy_investigator_session_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Login", new_investigator_session_path %></li>

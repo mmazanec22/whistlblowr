@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: 8ceadb7fca5068564cfa8a33b1a76af86c6cbff3
+  revision: a94b68cf848d6bd6ea5fbc2ce7d772456e4a5914
   specs:
     carrierwave (0.11.0)
       activemodel (>= 4.0.0)
@@ -52,6 +52,7 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.5)
+    cancan (1.6.10)
     capybara (2.8.1)
       addressable
       mime-types (>= 1.16)
@@ -235,6 +236,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  cancan
   capybara
   carrierwave!
   coffee-rails (~> 4.2)

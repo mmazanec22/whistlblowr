@@ -2,7 +2,7 @@ require "cowsay"
 require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
-  # before_action :authenticate_investigator!, except: [:new, :show, create]
+  before_action :authenticate_investigator!, except: [:new, :show, :create]
 
   def index
     @complaints = Complaint.all.sort { |a,b| b.created_at <=> a.created_at }
