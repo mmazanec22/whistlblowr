@@ -6,8 +6,7 @@ class Investigators::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
 
-  # GET /investigators/sign_
-  up
+  # GET /investigators/sign_up
   # def new
   #   p "hit new ===================================="
   #   if current_investigator.admin
