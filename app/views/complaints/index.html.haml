@@ -6,7 +6,7 @@
     %th
       Status
       = form_tag complaints_path, method: "get", class: "status-form" do
-        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses))
+        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses)), class: "filter-menu"
     %th
       Allegation Types
       / = form_tag complaints_path, method: "get", class: "allegation-form" do

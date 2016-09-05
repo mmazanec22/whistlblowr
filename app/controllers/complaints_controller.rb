@@ -5,7 +5,7 @@ class ComplaintsController < ApplicationController
   # before_action :authenticate_investigator!, except: [:new, :show, create]
 
   def index
-    @complaints = Complaint.all
+    @complaints = Complaint.all.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   def new
