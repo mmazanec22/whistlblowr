@@ -8,11 +8,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<div id="logo-wrapper">
-  <%= image_tag("p6.logo.svg", class: "logo")  %>
 
-  <div id="investigator_nav">
-  <ul>
+
+
+<nav>
+  <div class="nav-wrapper">
+
+    <a href=<%= root_path %> class="brand-logo center">
+      <%= image_tag("p6.logo.svg") %>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
     <% if investigator_signed_in? %>
       <li><%= link_to "Index", complaints_path %></li>
       <li><%= link_to "Add User", new_investigator_registration_path %></li>
@@ -21,10 +26,9 @@
       <li><%= link_to "Login", new_investigator_session_path %></li>
       <li><%= link_to "Register", new_investigator_registration_path %></li>
     <% end %>
-  </ul>
-</div>
-
-</div>
+    </ul>
+  </div>
+</nav>
 
 
 <body>
