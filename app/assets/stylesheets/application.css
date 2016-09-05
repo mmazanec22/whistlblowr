@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ h1, h2, h3, h4, th, tr, td{
+  font-family: Montserrat,sans-serif;
+ }
+
 #logo-wrapper {
   margin-top: 2%;
   width: 100vw;
@@ -76,7 +80,7 @@ a.brand-logo img {
 }
 
 .btn.status {
-  font-family: 'Averia Sans Libre';
+  font-family: Montserrat,sans-serif;
   background-color: #949397 !important;
 }
 
@@ -126,4 +130,11 @@ a.brand-logo img {
 
 .retrieve-complaint {
   max-width: 270px;
+}
+
+.complaint-table th{
+  display: table-cell;
+  text-align: top;
+  vertical-align: text-top !important;
+  max-height: 10%;
 }
