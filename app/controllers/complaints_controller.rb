@@ -65,7 +65,7 @@ class ComplaintsController < ApplicationController
     # end
 
     def complaint_params
-      params.require(:complaint).permit(:content, {media: []})
+      params.require(:complaint).permit(:content, {media: []}, :video_links)
     end
 
     def return_user

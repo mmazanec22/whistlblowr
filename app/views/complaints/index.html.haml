@@ -28,11 +28,14 @@
         %td= complaint.user.name
         %td= complaint.user.phone
         %td= complaint.user.email
-        -if complaint.media[0]
-          %td
+        %td
+          -if complaint.video_links
+            -complaint.video_links_array.each do |v|
+              %a{href: v} Video Link
+          -if complaint.media[0]
             -complaint.media.each do |url|
               %a{ :href => url, :title => "View attachment" }
                 %strong
                   View attachment
-        -else
-          %td None
+          -elsif !complaint.media[0] && !complaint.video_links
+            %div None
