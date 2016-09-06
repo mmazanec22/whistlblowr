@@ -1,5 +1,24 @@
 <li class="collection-item avatar">
   <img src=<%= image_path('p6.seal.png') %> alt="" class="circle">
   <span class="title"><%= investigator.email  %></span>
-  <p>Is Admin? <%= investigator.admin %></p>
+  <p>
+  <%= form_tag("/investigator_admin/#{investigator.id}", method: :delete) do %>
+    <%= submit_tag 'Delete', class: "btn-small disabled" %>
+  <% end %>
+   </p>
+
+
+  <%= form_tag("/investigator_admin/#{investigator.id}", method: :put, class: "secondary-content") do %>
+    <% if investigator.admin %>
+      <%= submit_tag 'admin', class: "btn" %>
+    <% else %>
+      <%= submit_tag 'admin', class: "btn disabled" %>
+    <% end %>
+  <% end %>
+
+
+
+
 </li>
+
+

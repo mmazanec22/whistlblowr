@@ -33,15 +33,13 @@ Rails.application.routes.draw do
 
   put "complaints/:id" => "complaints#update", as: "update_complaint"
 
-
-  get "/new_investigators" => "new_investigators#new"
-
-  post "/new_investigators" => "new_investigators#create"
-
   get "/investigator_admin" => "new_investigators#new"
+
+  put "/investigator_admin/:id" => "new_investigators#update"
 
   post "/investigator_admin" => "new_investigators#create"
 
-  put "/investigator_admin" => "new_investigators#update"
+  delete "/investigator_admin/:id" => "new_investigators#delete"
+
 
 end

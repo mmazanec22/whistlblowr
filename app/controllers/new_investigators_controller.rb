@@ -2,10 +2,10 @@ require "cowsay"
 
 class NewInvestigatorsController < ApplicationController
 
-  before_action :confirm_admin
+  before_action :confirm_admin, :load_investigators
 
   def new
-    @investigators = Investigator.all
+    # @investigators = Investigator.order(:created_at)
   end
 
   def create
@@ -14,12 +14,37 @@ class NewInvestigatorsController < ApplicationController
     @investigator = Investigator.new(email: email, password: "secretsix")
     if @investigator.save
       @errors = ["user saved"]
-      render 'new_investigators/new'
+      redirect_to '/investigator_admin'
     else
       @errors = ["user NOT saved"]
-      render 'new_investigators/new'
+      redirect_to '/investigator_admin'
     end
   end
+
+  def update
+    # @investigators = Investigator.order(:created_at)
+    # @investigator = Investigator.find_by(id: params[:id])
+
+    if @investigator.admin && @investigators.where(admin: true).count > 1
+      @investigator.admin = false
+    elsif @investigator.admin
+      @errors = ["That's the last admin!"]
+    else
+      @investigator.admin = true
+    end
+
+    @investigator.save
+    redirect_to '/investigator_admin'
+  end
+
+  def delete
+    # @investigators = Investigator.order(:created_at)
+    # @investigator = Investigator.find_by(id: params[:id])
+    @investigator.destroy
+
+    redirect_to '/investigator_admin'
+  end
+
 
   private
 
@@ -28,6 +53,13 @@ class NewInvestigatorsController < ApplicationController
       redirect_to '/' if !current_investigator.admin?
     else
       redirect_to '/'
+    end
+  end
+
+  def load_investigators
+    @investigators = Investigator.order(:created_at)
+    if params[:id]
+      @investigator = Investigator.find_by(id: params[:id])
     end
   end
 
