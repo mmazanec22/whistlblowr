@@ -39,5 +39,7 @@ Rails.application.routes.draw do
 
   post "/investigator_admin" => "new_investigators#create"
 
+  delete "/investigator_admin/:id" => "new_investigators#delete"
+
 
 end

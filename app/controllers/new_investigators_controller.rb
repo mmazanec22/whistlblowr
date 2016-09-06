@@ -2,10 +2,10 @@ require "cowsay"
 
 class NewInvestigatorsController < ApplicationController
 
-  before_action :confirm_admin
+  before_action :confirm_admin, :load_investigators
 
   def new
-    @investigators = Investigator.order(:created_at)
+    # @investigators = Investigator.order(:created_at)
   end
 
   def create
@@ -22,8 +22,8 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def update
-    @investigators = Investigator.order(:created_at)
-    @investigator = Investigator.find_by(id: params[:id])
+    # @investigators = Investigator.order(:created_at)
+    # @investigator = Investigator.find_by(id: params[:id])
 
     if @investigator.admin && @investigators.where(admin: true).count > 1
       @investigator.admin = false
@@ -37,6 +37,14 @@ class NewInvestigatorsController < ApplicationController
     redirect_to '/investigator_admin'
   end
 
+  def delete
+    # @investigators = Investigator.order(:created_at)
+    # @investigator = Investigator.find_by(id: params[:id])
+    @investigator.destroy
+
+    redirect_to '/investigator_admin'
+  end
+
 
   private
 
@@ -45,6 +53,13 @@ class NewInvestigatorsController < ApplicationController
       redirect_to '/' if !current_investigator.admin?
     else
       redirect_to '/'
+    end
+  end
+
+  def load_investigators
+    @investigators = Investigator.order(:created_at)
+    if params[:id]
+      @investigator = Investigator.find_by(id: params[:id])
     end
   end
 
