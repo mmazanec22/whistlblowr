@@ -5,6 +5,7 @@ class NewInvestigatorsController < ApplicationController
   before_action :confirm_admin
 
   def new
+    @investigators = Investigator.all
   end
 
   def create

@@ -4164,6 +4164,7 @@ nav ul {
 }
 
 nav ul li {
+  font-size: .8rem;
   transition: background-color .3s;
   float: left;
   padding: 0;
@@ -4175,7 +4176,7 @@ nav ul li.active {
 
 nav ul a {
   transition: background-color .3s;
-  font-size: 1rem;
+  font-size: .8rem;
   color: #fff;
   display: block;
   padding: 0 15px;
