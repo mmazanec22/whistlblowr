@@ -20,7 +20,7 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
-    add_allegation_types
+    # add_allegation_types
     if @complaint.save
       flash[:notice] = @complaint.key
       redirect_to complaints_find_path(:complaint_key => @complaint.key)
@@ -54,12 +54,12 @@ class ComplaintsController < ApplicationController
 
   private
 
-    def add_allegation_types
-      params[:complaint][:allegation_types].each do |type, value|
-        allegation = AllegationType.find(type.to_i)
-        @complaint.allegation_types << allegation if value.to_i == 1
-      end
-    end
+    # def add_allegation_types
+    #   params[:complaint][:allegation_types].each do |type, value|
+    #     allegation = AllegationType.find(type.to_i)
+    #     @complaint.allegation_types << allegation if value.to_i == 1
+    #   end
+    # end
 
     def complaint_params
       params.require(:complaint).permit(:content, {media: []})
