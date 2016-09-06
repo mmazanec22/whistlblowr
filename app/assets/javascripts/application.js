@@ -48,7 +48,6 @@ $(document).ready(function(){
     })
   })
 
-  $('select').material_select();
   $(".status-form").change(function(){
     var filterBy = $(".status-form :selected").val()
     $(".table-row").hide()
