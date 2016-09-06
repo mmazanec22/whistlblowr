@@ -6,15 +6,15 @@
         %div.input-field.col.s12
           = f.text_area :content, class: "materialize-textarea flow-text", placeholder: "Description of complaint", id: "textarea1"
           %br
-      %div.row
-        =f.fields_for :allegation_types do |field|
-          - @allegations_list.each do |type|
-            - if type.id % 5 == 0
-              %div.row
-            %div.col.s3
-              = field.check_box type.id
-              = field.label type.id
-              = type.allegation_nature
+      / %div.row
+      /   =f.fields_for :allegation_types do |field|
+      /     - @allegations_list.each do |type|
+      /       - if type.id % 5 == 0
+      /         %div.row
+      /       %div.col.s3
+      /         = field.check_box type.id
+      /         = field.label type.id
+      /         = type.allegation_nature
 
       %div.row
         %div.input-field.col.s12
