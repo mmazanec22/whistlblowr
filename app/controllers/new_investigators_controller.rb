@@ -11,8 +11,9 @@ class NewInvestigatorsController < ApplicationController
   def create
 
     email = params[:email]
-    @investigator = Investigator.new(email: email, password: "secretsix")
+    @investigator = Investigator.new(email: email, password: SecureRandom.hex(3))
     if @investigator.save
+      UserMailer.new_investigator_email(@investigator.email, @investigator.password).deliver
       @errors = ["user saved"]
       redirect_to '/investigator_admin'
     else
