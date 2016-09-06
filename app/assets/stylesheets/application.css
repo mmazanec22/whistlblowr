@@ -141,3 +141,32 @@ a.brand-logo img {
   vertical-align: text-top !important;
   max-height: 10%;
 }
+
+
+.btn-small {
+  border: none;
+  border-radius: 2px;
+  display: inline-block;
+  /*height: 36px;*/
+  /*line-height: 36px;*/
+  outline: 0;
+  /*padding: 0 2rem;*/
+  text-transform: uppercase;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  background-color: transparent;
+  color: #C4C4C4;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+
+.btn-small:focus, .btn-small:active {
+  background-color: transparent;
+}
+
+.btn-small:hover {
+  color: #242424;
+  background-color: #FF6E6E;
+  box-shadow: none;
+}

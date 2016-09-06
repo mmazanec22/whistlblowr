@@ -9,4 +9,7 @@ class Investigator < ApplicationRecord
   def admin?
     self.admin
   end
+
 end
+
+
