@@ -25,7 +25,7 @@ allegation_types.each do |a|
   AllegationType.create(allegation_nature: a)
 end
 
-Investigator.create(username: "admin", email: "whistlblowrs@gmail.com", password: "thesecretsix", admin: true)
+Investigator.create(username: ENV['INVESTIGATOR_USERNAME'], email: ENV['INVESTIGATOR_EMAIL'], password: ENV['INVESTIGATOR_PASSWORD'], admin: true)
 
 User.create!(name: "Jane Doe", phone: "4853928475")
 
