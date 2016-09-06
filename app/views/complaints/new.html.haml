@@ -35,6 +35,9 @@
             =f.text_field :media_cache, class: "file-path validate"
       %div.row
         %div.input-field.file-field.col.s12
+          = f.text_field :video_links, placeholder: "Links to YouTube or Vimeo Separated by Commas"
+      %div.row
+        %div.input-field.file-field.col.s12
           = f.submit "Submit", class: "btn"
 
 
