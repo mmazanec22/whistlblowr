@@ -24,7 +24,11 @@
           =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status disabled current-status"
           -complaint.possible_other_statuses.each do |st|
             = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status"
-        %td= complaint.user.to_s
+        / %td= "#{complaint.user.to_s}, #{complaint.created_at.to_s}"
+        %td
+          "#{complaint.user.to_s}"
+          %br
+          "#{complaint.created_at.to_formatted_s(:long)}"
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         -if complaint.media[0]
