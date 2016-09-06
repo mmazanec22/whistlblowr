@@ -2,6 +2,8 @@ require "cowsay"
 
 class NewInvestigatorsController < ApplicationController
 
+  before_action :confirm_admin
+
   def new
   end
 
@@ -15,6 +17,16 @@ class NewInvestigatorsController < ApplicationController
     else
       @errors = ["user NOT saved"]
       render 'new_investigators/new'
+    end
+  end
+
+  private
+
+  def confirm_admin
+    if current_investigator
+      redirect_to '/' if !current_investigator.admin?
+    else
+      redirect_to '/'
     end
   end
 
