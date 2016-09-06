@@ -1,7 +1,7 @@
 %div.row
   %div.single-complaint.complaint-container.col.s12.z-depth-2
 
-    - if flash[:notice]
+    - if flash[:notice] && !@investigator_authenticated
       %div.new-complaint-notice.row.col.s12
         %p.complaint-key="Secret Complaint Key: #{flash[:notice]}"
         %p Save this key! You can revisit this page by providing this value on the submission page:
@@ -33,8 +33,8 @@
         %div
           %span{ :style => "font-weight: bold;" }Contact Info:
           %span=@complaint.user.to_s
-
-%a.waves-effect.waves-light.btn{ href: complaints_path } Back
+- if @investigator_authenticated
+  %a.waves-effect.waves-light.btn{ href: complaints_path } Back
 
 %br
 %br
