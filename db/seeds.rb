@@ -16,7 +16,8 @@ allegation_types = [
   "Grant Fraud",
   "Financial Crime",
   "Other Criminal",
-  "Ethics"]
+  "Ethics",
+  "Other"]
 
 allegation_types.sort_by! { |a| a.downcase }
 
@@ -24,10 +25,11 @@ allegation_types.each do |a|
   AllegationType.create(allegation_nature: a)
 end
 
-User.create!(name: "Anonymous", phone: "4853928475")
-User.create!(phone: "4852958475")
+Investigator.create(username: "admin", email: "whistlblowrs@gmail.com", password: "thesecretsix", admin: true)
 
-complaint_content = ["I saw my alderman embezzling money while demanding oral sex from an intern", "My alderman bribed people to campaign on city property", "My alderman used grant money to buy equipment for her husband's company to which she then awarded a contract"]
+User.create!(name: "Jane Doe", phone: "4853928475")
+
+complaint_content = ["My alderman bribed people to campaign on city property", "My alderman bribed people to campaign on city property"]
 
 complaint_content.each do |c|
   complaint = Complaint.create!(content: c, user_id: User.all.sample.id)
@@ -35,9 +37,3 @@ complaint_content.each do |c|
     allegation = Allegation.create(complaint_id: complaint.id, allegation_type_id: AllegationType.all.sample.id)
   end
 end
-
-# medium_attributes = {media_type: picture, url: "http://www.businesscat.happyjar.com/wp-content/uploads/2014/08/2014-08-08-Keyboard.png", description: "cat"}
-
-# Complaint.all.each do |c|
-#   c.media << Medium.new(medium_attributes).to_json
-# end
