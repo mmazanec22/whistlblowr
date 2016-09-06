@@ -1,5 +1,6 @@
-<h2>Signzzzz up</h2>
+<h4>User Administration</h4>
 
+<h5>Add a new user</h5>
 <%= form_tag('/new_investigators') do |f| %>
   <%= label_tag 'email' %>
   <%= text_field_tag 'email' %>
@@ -7,4 +8,8 @@
 <% end %>
 
 
-
+<ul class="collection">
+  <% @investigators.each do |invest| %>
+    <%= render partial: "investigator", locals: {investigator: invest}  %>
+  <% end %>
+</ul>

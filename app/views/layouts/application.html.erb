@@ -19,12 +19,12 @@
     </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
     <% if investigator_signed_in? %>
-      <li><%= link_to "Index", complaints_path %></li>
-      <li><%= link_to "Add User", new_investigators_path %></li>
+      <li><%= current_investigator.email %></li>
+      <li><%= link_to "Complaints", complaints_path %></li>
+      <li><%= link_to "Admin", investigator_admin_path %></li>
       <li><%= link_to "Logout", destroy_investigator_session_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Login", new_investigator_session_path %></li>
-      <li><%= link_to "Register", new_investigator_registration_path %></li>
     <% end %>
     </ul>
   </div>

@@ -38,6 +38,10 @@ Rails.application.routes.draw do
 
   post "/new_investigators" => "new_investigators#create"
 
+  get "/investigator_admin" => "new_investigators#new"
 
+  post "/investigator_admin" => "new_investigators#create"
+
+  put "/investigator_admin" => "new_investigators#update"
 
 end
