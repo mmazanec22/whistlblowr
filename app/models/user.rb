@@ -4,10 +4,10 @@ class User < ApplicationRecord
 
   def to_s
     contact_info = []
-    contact_info << self.name
-    contact_info << self.phone
-    contact_info << self.email
-
+    contact_info << self.name if self.name != ""
+    contact_info << self.phone if self.phone != ""
+    contact_info << self.email if self.email != ""
+    p self
     if contact_info.length == 0
       "None"
     else
