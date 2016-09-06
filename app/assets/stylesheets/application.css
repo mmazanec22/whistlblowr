@@ -103,6 +103,10 @@ a.brand-logo img {
   transition: none !important;
 }
 
+.filter-menu {
+  display: block;
+}
+
 .message-sender {
   color: gray;
   font-style: italic;
