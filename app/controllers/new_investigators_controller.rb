@@ -5,7 +5,7 @@ class NewInvestigatorsController < ApplicationController
   before_action :confirm_admin
 
   def new
-    @investigators = Investigator.all
+    @investigators = Investigator.order(:created_at)
   end
 
   def create
@@ -14,12 +14,29 @@ class NewInvestigatorsController < ApplicationController
     @investigator = Investigator.new(email: email, password: "secretsix")
     if @investigator.save
       @errors = ["user saved"]
-      render 'new_investigators/new'
+      redirect_to '/investigator_admin'
     else
       @errors = ["user NOT saved"]
-      render 'new_investigators/new'
+      redirect_to '/investigator_admin'
     end
   end
+
+  def update
+    @investigators = Investigator.order(:created_at)
+    @investigator = Investigator.find_by(id: params[:id])
+
+    if @investigator.admin && @investigators.where(admin: true).count > 1
+      @investigator.admin = false
+    elsif @investigator.admin
+      @errors = ["That's the last admin!"]
+    else
+      @investigator.admin = true
+    end
+
+    @investigator.save
+    redirect_to '/investigator_admin'
+  end
+
 
   private
 
