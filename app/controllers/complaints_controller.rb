@@ -31,6 +31,8 @@ class ComplaintsController < ApplicationController
   end
 
   def show
+    @investigator_authenticated = false
+    @investigator_authenticated = true if current_investigator
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
   end
