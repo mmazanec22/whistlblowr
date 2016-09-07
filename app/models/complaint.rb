@@ -54,21 +54,20 @@ class Complaint < ApplicationRecord
   end
 
   def zip_media #need to handle things with the same name
-    # temp_directory = Dir.mkdir(self.key)
     image_names = []
-    Zip::File.open("#{self.key}.zip", Zip::File::CREATE) do |z|
+    Zip::File.open("tmp/#{self.key}.zip", Zip::File::CREATE) do |z|
       self.media.each do |media|
         url = media.url
-        image_name = "#{media.file.filename}"
+        image_name = "tmp/#{media.file.filename}"
         image_names << image_name
         open(image_name, 'wb') do |file|
           file << open(url).read
-          z.add(media.file.filename, media.file.filename)
+          z.add(media.file.filename, "tmp/#{media.file.filename}")
         end
       end
     end
     image_names.each{ |name| FileUtils.rm(name) }
-    return "#{self.key}.zip"
+    return "tmp/#{self.key}.zip"
   end
 
   def podio_setup
