@@ -31,11 +31,16 @@
           "#{complaint.pretty_created_at}"
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
+        %td
         -if complaint.media[0]
-          %td
+          -if complaint.video_links
+            -complaint.video_links_array.each do |v|
+              %a{href: v} Video Link
+          -if complaint.media[0]
             -complaint.media.each do |url|
               %a{ :href => url, :title => "View attachment" }
                 %strong
                   View attachment
-        -else
-          %td None
+          -elsif !complaint.media[0] && !complaint.video_links
+            %div None
+

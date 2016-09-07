@@ -23,6 +23,7 @@ class ComplaintsController < ApplicationController
     # add_allegation_types
     if @complaint.save
       flash[:notice] = @complaint.key
+      flash[:message] = @complaint.content
       redirect_to complaints_find_path(:complaint_key => @complaint.key)
     else
       @errors = @complaint.errors.full_messages
@@ -64,7 +65,7 @@ class ComplaintsController < ApplicationController
     # end
 
     def complaint_params
-      params.require(:complaint).permit(:content, {media: []})
+      params.require(:complaint).permit(:content, {media: []}, :video_links)
     end
 
     def return_user
