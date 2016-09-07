@@ -45,7 +45,9 @@
 - if @investigator_authenticated
   %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
-
+  = link_to [:podio_export, @complaint], remote: true, class: "send-podio-button btn #{'disabled' if @complaint.exists_in_podio?}"  do
+    Send to Podio
+  %br
 %br
 %br
 

@@ -71,6 +71,34 @@ class Complaint < ApplicationRecord
     return "#{self.key}.zip"
   end
 
+  def podio_setup
+    Podio.setup(:api_key => ENV['PODIO_CLIENT_ID'], :api_secret => ENV['PODIO_CLIENT_SECRET'])
+    Podio.client.authenticate_with_app(ENV['PODIO_APP_ID'],ENV['PODIO_APP_TOKEN'])
+  end
+
+  def export_to_podio
+    podio_setup
+    Podio::Item.create(ENV['PODIO_APP_ID'], {
+      :fields =>
+        {'project-title' => "New Compliant #{Time.now.to_s}" ,
+          'project-description' => podio_description
+        },
+          :external_id => self.key
+      }
+    )
+  end
+
+  def podio_description
+    link = "http://whistlblowr.herokuapp.com/complaints/find?complaint_key=#{self.key}"
+
+    "#{self.content} <br><br> Contact Info (if provided): <br> #{self.user.to_s} <br><br> <a href=\"#{link}\">Link to tip site</a> <br>"
+  end
+
+  def exists_in_podio?
+    podio_setup
+    Podio::Item.find_all_by_external_id(ENV['PODIO_APP_ID'], self.key).count > 0
+  end
+
   private
 
   def file_size
