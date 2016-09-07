@@ -5,7 +5,7 @@ class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
 
   def index
-    @complaints = Complaint.all.sort { |a,b| b.created_at <=> a.created_at }
+    @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
@@ -36,6 +36,7 @@ class ComplaintsController < ApplicationController
     @investigator_authenticated = true if current_investigator
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
+    @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def edit

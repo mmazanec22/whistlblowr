@@ -65,5 +65,7 @@
     -if @complaint.messages.length>0
       %h5 Messages:
     %div#message-container
-      - @complaint.messages.each do |message|
+      - @messages.each do |message|
         =render partial: "messages/show", locals: {message: message}
+
+  = paginate @messages

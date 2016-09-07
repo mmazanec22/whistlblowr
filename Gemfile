@@ -26,6 +26,7 @@ gem 'pry'
 gem 'cancan'
 gem 'rubyzip'
 gem 'podio'
+gem 'kaminari'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
