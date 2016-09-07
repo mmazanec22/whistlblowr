@@ -200,3 +200,11 @@ a.brand-logo img {
 p.fine-print {
   font-size: .8em;
 }
+
+.page {
+  color: black !important;
+}
+
+.page a {
+  color: gray !important;
+}
