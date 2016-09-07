@@ -10,14 +10,8 @@ class Complaint < ApplicationRecord
   has_many :allegation_types, through: :allegations
   has_many :messages
 
-  # POSSIBLE_STATUSES = ["New", "Active", "Closed"]
-
   def self.possible_statuses
-    ["New", "Non Actionable", "Pending", "Initiated Investigation"]
-  end
-
-  def self.all_statuses
-    ["New", "Active", "Closed", "All"]
+    ["New", "Non-Actionable", "Pending", "Initiated-Investigation"]
   end
 
   def possible_other_statuses #returns non-current status options
