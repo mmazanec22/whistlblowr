@@ -20,9 +20,9 @@
     -@complaints.each do |complaint|
       %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
         %td
-          =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status disabled current-status"
+          =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn-small status disabled current-status"
           -complaint.possible_other_statuses.each do |st|
-            = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status"
+            = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn-small status"
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td= complaint.user.name
