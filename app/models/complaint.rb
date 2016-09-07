@@ -16,6 +16,10 @@ class Complaint < ApplicationRecord
     ["New", "Non Actionable", "Pending", "Initiated Investigation"]
   end
 
+  def self.all_statuses
+    ["New", "Active", "Closed", "All"]
+  end
+
   def possible_other_statuses #returns non-current status options
     return Complaint.possible_statuses.reject {|st| st == self.status}
   end
@@ -48,6 +52,10 @@ class Complaint < ApplicationRecord
   def allegation_types_as_string
     return_string = self.allegation_types.map{|a| a.allegation_nature.split(" ").join("-")}.join(" ")
     return_string
+  end
+
+  def pretty_created_at
+    self.created_at.to_formatted_s(:long)
   end
 
   private
