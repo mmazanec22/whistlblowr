@@ -24,6 +24,7 @@ gem 'haml'
 gem 'devise'
 gem 'pry'
 gem 'cancan'
+gem 'rubyzip'
 gem 'podio'
 
 # Use jquery as the JavaScript library

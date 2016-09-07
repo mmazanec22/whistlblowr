@@ -55,6 +55,15 @@ class ComplaintsController < ApplicationController
 
   end
 
+  def download
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+    file = @complaint.zip_media
+    File.open(file, 'r') do |f|
+      send_data f.read, type: "application/zip", filename: file
+    end
+    FileUtils.rm(file)
+  end
+
   def podio_export
     @complaint = Complaint.find_by(id: params[:id])
     @message = Message.new
@@ -71,7 +80,6 @@ class ComplaintsController < ApplicationController
     end
 
   end
-
 
   private
 

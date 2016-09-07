@@ -1,3 +1,4 @@
+require 'zip'
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
   validates :content, presence: true
@@ -50,6 +51,24 @@ class Complaint < ApplicationRecord
 
   def pretty_created_at
     self.created_at.to_formatted_s(:long)
+  end
+
+  def zip_media #need to handle things with the same name
+    # temp_directory = Dir.mkdir(self.key)
+    image_names = []
+    Zip::File.open("#{self.key}.zip", Zip::File::CREATE) do |z|
+      self.media.each do |media|
+        url = media.url
+        image_name = "#{media.file.filename}"
+        image_names << image_name
+        open(image_name, 'wb') do |file|
+          file << open(url).read
+          z.add(media.file.filename, media.file.filename)
+        end
+      end
+    end
+    image_names.each{ |name| FileUtils.rm(name) }
+    return "#{self.key}.zip"
   end
 
   def podio_setup

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   get 'complaints/find' => 'complaints#show', as: 'complaints_find'
 
+  get 'complaints/download' => 'complaints#download'
+
   post "complaints" => "complaints#create"
 
   post 'messages' => 'messages#create', as: 'messages'

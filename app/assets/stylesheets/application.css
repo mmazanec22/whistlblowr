@@ -14,8 +14,9 @@
  *= require_self
  */
 
+
 body {
-  background-image: url(paper.png);
+  background-image: url('paper.png');
   font-weight: 400;
   font-family: MontyRegular,sans-serif;
 }
