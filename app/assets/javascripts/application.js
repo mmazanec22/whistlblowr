@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//no longer require turbolinks
 //= require_tree .
 
 //ajaxify the statuses on the comments index page AKA inspector interface

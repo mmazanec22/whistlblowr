@@ -7,7 +7,6 @@
       Status
       = form_tag complaints_path, method: "get", class: "status-form" do
         = select_tag "filter[status]", options_for_select(Complaint.possible_statuses.concat(["All"])), class: "filter-menu"
-        / = select_tag "filter[status]", options_for_select([Complaint.all_statuses]), class: "filter-menu"
     %th
       Complainant Name/Key Number
     %th
@@ -33,7 +32,6 @@
         %td= complaint.allegation_types_as_nice_string
         %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
         %td
-        -if complaint.media[0]
           -if complaint.video_links
             -complaint.video_links_array.each do |v|
               %a{href: v} Video Link
