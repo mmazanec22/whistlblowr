@@ -52,6 +52,28 @@ class Complaint < ApplicationRecord
     self.created_at.to_formatted_s(:long)
   end
 
+  def call_to_podio
+
+    Podio.setup(:api_key => 'whistlblowr', :api_secret => 'vWP6agxA1FAyJl1r1ttziYcC3iykY6mYr4TvZvTiZf7GgMJt6HdKUWVur19jvzcb')
+
+    Podio.client.authenticate_with_credentials('whistlblowrs@gmail.com', 'ig33kallw33k')
+
+    # projects = Podio::Item.create('16675677')
+
+    # puts projects[0].fields.count
+
+    # Complaint.last.call_to_podio
+
+    Podio::Item.create('16675677', {
+      :fields =>
+        {'project-title' => "New Compliant #{Time.now.to_s}" ,
+          'project-description' => self.content
+        }
+      }
+    )
+
+  end
+
   private
 
   def file_size
