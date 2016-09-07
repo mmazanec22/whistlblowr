@@ -43,6 +43,7 @@
             %span{ :style => "font-weight: bold;" }Contact Info:
             %span=@complaint.user.to_s
 - if @investigator_authenticated
+  %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
 
 %br

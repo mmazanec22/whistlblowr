@@ -68,6 +68,7 @@ class Complaint < ApplicationRecord
       end
     end
     image_names.each{ |name| FileUtils.rm(name) }
+    return "#{self.key}.zip"
   end
 
   private

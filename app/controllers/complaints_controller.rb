@@ -36,7 +36,6 @@ class ComplaintsController < ApplicationController
     @investigator_authenticated = true if current_investigator
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
-    @complaint.zip_media
   end
 
   def edit
@@ -57,6 +56,10 @@ class ComplaintsController < ApplicationController
   end
 
   def download
+    @complaint = Complaint.find_by(key: params[:complaint_key])
+    file = @complaint.zip_media
+    send_file file
+    FileUtils.rm(file)
   end
 
   private
