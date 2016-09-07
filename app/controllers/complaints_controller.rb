@@ -58,7 +58,9 @@ class ComplaintsController < ApplicationController
   def download
     @complaint = Complaint.find_by(key: params[:complaint_key])
     file = @complaint.zip_media
-    send_file file
+    File.open(file, 'r') do |f|
+      send_data f.read, type: "application/zip", filename: file
+    end
     FileUtils.rm(file)
   end
 
