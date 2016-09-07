@@ -4067,8 +4067,8 @@ input[type=range] + .thumb {
 }
 
 nav {
-  color: #fff;
-  background-color: #B8B8B8;
+  color: black;
+  background-color: white;
   width: 100%;
   height: 150px;
   line-height: 200px;
@@ -4089,6 +4089,8 @@ nav i.material-icons {
 }
 
 nav .nav-wrapper {
+  padding-left: 10%;
+  padding-right: 10%;
   position: relative;
   height: 100%;
 }
@@ -4164,6 +4166,7 @@ nav ul {
 }
 
 nav ul li {
+  font-family: Montserrat,sans-serif;
   font-size: .8rem;
   transition: background-color .3s;
   float: left;
@@ -4177,7 +4180,7 @@ nav ul li.active {
 nav ul a {
   transition: background-color .3s;
   font-size: .8rem;
-  color: #fff;
+  color: black;
   display: block;
   padding: 0 15px;
   cursor: pointer;
@@ -4249,14 +4252,14 @@ nav .input-field label.active {
 
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-    height: 64px;
-    line-height: 64px;
+    height: 85px;
+    line-height: 85px;
   }
   .navbar-fixed {
-    height: 64px;
+    height: 84px;
   }
 }
-
+/*
 @font-face {
   font-family: "Roboto";
   src: local(Roboto Thin), url("../fonts/roboto/Roboto-Thin.eot");
@@ -4290,7 +4293,7 @@ nav .input-field label.active {
   src: url("../fonts/roboto/Roboto-Bold.eot");
   src: url("../fonts/roboto/Roboto-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/roboto/Roboto-Bold.woff") format("woff"), url("../fonts/roboto/Roboto-Bold.ttf") format("truetype");
   font-weight: 700;
-}
+}*/
 
 a {
   text-decoration: none;
@@ -6943,7 +6946,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .side-nav .userView .circle {
-  height: 64px;
+  height: 84px;
   width: 64px;
 }
 
@@ -7066,7 +7069,7 @@ input[type=range]:focus::-ms-fill-upper {
 
 .preloader-wrapper.big {
   width: 64px;
-  height: 64px;
+  height: 84px;
 }
 
 .preloader-wrapper.active {

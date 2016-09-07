@@ -1,6 +1,7 @@
 %div.row
   %div.complaint-container.col.s12.z-depth-2
-    %h5 Enter a New Complaint:
+    %h5 Submit a Tip/Complaint:
+    %p.fine-print To submit a tip or complaint to Project Six you can complete the form below, email a tip to tips@thesecretsix.com or call (888) 366-2569. All information submitted to Project Six is treated with care and processed in a safe and secure environment. Names and phone numbers are not necessary but are preferred. We will not share any details or identifying information about tip providers with anyone else without your permission or what is required by law.
     = form_for @complaint, url: "/complaints", role: "form", class: "col s12" do |f|
       %div.row
         %div.input-field.col.s12

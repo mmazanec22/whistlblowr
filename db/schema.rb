@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160906233149) do
     t.text     "content",                     null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.json     "media"
     t.string   "status",      default: "New"
+    t.json     "media"
     t.string   "video_links"
     t.index ["user_id"], name: "index_complaints_on_user_id", using: :btree
   end
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20160906233149) do
     t.index ["complaint_id"], name: "index_media_on_complaint_id", using: :btree
   end
 
+  create_table "media_managers", force: :cascade do |t|
+    t.integer  "complaint_id"
+    t.text     "youtube_links"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.json     "images"
+    t.json     "audio"
+    t.index ["complaint_id"], name: "index_media_managers_on_complaint_id", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "text"
     t.integer  "complaint_id"
@@ -92,4 +102,5 @@ ActiveRecord::Schema.define(version: 20160906233149) do
   add_foreign_key "allegations", "complaints"
   add_foreign_key "complaints", "users"
   add_foreign_key "media", "complaints"
+  add_foreign_key "media_managers", "complaints"
 end
