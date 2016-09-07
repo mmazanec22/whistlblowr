@@ -44,7 +44,9 @@
             %span=@complaint.user.to_s
 - if @investigator_authenticated
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
-
+  = link_to [:podio_export, @complaint], class: 'btn' do
+    Send to Podio
+  %br
 %br
 %br
 

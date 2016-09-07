@@ -55,6 +55,13 @@ class ComplaintsController < ApplicationController
 
   end
 
+  def podio_export
+    @complaint = Complaint.find_by(id: params[:id])
+    @message = Message.new
+    @complaint.call_to_podio
+    redirect_to(:back)
+  end
+
   private
 
     # def add_allegation_types
