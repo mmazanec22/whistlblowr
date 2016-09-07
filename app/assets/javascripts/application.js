@@ -18,6 +18,9 @@
 //ajaxify the statuses on the comments index page AKA inspector interface
 $(document).ready(function(){
 
+  $(".complaint-table").find(".table-row").hide()
+  $(".complaint-table").find(".table-row.New").show()
+
   $("form.status-button").on("click", function(event){
     event.preventDefault();
 
