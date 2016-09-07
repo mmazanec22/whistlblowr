@@ -24,6 +24,7 @@ gem 'haml'
 gem 'devise'
 gem 'pry'
 gem 'cancan'
+gem 'rubyzip'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

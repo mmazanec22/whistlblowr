@@ -1,3 +1,4 @@
+require 'zip'
 class Complaint < ApplicationRecord
   mount_uploaders :media, MediaUploader
   validates :content, presence: true
@@ -54,15 +55,23 @@ class Complaint < ApplicationRecord
 
   def zip_media
     num = 0
+    image_names = []
     self.media.each do |media|
       url = media.url
-      image_name = "image#{num}.png"
+      image_name = "#{self.key}_#{num}.png"
+      image_names << image_name
       open(image_name, 'wb') do |file|
         file << open(url).read
+        file.close
       end
       num += 1
     end
-    # , filename: "NAME.jpg", type: "image/jpg", disposition: 'inline', stream: 'true', buffer_size: '4096')
+    Zip::File.open("complaint.zip", Zip::File::CREATE) do |zipfile|
+      image_names.each do |name|
+        zipfile.add(name, name)
+      end
+      zipfile.get_output_stream("myFile") {|os| os.write "file stuff?"}
+    end
   end
 
   private

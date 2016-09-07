@@ -56,6 +56,9 @@ class ComplaintsController < ApplicationController
 
   end
 
+  def download
+  end
+
   private
 
     # def add_allegation_types
