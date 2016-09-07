@@ -54,24 +54,24 @@ class Complaint < ApplicationRecord
 
   def call_to_podio
 
-    Podio.setup(:api_key => 'whistlblowr', :api_secret => 'vWP6agxA1FAyJl1r1ttziYcC3iykY6mYr4TvZvTiZf7GgMJt6HdKUWVur19jvzcb')
+    Podio.setup(:api_key => ENV['PODIO_CLIENT_ID'], :api_secret => ENV['PODIO_CLIENT_SECRET'])
 
-    Podio.client.authenticate_with_credentials('whistlblowrs@gmail.com', 'ig33kallw33k')
+    Podio.client.authenticate_with_app(ENV['PODIO_APP_ID'],ENV['PODIO_APP_TOKEN'])
 
-    # projects = Podio::Item.create('16675677')
-
-    # puts projects[0].fields.count
-
-    # Complaint.last.call_to_podio
-
-    Podio::Item.create('16675677', {
+    Podio::Item.create(ENV['PODIO_APP_ID'], {
       :fields =>
         {'project-title' => "New Compliant #{Time.now.to_s}" ,
-          'project-description' => self.content
+          'project-description' => podio_description
         }
       }
     )
 
+  end
+
+  def podio_description
+    link = "http://whistlblowr.herokuapp.com/complaints/find?complaint_key=#{self.key}"
+
+    "#{self.content} <br><br> Contact Info (if provided): <br> #{self.user.to_s} <br><br> <a href=\"#{link}\">Link to tip site</a> <br>"
   end
 
   private
