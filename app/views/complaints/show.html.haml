@@ -7,32 +7,41 @@
         %p Save this key! You can revisit this page by providing this value on the submission page:
         =image_tag("retrieve-complaint.png", class: "retrieve-complaint")
         %p If you have not provided contact information, the Project Six team may try to communicate with you using the anonymous messaging below.
+        %h3 Your Complaint
+        = flash[:message]
 
     %div.row
+    - if @investigator_authenticated
       %div.col.s12
         %h5 Details of Complaint:
         =@complaint.content
-    -if @complaint.allegation_types
+      -if @complaint.allegation_types
+        %div.row
+          %div.col.s12
+            %h5 Allegations:
+            = @complaint.allegation_types_as_nice_string
+      -if @complaint.media.length > 0
+        %div.row
+          %div.col.s12
+            %h5 Files:
+            -@complaint.media.each do |url|
+              %a{ :href => url, :title => "View attachment" }
+                =File.basename(url.to_s)
+              %br
+    - else
       %div.row
         %div.col.s12
-          %h5 Allegations:
-          = @complaint.allegation_types_as_nice_string
-    -if @complaint.media.length > 0
-      %div.row
-        %div.col.s12
-          %h5 Files:
-          -@complaint.media.each do |url|
-            %a{ :href => url, :title => "View attachment" }
-              =File.basename(url.to_s)
-            %br
+          %h5 Thank You
+          %p Thank you for submitting a report. You may be contacted for additional information if you have provided contact info. Otherwise, additional questions may be displayed below in order to solicit information and protect your anonymity.
     %div.row
       %div.col.s12
         %div
           %span{ :style => "font-weight: bold;" }Created:
           %span=@complaint.created_at.strftime("%Y/%m/%d")
-        %div
-          %span{ :style => "font-weight: bold;" }Contact Info:
-          %span=@complaint.user.to_s
+        - if @investigator_authenticated
+          %div
+            %span{ :style => "font-weight: bold;" }Contact Info:
+            %span=@complaint.user.to_s
 - if @investigator_authenticated
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
 

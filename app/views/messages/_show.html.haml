@@ -1,3 +1,6 @@
 %div.card-panel.teal.lighten-4
-  %div.message-sender="From: #{message.messageable.to_s}"
-  %div.message-body=message.text
+  - if @investigator_authenticated
+    %div.message-sender="From: #{message.messageable.to_s}"
+    %div.message-body=message.text
+  - else
+    

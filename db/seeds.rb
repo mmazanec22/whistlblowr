@@ -25,14 +25,14 @@ allegation_types.each do |a|
   AllegationType.create(allegation_nature: a)
 end
 
-Investigator.create(username: "admin", email: "whistlblowrs@gmail.com", password: "thesecretsix", admin: true)
+Investigator.create(username: ENV['INVESTIGATOR_USERNAME'], email: ENV['INVESTIGATOR_EMAIL'], password: ENV['INVESTIGATOR_PASSWORD'], admin: true)
 
 User.create!(name: "Jane Doe", phone: "4853928475")
 
-complaint_content = ["My alderman bribed people to campaign on city property", "My alderman bribed people to campaign on city property"]
+complaint_content = ["My alderman bribed people to campaign on city property", "My alderman embezzled money while driving a city vehicle"]
 
 complaint_content.each do |c|
-  complaint = Complaint.create!(content: c, user_id: User.all.sample.id)
+  complaint = Complaint.create!(content: c, user_id: User.all.sample.id, video_links: "https://www.youtube.com/watch?v=atlltXMEE80")
   2.times do
     allegation = Allegation.create(complaint_id: complaint.id, allegation_type_id: AllegationType.all.sample.id)
   end
