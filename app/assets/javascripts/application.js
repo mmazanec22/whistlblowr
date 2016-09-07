@@ -21,7 +21,7 @@ $(document).ready(function(){
   $("form.status-button").on("click", function(event){
     event.preventDefault();
 
-    var $clickedButton = $(this).find(".btn")
+    var $clickedButton = $(this).find(".btn-small")
     var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
     var oldTrStatusClassArray = $clickedButton.closest("tr").attr("class").split(" ")
     var oldTrStatusClass = oldTrStatusClassArray[oldTrStatusClassArray.length-1]
