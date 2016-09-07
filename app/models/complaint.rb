@@ -53,27 +53,20 @@ class Complaint < ApplicationRecord
     self.created_at.to_formatted_s(:long)
   end
 
-  def zip_media
-    num = 0
-    temp_directory = Dir.mkdir(self.key)
+  def zip_media #need to handle things with the same name
+    # temp_directory = Dir.mkdir(self.key)
     image_names = []
-    self.media.each do |media|
-      url = media.url
-      image_name = "#{media.file.filename}"
-      image_names << image_name
-      open(image_name, 'wb') do |file|
-        file << open(url).read
-        file.close
-        FileUtils.mv image_name, "#{self.key}/#{image_name}"
+    Zip::File.open("#{self.key}.zip", Zip::File::CREATE) do |z|
+      self.media.each do |media|
+        url = media.url
+        image_name = "#{media.file.filename}"
+        image_names << image_name
+        open(image_name, 'wb') do |file|
+          file << open(url).read
+          z.add(media.file.filename, media.file.filename)
+          FileUtils.rm("/#{media.file.filename}")
+        end
       end
-      num += 1
-    end
-    # add things by name to that directory
-    Zip::File.open("complaint#{self.key}.zip", Zip::File::CREATE) do |zipfile|
-      image_names.each do |name|
-        zipfile.add(name, self.key)
-      end
-      zipfile.get_output_stream(temp_directory) {|os| os.write "file stuff?"}
     end
   end
 
