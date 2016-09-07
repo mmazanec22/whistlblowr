@@ -6,7 +6,7 @@
     %th
       Status
       = form_tag complaints_path, method: "get", class: "status-form" do
-        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses)), class: "filter-menu"
+        = select_tag "filter[status]", options_for_select(Complaint.possible_statuses.concat(["All"])), class: "filter-menu"
         / = select_tag "filter[status]", options_for_select([Complaint.all_statuses]), class: "filter-menu"
     %th
       Complainant Name/Key Number
