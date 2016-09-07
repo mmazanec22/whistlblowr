@@ -58,7 +58,7 @@ class ComplaintsController < ApplicationController
   def podio_export
     @complaint = Complaint.find_by(id: params[:id])
     @message = Message.new
-    @complaint.call_to_podio
+    @complaint.export_to_podio
     redirect_to(:back)
   end
 
