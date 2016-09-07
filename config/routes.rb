@@ -41,5 +41,7 @@ Rails.application.routes.draw do
 
   delete "/investigator_admin/:id" => "new_investigators#delete"
 
+  get "/complaints/:id/podio_export" => "complaints#podio_export", as: 'podio_export_complaint'
+
 
 end
