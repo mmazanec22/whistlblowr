@@ -14,8 +14,18 @@
  *= require_self
  */
 
+body {
+  background-image: url(paper.png);
+  font-weight: 400;
+  font-family: MontyRegular,sans-serif;
+}
+
+/*div {
+  background-color:white;
+}*/
+
  h1, h2, h3, h4, th, tr, td{
-  font-family: Montserrat,sans-serif;
+  font-family: MontyRegular,sans-serif;
  }
 
 #logo-wrapper {
@@ -24,9 +34,13 @@
   text-align: center;
 }
 
+.logo-align {
+    float: left !important;
+}
+
 a.brand-logo img {
   margin-top: 10px;
-  min-width: 300px;
+  min-width: 380px;
   max-height: 100%;
 }
 
@@ -59,6 +73,10 @@ a.brand-logo img {
     font-size: 1.5em;
   }
 
+  .logo-align {
+  text-align: center;
+}
+
 }
 
 
@@ -77,6 +95,7 @@ a.brand-logo img {
 }
 
 .complaint-container {
+  background-color:white;
   border: 1px solid black;
 }
 
@@ -173,4 +192,8 @@ a.brand-logo img {
   color: #242424;
   background-color: #FF6E6E;
   box-shadow: none;
+}
+
+p.fine-print {
+  font-size: .8em;
 }

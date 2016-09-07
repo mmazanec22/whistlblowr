@@ -1,38 +1,38 @@
 %div.center-align
+  %div.complaint-container
+    %h2 Complaints
 
-  %h2 Complaints
+    %table.bordered.responsive-table.complaint-table
+      %th
+        Status
+        = form_tag complaints_path, method: "get", class: "status-form" do
+          = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses)), class: "filter-menu"
+      %th
+        Allegation Types
+        / = form_tag complaints_path, method: "get", class: "allegation-form" do
+        /   = select_tag "filter[allegation]", options_for_select((["All"]).concat(AllegationType.all.map{|a| a.allegation_nature}))
 
-  %table.bordered.responsive-table.complaint-table
-    %th
-      Status
-      = form_tag complaints_path, method: "get", class: "status-form" do
-        = select_tag "filter[status]", options_for_select((["All"]).concat(Complaint.possible_statuses)), class: "filter-menu"
-    %th
-      Allegation Types
-      / = form_tag complaints_path, method: "get", class: "allegation-form" do
-      /   = select_tag "filter[allegation]", options_for_select((["All"]).concat(AllegationType.all.map{|a| a.allegation_nature}))
-
-    %th Description
-    %th Complainant Name
-    %th Complainant Phone
-    %th Complainant Email
-    %th Complaint Attachments
-    -@complaints.each do |complaint|
-      %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
-        %td
-          =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status disabled current-status"
-          -complaint.possible_other_statuses.each do |st|
-            = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status"
-        %td= complaint.allegation_types_as_nice_string
-        %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
-        %td= complaint.user.name
-        %td= complaint.user.phone
-        %td= complaint.user.email
-        -if complaint.media[0]
+      %th Description
+      %th Complainant Name
+      %th Complainant Phone
+      %th Complainant Email
+      %th Complaint Attachments
+      -@complaints.each do |complaint|
+        %tr{class: "table-row complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
           %td
-            -complaint.media.each do |url|
-              %a{ :href => url, :title => "View attachment" }
-                %strong
-                  View attachment
-        -else
-          %td None
+            =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status disabled current-status"
+            -complaint.possible_other_statuses.each do |st|
+              = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status"
+          %td= complaint.allegation_types_as_nice_string
+          %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
+          %td= complaint.user.name
+          %td= complaint.user.phone
+          %td= complaint.user.email
+          -if complaint.media[0]
+            %td
+              -complaint.media.each do |url|
+                %a{ :href => url, :title => "View attachment" }
+                  %strong
+                    View attachment
+          -else
+            %td None
