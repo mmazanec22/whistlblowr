@@ -58,9 +58,20 @@ class ComplaintsController < ApplicationController
   def podio_export
     @complaint = Complaint.find_by(id: params[:id])
     @message = Message.new
-    @complaint.export_to_podio
-    redirect_to(:back)
+    if @complaint.exists_in_podio?
+      @errors = ["This complaint/tip has already been sent to Podio"]
+    else
+      @complaint.export_to_podio
+
+      respond_to do |format|
+        format.html { redirect_to(:back) }
+        format.js {}
+      end
+
+    end
+
   end
+
 
   private
 

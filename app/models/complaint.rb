@@ -52,9 +52,13 @@ class Complaint < ApplicationRecord
     self.created_at.to_formatted_s(:long)
   end
 
-  def export_to_podio
+  def podio_setup
     Podio.setup(:api_key => ENV['PODIO_CLIENT_ID'], :api_secret => ENV['PODIO_CLIENT_SECRET'])
     Podio.client.authenticate_with_app(ENV['PODIO_APP_ID'],ENV['PODIO_APP_TOKEN'])
+  end
+
+  def export_to_podio
+    podio_setup
     Podio::Item.create(ENV['PODIO_APP_ID'], {
       :fields =>
         {'project-title' => "New Compliant #{Time.now.to_s}" ,
@@ -72,10 +76,8 @@ class Complaint < ApplicationRecord
   end
 
   def exists_in_podio?
-    Podio.setup(:api_key => ENV['PODIO_CLIENT_ID'], :api_secret => ENV['PODIO_CLIENT_SECRET'])
-    Podio.client.authenticate_with_app(ENV['PODIO_APP_ID'],ENV['PODIO_APP_TOKEN'])
-
-    p Podio::Item.find_all_by_external_id(ENV['PODIO_APP_ID'], self.key)
+    podio_setup
+    Podio::Item.find_all_by_external_id(ENV['PODIO_APP_ID'], self.key).count > 0
   end
 
   private
