@@ -64,10 +64,10 @@ class Complaint < ApplicationRecord
         open(image_name, 'wb') do |file|
           file << open(url).read
           z.add(media.file.filename, media.file.filename)
-          FileUtils.rm("/#{media.file.filename}")
         end
       end
     end
+    image_names.each{ |name| FileUtils.rm(name) }
   end
 
   private
