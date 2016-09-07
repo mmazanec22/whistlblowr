@@ -53,8 +53,16 @@ class Complaint < ApplicationRecord
   end
 
   def zip_media
-    data = open(self.media[0])
-    send_data data.read, filename: "NAME.jpg", type: "image/jpg", disposition: 'inline', stream: 'true', buffer_size: '4096'
+    num = 0
+    self.media.each do |media|
+      url = media.url
+      image_name = "image#{num}.png"
+      open(image_name, 'wb') do |file|
+        file << open(url).read
+      end
+      num += 1
+    end
+    # , filename: "NAME.jpg", type: "image/jpg", disposition: 'inline', stream: 'true', buffer_size: '4096')
   end
 
   private

@@ -36,6 +36,7 @@ class ComplaintsController < ApplicationController
     @investigator_authenticated = true if current_investigator
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
+    @complaint.zip_media
   end
 
   def edit
