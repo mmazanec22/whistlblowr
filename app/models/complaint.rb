@@ -13,7 +13,7 @@ class Complaint < ApplicationRecord
   # POSSIBLE_STATUSES = ["New", "Active", "Closed"]
 
   def self.possible_statuses
-    ["New", "Active", "Closed"]
+    ["New", "Non Actionable", "Pending", "Initiated Investigation"]
   end
 
   def self.all_statuses

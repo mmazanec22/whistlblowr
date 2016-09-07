@@ -80,27 +80,29 @@ a.brand-logo img {
   border: 1px solid black;
 }
 
-.btn.status {
-  font-family: Montserrat,sans-serif;
+.btn-small.status {
   background-color: #949397 !important;
-  min-width: 5%;
+  /*min-width: 8%;*/
   padding: 0 0.5rem;
+  border: 3px solid #949397;
 }
 
-.btn.status:hover{
-  border: 2px solid #e23b3b !important;
+.btn-small.status:hover{
+  color: #e23b3b !important;
+/*  font-weight: bold;*/
 }
 
-.btn.current-status {
+.btn-small.current-status {
   background-color: #e23b3b !important;
   color: white !important;
 }
 
-.btn.current-status:hover{
+.btn-small.current-status:hover{
   background-color: #e23b3b !important;
   color: white !important;
-  border: none !important;
+  /*border: none !important;*/
   transition: none !important;
+  font-weight: normal;
 }
 
 .filter-menu {
@@ -154,7 +156,7 @@ a.brand-logo img {
   /*height: 36px;*/
   /*line-height: 36px;*/
   outline: 0;
-  /*padding: 0 2rem;*/
+  padding: 0 2rem;
   text-transform: uppercase;
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent;
