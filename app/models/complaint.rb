@@ -52,6 +52,11 @@ class Complaint < ApplicationRecord
     self.created_at.to_formatted_s(:long)
   end
 
+  def zip_media
+    data = open(self.media[0])
+    send_data data.read, filename: "NAME.jpg", type: "image/jpg", disposition: 'inline', stream: 'true', buffer_size: '4096'
+  end
+
   private
 
   def file_size
