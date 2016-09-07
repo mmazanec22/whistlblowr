@@ -55,22 +55,25 @@ class Complaint < ApplicationRecord
 
   def zip_media
     num = 0
+    temp_directory = Dir.mkdir(self.key)
     image_names = []
     self.media.each do |media|
       url = media.url
-      image_name = "#{self.key}_#{num}.png"
+      image_name = "#{media.file.filename}"
       image_names << image_name
       open(image_name, 'wb') do |file|
         file << open(url).read
         file.close
+        FileUtils.mv image_name, "#{self.key}/#{image_name}"
       end
       num += 1
     end
-    Zip::File.open("complaint.zip", Zip::File::CREATE) do |zipfile|
+    # add things by name to that directory
+    Zip::File.open("complaint#{self.key}.zip", Zip::File::CREATE) do |zipfile|
       image_names.each do |name|
-        zipfile.add(name, name)
+        zipfile.add(name, self.key)
       end
-      zipfile.get_output_stream("myFile") {|os| os.write "file stuff?"}
+      zipfile.get_output_stream(temp_directory) {|os| os.write "file stuff?"}
     end
   end
 
