@@ -59,7 +59,7 @@ class Complaint < ApplicationRecord
 
   def zip_media #need to handle things with the same name
     image_names = []
-    Zip::File.open("tmp/#{self.key}.zip", Zip::File::CREATE) do |z|
+    Zip::File.open("tmp/key-#{self.key}.zip", Zip::File::CREATE) do |z|
       self.media.each do |media|
         url = media.url
         image_name = "tmp/#{media.file.filename}"
@@ -71,7 +71,7 @@ class Complaint < ApplicationRecord
       end
     end
     image_names.each{ |name| FileUtils.rm(name) }
-    return "tmp/#{self.key}.zip"
+    return "tmp/key-#{self.key}.zip"
   end
 
   def podio_setup
