@@ -4962,7 +4962,7 @@ small {
 .btn, .btn-large {
   text-decoration: none;
   color: #fff;
-  background-color: #26a69a;
+  background-color: #E23B3B;
   text-align: center;
   letter-spacing: .5px;
   transition: .2s ease-out;
@@ -4970,7 +4970,7 @@ small {
 }
 
 .btn:hover, .btn-large:hover {
-  background-color: #2bbbad;
+  background-color: #e44e4e;
 }
 
 .btn-floating {
@@ -5726,8 +5726,8 @@ input[type=tel]:focus:not([readonly]),
 input[type=number]:focus:not([readonly]),
 input[type=search]:focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #26a69a;
-  box-shadow: 0 1px 0 0 #26a69a;
+  border-bottom: 1px solid #e44e4e;
+  box-shadow: 0 1px 0 0 #e44e4e;
 }
 
 input:not([type]):focus:not([readonly]) + label,
