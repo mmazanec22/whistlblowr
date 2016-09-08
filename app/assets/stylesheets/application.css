@@ -46,7 +46,7 @@ body {
 
 a.brand-logo img {
   margin-top: 10px;
-  min-width: 380px;
+  min-width: 300px;
   max-height: 100%;
 }
 
@@ -61,7 +61,7 @@ a.brand-logo img {
   border: 2px solid #e23b3b;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 320px) {
 
   .input-field textarea {
     font-size: 1.5em;
@@ -81,6 +81,8 @@ a.brand-logo img {
 
   .logo-align {
   text-align: center;
+  margin-top: -25px;
+  }
 }
 
 }
