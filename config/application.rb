@@ -15,4 +15,3 @@ module Whistlblowr
     # -- all .rb files in that directory are automatically loaded.
   end
 end
-/home/ben/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
