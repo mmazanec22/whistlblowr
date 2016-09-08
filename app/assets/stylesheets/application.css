@@ -201,14 +201,14 @@ p.fine-print {
   font-size: .8em;
 }
 
+.pagination{
+  text-align: center;
+}
+
 .page {
   color: black !important;
 }
 
-.page a {
+.page a, .next a, .last a, .prev a, .first a{
   color: gray !important;
-}
-
-.pagination{
-  color: blue !important;
 }
