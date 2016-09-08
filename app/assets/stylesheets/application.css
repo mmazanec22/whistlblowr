@@ -61,7 +61,7 @@ a.brand-logo img {
   border: 2px solid #e23b3b;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 600px) {
 
   .input-field textarea {
     font-size: 1.5em;
