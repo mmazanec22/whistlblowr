@@ -25,7 +25,8 @@ class Complaint < ApplicationRecord
   end
 
   def video_links_array
-    self.video_links.gsub(/\s+/, "").split(",")
+    array = self.video_links.map{|link| link.url}
+    array
   end
 
   def create_key
