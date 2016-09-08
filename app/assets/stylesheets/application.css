@@ -50,6 +50,10 @@ a.brand-logo img {
   max-height: 100%;
 }
 
+.complaint-index td {
+  vertical-align: top
+}
+
 #investigator_nav {
   display: inline-block;
   background-color: white;
