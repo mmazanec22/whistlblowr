@@ -208,3 +208,7 @@ p.fine-print {
 .page a {
   color: gray !important;
 }
+
+.pagination{
+  color: blue !important;
+}

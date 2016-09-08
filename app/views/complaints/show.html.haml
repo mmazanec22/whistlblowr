@@ -67,5 +67,5 @@
     %div#message-container
       - @messages.each do |message|
         =render partial: "messages/show", locals: {message: message}
-
-  = paginate @messages
+  %div.pagination
+    = paginate @messages
