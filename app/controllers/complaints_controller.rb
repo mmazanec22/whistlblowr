@@ -71,6 +71,7 @@ class ComplaintsController < ApplicationController
     if @complaint.exists_in_podio?
       @errors = ["This complaint/tip has already been sent to Podio"]
     else
+      @complaint.update_attribute(:status, "Initiated-Investigation")
       @complaint.export_to_podio
 
       respond_to do |format|
