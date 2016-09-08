@@ -12,6 +12,6 @@
     -elsif !complaint.media[0] && !complaint.video_links
       %div (No media attached)
     %table
-      %th=button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn-small status disabled current-status status-button"
+      %th{class: "current complaint-id-#{complaint.id}"}=button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn-small status disabled current-status status-button"
       -complaint.possible_other_statuses.each do |st|
-        %th= button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn-small status status-button"
+        %th{class: "non-current complaint-id-#{complaint.id}"}= button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn-small status status-button"
