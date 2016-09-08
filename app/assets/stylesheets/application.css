@@ -14,9 +14,8 @@
  *= require_self
  */
 
-
 body {
-  background-image: url('paper.png');
+  background-image: url(paper.png);
   font-weight: 400;
   font-family: MontyRegular,sans-serif;
 }
@@ -24,6 +23,12 @@ body {
 /*div {
   background-color:white;
 }*/
+
+.status-button {
+   width: 225px;
+   text-align: left;
+   margin: 2px;
+}
 
  h1, h2, h3, h4, th, tr, td{
   font-family: MontyRegular,sans-serif;
@@ -41,7 +46,7 @@ body {
 
 a.brand-logo img {
   margin-top: 10px;
-  min-width: 380px;
+  min-width: 300px;
   max-height: 100%;
 }
 
@@ -56,7 +61,7 @@ a.brand-logo img {
   border: 2px solid #e23b3b;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 320px) {
 
   .input-field textarea {
     font-size: 1.5em;
@@ -76,10 +81,9 @@ a.brand-logo img {
 
   .logo-align {
   text-align: center;
+  margin-top: -25px;
+  }
 }
-
-}
-
 
 .complaint-table {
   border-collapse:collapse;
@@ -104,21 +108,21 @@ a.brand-logo img {
   background-color: #949397 !important;
   /*min-width: 8%;*/
   padding: 0 0.5rem;
-  border: 3px solid #949397;
+  border: 3px solid #b0bec5;
 }
 
 .btn-small.status:hover{
-  color: #e23b3b !important;
+  color: #ffcc80 !important;
 /*  font-weight: bold;*/
 }
 
 .btn-small.current-status {
-  background-color: #e23b3b !important;
+  background-color: #00838f !important;
   color: white !important;
 }
 
 .btn-small.current-status:hover{
-  background-color: #e23b3b !important;
+  background-color: #ffcc80 !important;
   color: white !important;
   /*border: none !important;*/
   transition: none !important;
