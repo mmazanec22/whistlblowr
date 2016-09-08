@@ -39,6 +39,7 @@ class ComplaintsController < ApplicationController
     @investigator_authenticated = true if current_investigator
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
+    not_found if @complaint == nil
     @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
     @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
   end

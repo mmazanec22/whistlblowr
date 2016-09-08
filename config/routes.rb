@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   # post 'create_investigator' => 'investigators#create', as: :create_investigator
   # # end devise bypass -------------------------------------
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.
+  get "*any", via: :all, to: "errors#not_found"
 
   get '/testforms' => 'testforms#index'
 
