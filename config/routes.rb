@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   # # end devise bypass -------------------------------------
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.
-  get "*any", via: :all, to: "errors#not_found"
+
+  # get "*any", via: :all, to: "errors#not_found"
 
   get '/testforms' => 'testforms#index'
 
