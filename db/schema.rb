@@ -31,14 +31,13 @@ ActiveRecord::Schema.define(version: 20160908151707) do
   end
 
   create_table "complaints", force: :cascade do |t|
-    t.string   "key",                         null: false
+    t.string   "key",                        null: false
     t.integer  "user_id"
     t.text     "content",                     null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.json     "media"
     t.string   "status",      default: "New"
-    t.string   "video_links"
     t.index ["user_id"], name: "index_complaints_on_user_id", using: :btree
   end
 
@@ -87,8 +86,15 @@ ActiveRecord::Schema.define(version: 20160908151707) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "video_links", force: :cascade do |t|
+    t.string  "url",          null: false
+    t.integer "complaint_id"
+    t.index ["complaint_id"], name: "index_video_links_on_complaint_id", using: :btree
+  end
+
   add_foreign_key "allegations", "allegation_types"
   add_foreign_key "allegations", "complaints"
   add_foreign_key "complaints", "users"
   add_foreign_key "media", "complaints"
+  add_foreign_key "video_links", "complaints"
 end

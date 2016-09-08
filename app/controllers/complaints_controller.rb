@@ -20,6 +20,9 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
+    params[:complaint][:video_links].each do |n, l|
+      @complaint.video_links << VideoLink.create(url: l)
+    end
     # add_allegation_types
     if @complaint.save
       flash[:notice] = @complaint.key
@@ -93,7 +96,7 @@ class ComplaintsController < ApplicationController
     # end
 
     def complaint_params
-      params.require(:complaint).permit(:content, {media: []}, :video_links)
+      params.require(:complaint).permit(:content, {media: []}, :video_links_array)
     end
 
     def return_user
