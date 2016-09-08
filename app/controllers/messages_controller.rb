@@ -18,6 +18,16 @@ class MessagesController < ApplicationController
     end
   end
 
+  def message_poll
+    complaint = Complaint.find_by(key: params[:complaint_key])
+    messages = complaint.messages
+
+    if messages.count > params[:message_count].to_i
+      render partial: 'messages/show', locals: {message: messages.last}
+    end
+
+  end
+
   private
 
     def message_params

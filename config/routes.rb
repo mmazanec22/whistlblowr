@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   post 'messages' => 'messages#create', as: 'messages'
 
+  get 'messages' => 'messages#message_poll'
+
   put "complaints/:id" => "complaints#update", as: "update_complaint"
 
   get "/investigator_admin" => "new_investigators#new"
