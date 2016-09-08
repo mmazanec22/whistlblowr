@@ -21,12 +21,12 @@ $(document).ready(function(){
   $(".complaint-table").find(".table-row").hide()
   $(".complaint-table").find(".table-row.New").show()
 
-  $("form.status-button").on("click", function(event){
+  $(".status-button").on("submit", function(event){
     event.preventDefault();
-
     var $clickedButton = $(this).find(".btn-small")
-    var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
-    var oldTrStatusClassArray = $clickedButton.closest("tr").attr("class").split(" ")
+    var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("td").closest("tr").attr("class").split(" ")[1]
+
+    var oldTrStatusClassArray = $clickedButton.closest("td").closest("tr").attr("class").split(" ")
     var oldTrStatusClass = oldTrStatusClassArray[oldTrStatusClassArray.length-1]
 
     var route = $(this).attr("action");
@@ -44,8 +44,14 @@ $(document).ready(function(){
       $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("disabled")
       $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("current-status")
 
-      $clickedButton.closest("tr").removeClass(oldTrStatusClass)
-      $clickedButton.closest("tr").addClass(response.status)
+      $(clickedButtonTrComplaintIdClass).find("th").removeClass("current")
+      $(clickedButtonTrComplaintIdClass).find("th").addClass("non-current")
+      $($clickedButton).closest("th").removeClass("non-current")
+      $($clickedButton).closest("th").addClass("current")
+      $(".current"+ clickedButtonTrComplaintIdClass).after($(".non-current"+ clickedButtonTrComplaintIdClass))
+
+      $clickedButton.closest("td").closest("tr").removeClass(oldTrStatusClass)
+      $clickedButton.closest("td").closest("tr").addClass(response.status)
       $clickedButton.addClass("current-status")
       $clickedButton.addClass("disabled")
     })
