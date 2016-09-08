@@ -1,1 +1,1 @@
-$("<%= escape_javascript("#message-container") %>").append("<%= escape_javascript(render partial: 'messages/show', locals: {message: @message}) %>");
+$("<%= escape_javascript("#message-container") %>").prepend("<%= escape_javascript(render partial: 'messages/show', locals: {message: @message}) %>");
