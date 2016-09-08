@@ -216,3 +216,7 @@ p.fine-print {
 .page a, .next a, .last a, .prev a, .first a{
   color: gray !important;
 }
+
+.has-unviewed td {
+  background-color: #ccffff !important;
+}
