@@ -10,6 +10,7 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
   has_many :messages
+  has_many :video_links
 
   def self.possible_statuses
     ["New", "Non-Actionable", "Pending", "Initiated-Investigation"]
@@ -25,7 +26,8 @@ class Complaint < ApplicationRecord
   end
 
   def video_links_array
-    self.video_links.gsub(/\s+/, "").split(",")
+    array = self.video_links.map{|link| link.url}
+    array
   end
 
   def create_key
