@@ -37,7 +37,7 @@
       %div.row.add-video-link
         %div.input-field.file-field.col.s12
           %div.video-links
-            = f.text_field :video_links, placeholder: "Link to YouTube or Vimeo"
+            %input{placeholder: "Link to YouTube or Vimeo", type: "text", name: "complaint[video_links][1]", id: "complaint_video_link_url"}
           %div.btn.video-btn
             %span Add Another Link
       %div.row

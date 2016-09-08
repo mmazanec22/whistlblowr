@@ -10,6 +10,7 @@ class Complaint < ApplicationRecord
   has_many :allegations
   has_many :allegation_types, through: :allegations
   has_many :messages
+  has_many :video_links
 
   def self.possible_statuses
     ["New", "Non-Actionable", "Pending", "Initiated-Investigation"]
