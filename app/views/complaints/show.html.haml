@@ -14,10 +14,10 @@
       %div.col.s12
         %h5.montserrat-header-bold Details of Complaint:
         =@complaint.content
-      -if @complaint.allegation_types
-        %div.col.s12
-          %h5.montserrat-header Allegations:
-          = @complaint.allegation_types_as_nice_string
+      -# -if @complaint.allegation_types
+      -#   %div.col.s12
+      -#     %h5.montserrat-header Allegations:
+      -#     = @complaint.allegation_types_as_nice_string
       -if @complaint.media.length > 0
         %div.col.s12
           %h5 Files:
@@ -42,7 +42,8 @@
       %br
 
 - if @investigator_authenticated
-  %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
+  - if @complaint.media.length > 0
+    %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
   = link_to [:podio_export, @complaint], remote: true, class: "send-podio-button btn #{'disabled' if @complaint.exists_in_podio?}"  do
     Send to Podio
