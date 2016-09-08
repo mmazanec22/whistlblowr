@@ -21,7 +21,9 @@ class Complaint < ApplicationRecord
   end
 
   def content_shortened
-    return "#{self.content[0..30]} ..." if self.content.length>20
+    if self.content.split(" ").length>10
+      return self.content.split(" ")[0..10].join(" ") + "..."
+    end
     return self.content
   end
 
@@ -98,6 +100,13 @@ class Complaint < ApplicationRecord
   def exists_in_podio?
     podio_setup
     Podio::Item.find_all_by_external_id(ENV['PODIO_APP_ID'], self.key).count > 0
+  end
+
+  def has_unviewed_messages
+    self.messages.each do |m|
+      return true if m.viewed == false
+    end
+    false
   end
 
   private
