@@ -34,9 +34,12 @@
             =f.file_field :media, multiple: true
           %div.file-path-wrapper
             =f.text_field :media_cache, class: "file-path validate"
-      %div.row
+      %div.row.add-video-link
         %div.input-field.file-field.col.s12
-          = f.text_field :video_links, placeholder: "Links to YouTube or Vimeo Separated by Commas"
+          %div.video-links
+            = f.text_field :video_links, placeholder: "Link to YouTube or Vimeo"
+          %div.btn.video-btn
+            %span Add Another Link
       %div.row
         %div.input-field.file-field.col.s12
           = f.submit "Submit", class: "btn"

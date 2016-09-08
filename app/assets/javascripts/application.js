@@ -69,3 +69,10 @@ $(document).ready(function(){
   //   }
   // })
 })
+
+
+$(document).ready(function(){
+  $(".video-btn").on("click", function(){
+    $(".video-links").append("<input placeholder=\"Link to YouTube or Vimeo\" type=\"text\" name=\"complaint[video_links]\" id=\"complaint_video_links\">")
+  })
+})
