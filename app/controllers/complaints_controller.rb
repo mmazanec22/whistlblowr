@@ -40,6 +40,7 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
     @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
+    @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
   end
 
   def edit
