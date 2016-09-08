@@ -20,7 +20,7 @@
     </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
     <% if investigator_signed_in? %>
-      <li><%= current_investigator.email %></li>
+      <li id="nav-investigator"><%= current_investigator.email %></li>
       <li><%= link_to "Complaints", complaints_path %></li>
       <li><%= link_to "Admin", investigator_admin_path %></li>
       <li><%= link_to "Logout", destroy_investigator_session_path, method: :delete %></li>
