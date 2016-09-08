@@ -35,7 +35,7 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def delete
-    if @investigator != current_investigator &&  @investigators.where(admin: true).count > 1
+    if @investigator != current_investigator && @investigators.where(admin: true).count >= 1
       @investigator.destroy
     else @investigator.admin
       @errors = ["At least one investigator administrator is required."]
