@@ -1,15 +1,17 @@
-%tr{class: "table-row complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
+%tr{class: "table-row complaint-index complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
   %td
     =button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn-small status disabled current-status status-button"
     -complaint.possible_other_statuses.each do |st|
       = button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn-small status status-button"
   %td
-    "#{complaint.user.to_s}"
+    = complaint.user.to_s.gsub("|", "")
     %br
-    "#{complaint.pretty_created_at}"
+    = complaint.key
 
-  %td= complaint.allegation_types_as_nice_string
-  %td= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
+  %td
+    = complaint.allegation_types_as_nice_string
+  %td
+    = link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
   %td
     -if complaint.video_links
       -complaint.video_links_array.each do |v|
