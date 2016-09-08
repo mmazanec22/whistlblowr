@@ -17,9 +17,10 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.
 
-  # get "*any", via: :all, to: "errors#not_found"
 
   get '/testforms' => 'testforms#index'
+
+  get '/errors/not_found' => 'errors#not_found'
 
   get '/complaints' => 'complaints#index'
 
