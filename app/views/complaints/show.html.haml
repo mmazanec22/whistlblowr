@@ -21,9 +21,9 @@
       -if @complaint.media.length > 0
         %div.col.s12
           %h5 Files:
-          -@complaint.media.each do |url|
-            %a{ :href => url, :title => "View attachment" }
-              =File.basename(url.to_s)
+          -@complaint.media.each do |m|
+            %a{ :href => m}
+              %span= m.file.filename
     - else
       %div.col.s12
         %h5 Thank You
