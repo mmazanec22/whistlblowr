@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906233149) do
+ActiveRecord::Schema.define(version: 20160908151707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,14 +36,13 @@ ActiveRecord::Schema.define(version: 20160906233149) do
     t.text     "content",                     null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.json     "media"
     t.string   "status",      default: "New"
+    t.json     "media"
     t.string   "video_links"
     t.index ["user_id"], name: "index_complaints_on_user_id", using: :btree
   end
 
   create_table "investigators", force: :cascade do |t|
-    t.string   "username",                               null: false
     t.string   "email",                                  null: false
     t.string   "encrypted_password",                     null: false
     t.string   "reset_password_token"
@@ -71,6 +70,16 @@ ActiveRecord::Schema.define(version: 20160906233149) do
     t.index ["complaint_id"], name: "index_media_on_complaint_id", using: :btree
   end
 
+  create_table "media_managers", force: :cascade do |t|
+    t.integer  "complaint_id"
+    t.text     "youtube_links"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.json     "images"
+    t.json     "audio"
+    t.index ["complaint_id"], name: "index_media_managers_on_complaint_id", using: :btree
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text     "text"
     t.integer  "complaint_id"
@@ -92,4 +101,5 @@ ActiveRecord::Schema.define(version: 20160906233149) do
   add_foreign_key "allegations", "complaints"
   add_foreign_key "complaints", "users"
   add_foreign_key "media", "complaints"
+  add_foreign_key "media_managers", "complaints"
 end
