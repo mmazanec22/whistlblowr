@@ -2,6 +2,8 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -23,7 +25,8 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.serve_static_assets = true
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -64,6 +67,8 @@ Rails.application.configure do
   # Mail setup for devise password resets, etc.
 
   # config.action_mailer.default_url_options = { :host => '' }
+
+  config.action_mailer.default_url_options = { :host => 'whistlblowr.herokuapp.com' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

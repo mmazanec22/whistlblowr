@@ -28,6 +28,8 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
 
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+
   # Mail setup for devise password resets, etc.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
