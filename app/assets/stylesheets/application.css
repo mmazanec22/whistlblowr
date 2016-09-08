@@ -31,8 +31,18 @@ body {
 }
 
  h1, h2, h3, h4, th, tr, td{
-  font-family: MontyRegular,sans-serif;
+  /*font-family: MontyRegular,sans-serif;*/
+  font-family: Montserrat,sans-serif;
  }
+
+#montserrat-header-bold{
+  font-family: Montserrat,sans-serif;
+  font-weight: bold;
+}
+
+#montserrat-sub-header{
+  font-family: Montserrat,sans-serif;
+}
 
 #logo-wrapper {
   margin-top: 2%;
@@ -79,6 +89,9 @@ a.brand-logo img {
     font-size: 1.5em;
   }
 
+  .btn{
+    font-family: Montserrat,sans-serif;
+  }
   .logo-align {
   text-align: center;
   margin-top: -25px;
