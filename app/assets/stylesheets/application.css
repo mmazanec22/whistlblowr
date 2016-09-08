@@ -241,3 +241,10 @@ p.fine-print {
 .has-unviewed td {
   background-color: #ccffff !important;
 }
+
+span.badge {
+  background-color: #039be5 !important;
+  float: right;
+}
+
+

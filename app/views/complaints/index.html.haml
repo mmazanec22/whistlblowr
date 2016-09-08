@@ -6,9 +6,6 @@
       = form_tag complaints_path, method: "get", class: "status-form" do
         = select_tag "filter[status]", options_for_select(Complaint.possible_statuses.concat(["All"])), class: "filter-menu"
     -@complaints.each do |complaint|
-      -if complaint.has_unviewed_messages
-        = render 'unviewed_index', complaint: complaint
-      -else
-        = render 'index_view',complaint: complaint
+      = render 'index_view',complaint: complaint
   %div.pagination
     = paginate @complaints

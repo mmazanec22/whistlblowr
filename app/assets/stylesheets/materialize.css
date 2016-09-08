@@ -3192,7 +3192,7 @@ span.badge {
   font-size: 1rem;
   line-height: inherit;
   color: #757575;
-  position: absolute;
+  /*position: absolute;*/
   right: 15px;
   box-sizing: border-box;
 }
