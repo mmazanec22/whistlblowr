@@ -68,8 +68,16 @@ $(document).ready(function(){
   //     $("tr").show()
   //   }
   // })
+
+  messagePoll();
+
 })
 
+function messagePoll(){
+  console.log("poll run")
+  pollMessages();
+  setTimeout(messagePoll,2000);
+};
 
 $(document).ready(function(){
   var num = 2
@@ -78,3 +86,33 @@ $(document).ready(function(){
     num ++
   })
 })
+
+var getQueryString = function ( field, url ) {
+    var href = url ? url : window.location.href;
+    var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+    var string = reg.exec(href);
+    return string ? string[1] : null;
+};
+
+function pollMessages() {
+
+  var complaint = getQueryString('complaint_key');
+  var count = $('#message-container .card-panel').length
+  var formData = { complaint_key: complaint, message_count: count }
+
+    $.ajax({
+      url: '/messages',
+      method: 'GET',
+      data: formData
+    })
+    .done( function(response) {
+      console.log(response)
+      $('#message-container').prepend(response)
+    });
+
+}
+
+
+
+
+
