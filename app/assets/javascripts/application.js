@@ -21,13 +21,14 @@ $(document).ready(function(){
   $(".complaint-table").find(".table-row").hide()
   $(".complaint-table").find(".table-row.New").show()
 
-  $("form.status-button").on("click", function(event){
+  $(".status-button").on("click", function(event){
     event.preventDefault();
 
     var $clickedButton = $(this).find(".btn-small")
-    var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr").attr("class").split(" ")[1]
+    var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("tr.table-row").attr("class").split(" ")[1]
     var oldTrStatusClassArray = $clickedButton.closest("tr").attr("class").split(" ")
     var oldTrStatusClass = oldTrStatusClassArray[oldTrStatusClassArray.length-1]
+    console.log("oldTrStatusClass"+oldTrStatusClass)
 
     var route = $(this).attr("action");
     var verb = $(this).attr("method");

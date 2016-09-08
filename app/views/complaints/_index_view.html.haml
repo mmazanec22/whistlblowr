@@ -1,4 +1,4 @@
-%tr{class: "table-row complaint-index complaint-id-#{complaint.id} #{complaint.allegation_types_as_string} #{complaint.status}"}
+%tr{class: "table-row complaint-id-#{complaint.id} complaint-index #{complaint.status}"}
   %td
     %h5= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
     = "#{complaint.user.to_s_with_fields} | Tip Key:  #{complaint.key}"
