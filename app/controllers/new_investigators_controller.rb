@@ -22,9 +22,6 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def update
-    # @investigators = Investigator.order(:created_at)
-    # @investigator = Investigator.find_by(id: params[:id])
-
     if @investigator.admin && @investigators.where(admin: true).count > 1
       @investigator.admin = false
     elsif @investigator.admin
@@ -38,9 +35,6 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def delete
-    # @investigators = Investigator.order(:created_at)
-    # @investigator = Investigator.find_by(id: params[:id])
-
     if @investigator != current_investigator &&  @investigators.where(admin: true).count > 1
       @investigator.destroy
     else @investigator.admin
