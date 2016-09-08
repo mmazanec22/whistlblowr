@@ -25,8 +25,8 @@ body {
 }*/
 
 .status-button {
-   width: 225px;
-   text-align: left;
+   min-width: 100px;
+   text-align: center;
    margin: 2px;
 }
 
@@ -148,6 +148,7 @@ a.brand-logo img {
 
 .filter-menu {
   display: block;
+  max-width: 30%;
 }
 
 .message-sender {
