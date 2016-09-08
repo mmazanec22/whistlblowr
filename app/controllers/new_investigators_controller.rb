@@ -22,7 +22,7 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def update
-    if @investigator.admin && @investigators.where(admin: true).count > 1
+    if @investigator.admin && @investigators.where(admin: true).count > 1 && @investigator != current_investigator
       @investigator.admin = false
     elsif @investigator.admin
       @errors = ["At least one Investigator administrator is required."]
