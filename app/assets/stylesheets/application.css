@@ -35,12 +35,12 @@ body {
   font-family: Montserrat,sans-serif;
  }
 
-#montserrat-header-bold{
+.montserrat-header-bold{
   font-family: Montserrat,sans-serif;
   font-weight: bold;
 }
 
-#montserrat-sub-header{
+.montserrat-header{
   font-family: Montserrat,sans-serif;
 }
 

@@ -1,8 +1,8 @@
-<h4>User Administration</h4>
+<h4 class="montserrat-header-bold">User Administration</h4>
 
 <div class="row">
   <div class="complaint-container col s12 z-depth-2">
-    <h5>Add a new user</h5>
+    <h5 class="montserrat-header">Add a new user</h5>
 
       <%= form_tag('/investigator_admin') do |f| %>
         <%= label_tag 'email' %>
@@ -15,7 +15,7 @@
 
 <div class="row">
   <div class="complaint-container col s12 z-depth-2">
-    <h5>Existing Users</h5>
+    <h5 class="montserrat-header-bold">Existing Users</h5>
     <ul class="collection">
       <% @investigators.each do |invest| %>
         <%= render partial: "investigator", locals: {investigator: invest}  %>
