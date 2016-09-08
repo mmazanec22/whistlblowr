@@ -3,9 +3,9 @@ class MediaUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  # include CarrierWave::MiniMagick
 
-  process :validate_dimensions
+  # process :validate_dimensions
 
   # Choose what kind of storage to use for this uploader:
 
@@ -20,7 +20,7 @@ class MediaUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-    %w(jpg jpeg png gif pdf mp3 wav)
+    %w(jpg jpeg png gif pdf mp4 mp3 wav csv xlsx txt)
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
