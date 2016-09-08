@@ -9,7 +9,6 @@ class NewInvestigatorsController < ApplicationController
   end
 
   def create
-
     email = params[:email]
     @investigator = Investigator.new(email: email, password: SecureRandom.hex(4))
     if @investigator.save
@@ -29,7 +28,7 @@ class NewInvestigatorsController < ApplicationController
     if @investigator.admin && @investigators.where(admin: true).count > 1
       @investigator.admin = false
     elsif @investigator.admin
-      @errors = ["That's the last admin!"]
+      @errors = ["At least one Investigator administrator is required."]
     else
       @investigator.admin = true
     end
@@ -41,8 +40,12 @@ class NewInvestigatorsController < ApplicationController
   def delete
     # @investigators = Investigator.order(:created_at)
     # @investigator = Investigator.find_by(id: params[:id])
-    @investigator.destroy
 
+    if @investigator != current_investigator &&  @investigators.where(admin: true).count > 1
+      @investigator.destroy
+    else @investigator.admin
+      @errors = ["At least one investigator administrator is required."]
+    end
     redirect_to '/investigator_admin'
   end
 
