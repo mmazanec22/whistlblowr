@@ -42,4 +42,5 @@
           -elsif !complaint.media[0] && !complaint.video_links
             %div None
 
-  = paginate @complaints
+  %div.pagination
+    = paginate @complaints
