@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20160908151707) do
   create_table "complaints", force: :cascade do |t|
     t.string   "key",                        null: false
     t.integer  "user_id"
-    t.text     "content",                     null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "content",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.json     "media"
-    t.string   "status",      default: "New"
+    t.string   "status",     default: "New"
     t.index ["user_id"], name: "index_complaints_on_user_id", using: :btree
   end
 
