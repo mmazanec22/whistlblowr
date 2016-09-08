@@ -17,9 +17,12 @@
 body {
   background-image: url(paper.png);
   font-weight: 400;
-  font-family: MontyRegular,sans-serif;
+  font-family: Montserrat,sans-serif;
 }
 
+#nav-investigator{
+  color: #e23b3b;
+}
 /*div {
   background-color:white;
 }*/
@@ -125,21 +128,21 @@ a.brand-logo img {
   background-color: #949397 !important;
   /*min-width: 8%;*/
   padding: 0 0.5rem;
-  border: 3px solid #b0bec5;
+  border: 2px solid #b0bec5;
 }
 
 .btn-small.status:hover{
-  color: #ffcc80 !important;
+  color: #ECE3C8 !important;
 /*  font-weight: bold;*/
 }
 
 .btn-small.current-status {
-  background-color: #00838f !important;
+  background-color: #E23B3B !important;
   color: white !important;
 }
 
 .btn-small.current-status:hover{
-  background-color: #ffcc80 !important;
+  background-color: #ECE3C8 !important;
   color: white !important;
   /*border: none !important;*/
   transition: none !important;
@@ -159,8 +162,8 @@ a.brand-logo img {
 .new-complaint-notice {
   text-align: center;
   margin-top: 10px;
-  background-color: #5AC6C6;
-  border: 1px solid #369C9C;
+  background-color: #ECE3C8;
+  border: 2px solid #e23b3b;
 }
 
 .error-msgs {
@@ -204,7 +207,7 @@ a.brand-logo img {
   -webkit-tap-highlight-color: transparent;
   box-shadow: none;
   background-color: transparent;
-  color: #C4C4C4;
+  color: #b3b3b3;
   cursor: pointer;
   transition: background-color .2s;
 }

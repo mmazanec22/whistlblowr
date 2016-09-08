@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
     complaints_path
   end
 
-  def not_found
-    raise ActionController::RoutingError.new("Nothing fucking found")
-  end
-
   # check_authorization :unless => :devise_controller?  # This will raise an exception if authorization is not performed in an action.
 
   skip_authorization_check  # To skip check_authorization
