@@ -28,9 +28,9 @@ body {
 }*/
 
 .status-button {
-   min-width: 100px;
+   /*min-width: 100px;*/
    text-align: center;
-   margin: 2px;
+   /*margin: 2px;*/
 }
 
  h1, h2, h3, h4, th, tr, td{
@@ -247,4 +247,18 @@ span.badge {
   float: right;
 }
 
+.btn-greyed-out {
+  background-color: grey;
+}
+
+.complaint-sub-heading {
+  font-size: .8em;
+  margin-left: 2%;
+}
+
+.btn {
+  font-size: .6em !important;
+  height: 25px !important;
+  line-height: 25px !important;
+}
 
