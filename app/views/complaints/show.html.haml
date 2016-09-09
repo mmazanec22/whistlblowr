@@ -22,7 +22,7 @@
         %div.col.s12
           %h5 Files:
           -@complaint.media.each do |m|
-            %a{ :href => m}
+            %a{ :href => m, :target => "_blank"}
               %span= m.file.filename
     - else
       %div.col.s12
