@@ -23,7 +23,7 @@ $(document).ready(function(){
 
   $(".status-button").on("submit", function(event){
     event.preventDefault();
-    var $clickedButton = $(this).find(".btn-small")
+    var $clickedButton = $(this).find(".btn")
     var clickedButtonTrComplaintIdClass = "." + $clickedButton.closest("td").closest("tr").attr("class").split(" ")[1]
 
     var oldTrStatusClassArray = $clickedButton.closest("td").closest("tr").attr("class").split(" ")
@@ -41,7 +41,8 @@ $(document).ready(function(){
     });
 
     request.done(function(response){
-      $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("disabled")
+      $(clickedButtonTrComplaintIdClass).find(".btn.status.status-button").addClass("btn-greyed-out")
+      $clickedButton.removeClass("btn-greyed-out")
       $(clickedButtonTrComplaintIdClass).find(".current-status").removeClass("current-status")
 
       $(clickedButtonTrComplaintIdClass).find("th").removeClass("current")
@@ -53,7 +54,6 @@ $(document).ready(function(){
       $clickedButton.closest("td").closest("tr").removeClass(oldTrStatusClass)
       $clickedButton.closest("td").closest("tr").addClass(response.status)
       $clickedButton.addClass("current-status")
-      $clickedButton.addClass("disabled")
     })
   })
 
