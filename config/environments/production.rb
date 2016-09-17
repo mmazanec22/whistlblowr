@@ -108,6 +108,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.middleware.swap Rails::Rack::Logger, Silencer::Logger, :silence => [/\d{2}.\d{3}.\d{3}.\d{2}/]
+  # config.middleware.swap Rails::Rack::Logger, Silencer::Logger, :silence => [/\d{2}.\d{3}.\d{3}.\d{2}/]
+
+  config.middleware.swap Rails::Rack::Logger, Silencer::Logger, :silence => [/./]
 
 end
