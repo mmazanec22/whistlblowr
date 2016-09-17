@@ -108,6 +108,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.middleware.swap Rails::Rack::Logger, Silencer::Logger, :get
+  config.middleware.swap Rails::Rack::Logger, Silencer::Logger, :silence => [%r{/^((?:(?:^|\.)(?:\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){4})$/}]
 
 end
