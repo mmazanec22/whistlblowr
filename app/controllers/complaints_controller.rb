@@ -29,6 +29,7 @@ class ComplaintsController < ApplicationController
     # add_allegation_types
     if @complaint.save
       flash[:comp_key] = @complaint.key
+      flash[:comp_pin] = @complaint.pin
       flash[:comp_message] = @complaint.content
       redirect_to complaints_find_path(:complaint_key => @complaint.key)
     else

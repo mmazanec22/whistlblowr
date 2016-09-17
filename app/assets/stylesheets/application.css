@@ -182,6 +182,10 @@ a.brand-logo img {
   font-size: 2em;
 }
 
+.complaint-pin {
+  font-size: 2em;
+  color: #E23B3B;
+}
 .retrieve-complaint {
   max-width: 270px;
 }
