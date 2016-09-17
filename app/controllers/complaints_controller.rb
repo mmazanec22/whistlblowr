@@ -3,6 +3,7 @@ require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
+  skip_before_action :verify_authenticity_token
 
   def index
     @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
