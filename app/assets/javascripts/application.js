@@ -75,12 +75,13 @@ $(document).ready(function(){
   //   }
   // })
 
-  messagePoll();
+  if ($('#message-container').length>0) {
+    messagePoll();
+  }
 
 })
 
 function messagePoll(){
-  console.log("poll run")
   pollMessages();
   setTimeout(messagePoll,2000);
 };
@@ -112,7 +113,6 @@ function pollMessages() {
       data: formData
     })
     .done( function(response) {
-      console.log(response)
       $('#message-container').prepend(response)
     });
 
