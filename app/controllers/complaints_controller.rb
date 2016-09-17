@@ -21,8 +21,10 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = Complaint.new(complaint_params)
     @complaint.user = return_user
-    params[:complaint][:video_links].each do |n, l|
-      @complaint.video_links << VideoLink.create(url: l) unless l == ""
+    if params[:complaint][:video_links]
+      params[:complaint][:video_links].each do |n, l|
+        @complaint.video_links << VideoLink.create(url: l) unless l == ""
+      end
     end
     # add_allegation_types
     if @complaint.save
