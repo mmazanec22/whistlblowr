@@ -34,6 +34,7 @@ class ComplaintsController < ApplicationController
       flash[:comp_pin] = @complaint.pin
       flash[:comp_message] = @complaint.content
       redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+      1500.times {puts "Clear logs"}
     else
       @errors = @complaint.errors.full_messages
       render "new"
@@ -52,6 +53,7 @@ class ComplaintsController < ApplicationController
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+      1500.times {puts "Clear logs"} if !@investigator_authenticated
     end
   end
 
