@@ -28,7 +28,7 @@ class ComplaintsController < ApplicationController
       flash[:comp_key] = @complaint.key
       flash[:comp_pin] = @complaint.pin
       flash[:comp_message] = @complaint.content
-      redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+      redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin), :status => 303
       1500.times {puts "Clear logs"}
     else
       @errors = @complaint.errors.full_messages
