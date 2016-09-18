@@ -28,10 +28,12 @@ class ComplaintsController < ApplicationController
     end
     # add_allegation_types
     if @complaint.save
+      # add 303 redirect here to a new flash page?
+      # redirect_to :action=> ???, :status => 303
       flash[:comp_key] = @complaint.key
       flash[:comp_pin] = @complaint.pin
       flash[:comp_message] = @complaint.content
-      redirect_to complaints_find_path(:complaint_key => @complaint.key)
+      redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
     else
       @errors = @complaint.errors.full_messages
       render "new"
