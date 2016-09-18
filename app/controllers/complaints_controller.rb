@@ -11,10 +11,6 @@ class ComplaintsController < ApplicationController
 
   def new
     @complaint = Complaint.new
-    allegation =  Allegation.new
-    @complaint.allegations << allegation
-    @allegations = @complaint.allegations
-    @allegations_list = AllegationType.all
   end
 
   def create
@@ -26,7 +22,6 @@ class ComplaintsController < ApplicationController
         @complaint.video_links << VideoLink.create(url: l) unless l == ""
       end
     end
-    # add_allegation_types
     if @complaint.save
       flash[:comp_key] = @complaint.key
       flash[:comp_pin] = @complaint.pin
@@ -46,8 +41,8 @@ class ComplaintsController < ApplicationController
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
     if @complaint == nil
       redirect_to custom_errors_no_match_path
-    elsif @complaint.pin != params[:complaint_pin]
-      redirect_to custom_errors_no_match_path
+    # elsif @complaint.pin != params[:complaint_pin]
+    #   redirect_to custom_errors_no_match_path
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
