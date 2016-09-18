@@ -27,7 +27,6 @@ gem 'cancan'
 gem 'rubyzip'
 gem 'podio'
 gem 'kaminari'
-gem 'silencer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
