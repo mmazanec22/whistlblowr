@@ -44,9 +44,9 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
     if @complaint == nil
-      redirect_to "/errors/not_found"
+      redirect_to custom_errors_no_match_path
     elsif @complaint.pin != params[:complaint_pin]
-      redirect_to "/errors/no_match"
+      redirect_to custom_errors_no_match_path
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
@@ -92,7 +92,6 @@ class ComplaintsController < ApplicationController
         format.html { redirect_to(:back) }
         format.js {}
       end
-
     end
 
   end
