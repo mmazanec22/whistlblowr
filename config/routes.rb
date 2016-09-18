@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get '/errors/not_found' => 'errors#not_found'
 
+  get '/errors/no_match' => 'errors#no_match'
+
   get '/complaints' => 'complaints#index'
 
   root "complaints#new"
