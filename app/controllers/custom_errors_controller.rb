@@ -1,0 +1,2 @@
+class CustomErrorsController < ApplicationController
+end
