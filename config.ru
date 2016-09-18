@@ -3,9 +3,3 @@
 require_relative 'config/environment'
 
 run Rails.application
-
-$stdout.sync = true
-
-puts "logging... hello world..."
-puts "oh and, this is what happened"
-$stdout.flush
