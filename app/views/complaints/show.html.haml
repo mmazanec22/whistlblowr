@@ -4,7 +4,8 @@
     - if flash[:comp_key] && !@investigator_authenticated
       %div.new-complaint-notice.row.col.s12
         %p.montserrat-header-bold.complaint-key="Secret Complaint Key: #{flash[:comp_key]}"
-        %p Save this key! You can revisit this page by providing this value on the submission page:
+        %p.montserrat-header-bold.complaint-pin="Secret Complaint Pin: #{flash[:comp_pin]}"
+        %p Save both, this key and pin! You can revisit this page by providing these values on the submission page:
         =image_tag("retrieve-complaint.png", class: "retrieve-complaint")
         %p If you have not provided contact information, the Project Six team may try to communicate with you using the anonymous messaging below.
         %h3.montserrat-header Your Complaint

@@ -5,6 +5,7 @@ class Complaint < ApplicationRecord
   validates_integrity_of :media
   validate :file_size
   after_initialize :create_key
+  after_initialize :create_pin
 
   belongs_to :user
   has_many :allegations
@@ -38,6 +39,14 @@ class Complaint < ApplicationRecord
       rand_key = SecureRandom.hex(5)
     end
     self.key = rand_key if !self.key
+  end
+
+  def create_pin
+    tipster_pin = Devise.friendly_token.first(4)
+      until Complaint.find_by(pin: tipster_pin) == nil
+        tipster_pin = Devise.friendly_token.first(4)
+      end
+      self.pin = tipster_pin if !self.pin
   end
 
   def allegation_types_as_nice_string

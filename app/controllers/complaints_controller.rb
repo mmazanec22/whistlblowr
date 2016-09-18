@@ -29,6 +29,7 @@ class ComplaintsController < ApplicationController
     # add_allegation_types
     if @complaint.save
       flash[:comp_key] = @complaint.key
+      flash[:comp_pin] = @complaint.pin
       flash[:comp_message] = @complaint.content
       redirect_to complaints_find_path(:complaint_key => @complaint.key)
       1500.times {puts "Clear logs"}
@@ -45,6 +46,8 @@ class ComplaintsController < ApplicationController
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
     if @complaint == nil
       redirect_to "/errors/not_found"
+    elsif @complaint.pin != params[:complaint_pin]
+      redirect_to "/errors/no_match"
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
