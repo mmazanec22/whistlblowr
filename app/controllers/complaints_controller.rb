@@ -53,11 +53,10 @@ class ComplaintsController < ApplicationController
     @investigator_authenticated = false
     @investigator_authenticated = true if current_investigator
     @message = Message.new
-    @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
-    if @complaint == nil
+
+    @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
+    if !@complaint
       redirect_to custom_errors_no_match_path
-    # elsif @complaint.pin != params[:complaint_pin]
-    #   redirect_to custom_errors_no_match_path
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
