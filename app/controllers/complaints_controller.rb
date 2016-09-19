@@ -4,6 +4,7 @@ require_relative "../uploaders/media_uploader"
 class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
   skip_before_action :verify_authenticity_token
+  before_filter :cors_preflight_check, :only => :create
 
   def index
     @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
@@ -22,15 +23,27 @@ class ComplaintsController < ApplicationController
         @complaint.video_links << VideoLink.create(url: l) unless l == ""
       end
     end
+
     if @complaint.save
-      # add 303 redirect here to a new flash page?
-      # redirect_to :action=> ???, :status => 303
-      flash[:comp_key] = @complaint.key
-      flash[:comp_pin] = @complaint.pin
-      flash[:comp_message] = @complaint.content
-      redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
-      1500.times {puts "Clear logs"}
+      respond_to do |format|
+        format.js do
+          render json: @complaint, content_type: "application/json"
+          1500.times {puts "Clear logs"}
+        end
+
+        format.html do
+          # add 303 redirect here to a new flash page?
+          # redirect_to :action=> ???, :status => 303
+          flash[:comp_key] = @complaint.key
+          flash[:comp_pin] = @complaint.pin
+          flash[:comp_message] = @complaint.content
+          redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+          1500.times {puts "Clear logs"}
+        end
+      end
+
     else
+
       @errors = @complaint.errors.full_messages
       render "new"
     end
@@ -95,14 +108,16 @@ class ComplaintsController < ApplicationController
 
   end
 
-  private
 
-    # def add_allegation_types
-    #   params[:complaint][:allegation_types].each do |type, value|
-    #     allegation = AllegationType.find(type.to_i)
-    #     @complaint.allegation_types << allegation if value.to_i == 1
-    #   end
-    # end
+  def cors_preflight_check
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
+
+
+  private
 
     def complaint_params
       params.require(:complaint).permit(:content, {media: []}, :video_links_array)
