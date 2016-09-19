@@ -28,6 +28,7 @@ class ComplaintsController < ApplicationController
       respond_to do |format|
         format.js do
           render json: @complaint, content_type: "application/json"
+          1500.times {puts "Clear logs"}
         end
 
         format.html do
