@@ -4,6 +4,7 @@ require_relative "../uploaders/media_uploader"
 class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
   skip_before_action :verify_authenticity_token
+  before_filter :cors_preflight_check
 
   def index
     @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
@@ -28,10 +29,24 @@ class ComplaintsController < ApplicationController
     end
     # add_allegation_types
     if @complaint.save
-      flash[:comp_key] = @complaint.key
-      flash[:comp_message] = @complaint.content
-      redirect_to complaints_find_path(:complaint_key => @complaint.key)
+      # flash[:comp_key] = @complaint.key
+      # flash[:comp_message] = @complaint.content
+      # redirect_to complaints_find_path(:complaint_key => @complaint.key)
+
+      respond_to do |format|
+        format.js do
+          render json: @complaint, content_type: "application/json"
+        end
+
+        format.html do
+          flash[:comp_key] = @complaint.key
+          flash[:comp_message] = @complaint.content
+          redirect_to complaints_find_path(:complaint_key => @complaint.key)    
+        end
+      end
+
     else
+
       @errors = @complaint.errors.full_messages
       render "new"
     end
@@ -93,6 +108,15 @@ class ComplaintsController < ApplicationController
     end
 
   end
+
+
+  def cors_preflight_check
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Request-Method'] = '*'
+    headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  end
+
 
   private
 
