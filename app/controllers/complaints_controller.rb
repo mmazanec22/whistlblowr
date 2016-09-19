@@ -27,12 +27,8 @@ class ComplaintsController < ApplicationController
         @complaint.video_links << VideoLink.create(url: l) unless l == ""
       end
     end
-    # add_allegation_types
-    if @complaint.save
-      # flash[:comp_key] = @complaint.key
-      # flash[:comp_message] = @complaint.content
-      # redirect_to complaints_find_path(:complaint_key => @complaint.key)
 
+    if @complaint.save
       respond_to do |format|
         format.js do
           render json: @complaint, content_type: "application/json"
@@ -112,7 +108,7 @@ class ComplaintsController < ApplicationController
 
   def cors_preflight_check
     headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    headers['Access-Control-Allow-Methods'] = 'POST'
     headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   end
