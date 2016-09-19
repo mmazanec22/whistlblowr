@@ -4,7 +4,7 @@ require_relative "../uploaders/media_uploader"
 class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
   skip_before_action :verify_authenticity_token
-  before_filter :cors_preflight_check
+  before_filter :cors_preflight_check, :only => :create
 
   def index
     @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
@@ -12,10 +12,6 @@ class ComplaintsController < ApplicationController
 
   def new
     @complaint = Complaint.new
-    allegation =  Allegation.new
-    @complaint.allegations << allegation
-    @allegations = @complaint.allegations
-    @allegations_list = AllegationType.all
   end
 
   def create
@@ -35,9 +31,13 @@ class ComplaintsController < ApplicationController
         end
 
         format.html do
+          # add 303 redirect here to a new flash page?
+          # redirect_to :action=> ???, :status => 303
           flash[:comp_key] = @complaint.key
+          flash[:comp_pin] = @complaint.pin
           flash[:comp_message] = @complaint.content
-          redirect_to complaints_find_path(:complaint_key => @complaint.key)    
+          redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+          1500.times {puts "Clear logs"}
         end
       end
 
@@ -54,10 +54,13 @@ class ComplaintsController < ApplicationController
     @message = Message.new
     @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
     if @complaint == nil
-      redirect_to "/errors/not_found"
+      redirect_to custom_errors_no_match_path
+    # elsif @complaint.pin != params[:complaint_pin]
+    #   redirect_to custom_errors_no_match_path
     else
       @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
       @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+      1500.times {puts "Clear logs"} if !@investigator_authenticated
     end
   end
 
@@ -100,7 +103,6 @@ class ComplaintsController < ApplicationController
         format.html { redirect_to(:back) }
         format.js {}
       end
-
     end
 
   end
@@ -115,13 +117,6 @@ class ComplaintsController < ApplicationController
 
 
   private
-
-    # def add_allegation_types
-    #   params[:complaint][:allegation_types].each do |type, value|
-    #     allegation = AllegationType.find(type.to_i)
-    #     @complaint.allegation_types << allegation if value.to_i == 1
-    #   end
-    # end
 
     def complaint_params
       params.require(:complaint).permit(:content, {media: []}, :video_links_array)

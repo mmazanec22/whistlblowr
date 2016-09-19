@@ -25,7 +25,9 @@ class MessagesController < ApplicationController
     if messages.count > params[:message_count].to_i
       render partial: 'messages/show', locals: {message: messages.last}
     end
-
+  @investigator_authenticated = false
+  @investigator_authenticated = true if current_investigator
+  1500.times {puts "Clear logs"} if !@investigator_authenticated
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908183621) do
+ActiveRecord::Schema.define(version: 20160917211730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160908183621) do
     t.datetime "updated_at",                 null: false
     t.json     "media"
     t.string   "status",     default: "New"
+    t.string   "pin"
     t.index ["user_id"], name: "index_complaints_on_user_id", using: :btree
   end
 

@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   get '/testforms' => 'testforms#index'
 
-  get '/errors/not_found' => 'errors#not_found'
+  get '/custom_errors/not_found' => 'custom_errors#not_found'
+
+  get '/custom_errors/no_match' => 'custom_errors#no_match'
 
   get '/complaints' => 'complaints#index'
 
