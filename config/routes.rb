@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   root "complaints#new"
 
+  get "complaints/:key" => 'complaints#show', as: "complaints_path"
+
   get "complaints/new" => "complaints#new"
 
   get 'complaints/find' => 'complaints#show', as: 'complaints_find'
