@@ -131,4 +131,8 @@ class ComplaintsController < ApplicationController
       params.require(:complaint).permit(user: [:name, :email, :phone])
     end
 
+    def complaint_by_key_and_pin(params, flash)
+      Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
+    end
+
 end

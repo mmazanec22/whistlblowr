@@ -79,6 +79,8 @@ $(document).ready(function(){
     messagePoll();
   }
 
+  $('input#complaint_key').last().on('keyup', updateComplaintFindURL)
+
 })
 
 function messagePoll(){
@@ -118,6 +120,11 @@ function pollMessages() {
 
 }
 
+
+function updateComplaintFindURL() {
+  var $userInput = $('input#complaint_key').last()
+  $userInput.closest("form").attr("action", '/complaints/'+$userInput.val())
+}
 
 
 
