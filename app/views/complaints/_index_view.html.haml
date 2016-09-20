@@ -3,6 +3,7 @@
     -if complaint.has_unviewed_messages
       %span.new.badge{ :'data-badge-caption' => "Unread Messages"}
     %h5= link_to complaint.content_shortened, complaints_find_path(complaint_key: complaint.key)
+    %h5= link_to complaint.content_shortened, complaints_show_path(complaint_key: complaint.key)
     %div.complaint-sub-heading= "#{complaint.user.to_s_with_fields} | Tip Key:  #{complaint.key}"
 
     %table
