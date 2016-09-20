@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project was created by Alex Stevenson, Ben Van Sickle, Joe Mazrimas, and Melanie Mazanec over 8 days in September 2016 for Project Six as part of their final project at Dev Bootcamp.  This repo contains our beta version.
