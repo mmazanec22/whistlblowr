@@ -1,6 +1,6 @@
 %div.row
   %div.single-complaint.complaint-container.col.s12.z-depth-2
-
+  
     - if flash[:comp_key] && !@investigator_authenticated
       %div.new-complaint-notice.row.col.s12
         %p.montserrat-header-bold.complaint-key="Secret Complaint Key: #{flash[:comp_key]}"

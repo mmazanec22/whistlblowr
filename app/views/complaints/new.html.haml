@@ -7,6 +7,7 @@
         %div.input-field.col.s12
           = f.text_area :content, class: "materialize-textarea flow-text", placeholder: "Description of complaint", id: "textarea1"
           %br
+
       / %div.row
       /   =f.fields_for :allegation_types do |field|
       /     - @allegations_list.each do |type|
@@ -45,12 +46,21 @@
           = f.submit "Submit", class: "btn"
 
 
+/ %div.row
+/   %div.complaint-container.col.s12.z-depth-2
+/     %h5.montserrat-header-bold View an Existing Complaint:
+/     = form_tag '/complaints/find', method: "get" do
+/       %div.row
+/         %div.input-field.col.s12
+/           = text_field_tag 'complaint_key', nil, placeholder: 'Secret Complaint Key'
+/           = text_field_tag 'complaint_pin', nil, placeholder: 'Secret Complaint Pin'
+/           = submit_tag "View", class: "btn"
+
 %div.row
   %div.complaint-container.col.s12.z-depth-2
     %h5.montserrat-header-bold View an Existing Complaint:
-    = form_tag '/complaints/find', method: "get" do
+    = form_tag '/complaints', method: "get" do
       %div.row
         %div.input-field.col.s12
           = text_field_tag 'complaint_key', nil, placeholder: 'Secret Complaint Key'
-          = text_field_tag 'complaint_pin', nil, placeholder: 'Secret Complaint Pin'
-          = submit_tag "View", class: "btn"
+          = submit_tag "View", class: "btn" 

@@ -37,7 +37,8 @@ class ComplaintsController < ApplicationController
           flash[:comp_key] = @complaint.key
           flash[:comp_pin] = @complaint.pin
           flash[:comp_message] = @complaint.content
-          redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+          session[:complaint_pin] = @complaint.pin
+          redirect_to complaints_show_path(:complaint_key => @complaint.key)
           1500.times {puts "Clear logs"}
         end
       end
@@ -50,19 +51,25 @@ class ComplaintsController < ApplicationController
   end
 
   def show
-    @investigator_authenticated = false
-    @investigator_authenticated = true if current_investigator
-    @message = Message.new
-    @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key])
-    if @complaint == nil
-      redirect_to custom_errors_no_match_path
-    # elsif @complaint.pin != params[:complaint_pin]
-    #   redirect_to custom_errors_no_match_path
+
+    if !params[:complaint_pin] && !session[:complaint_pin]
+      render "show_pinprompt"
     else
-      @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
-      @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
-      1500.times {puts "Clear logs"} if !@investigator_authenticated
+      @message = Message.new
+
+      pin = params[:complaint_pin] ? params[:complaint_pin] : session[:complaint_pin]
+      session[:complaint_pin] = nil
+
+      @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: pin)
+      if !@complaint
+        redirect_to custom_errors_no_match_path
+      else
+        @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
+        @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+        1500.times {puts "Clear logs"} if !current_investigator
+      end
     end
+
   end
 
   def edit
@@ -76,10 +83,6 @@ class ComplaintsController < ApplicationController
       format.js {render json: @complaint, status_code: "200"}
       format.html {redirect_to complaints_path}
     end
-  end
-
-  def delete
-
   end
 
   def download
@@ -130,6 +133,10 @@ class ComplaintsController < ApplicationController
 
     def user_params
       params.require(:complaint).permit(user: [:name, :email, :phone])
+    end
+
+    def complaint_by_key_and_pin(params, flash)
+      Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
     end
 
 end
