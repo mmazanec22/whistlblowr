@@ -50,18 +50,43 @@ class ComplaintsController < ApplicationController
   end
 
   def show
-    @investigator_authenticated = false
-    @investigator_authenticated = true if current_investigator
-    @message = Message.new
+    # @investigator_authenticated = false
+    # @investigator_authenticated = true if current_investigator
+    # @message = Message.new
 
-    @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
-    if !@complaint
-      redirect_to custom_errors_no_match_path
-    else
-      @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
-      @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
-      1500.times {puts "Clear logs"} if !@investigator_authenticated
-    end
+    # @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
+    # if !@complaint
+    #   redirect_to custom_errors_no_match_path
+    # else
+    #   @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
+    #   @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+    #   1500.times {puts "Clear logs"} if !@investigator_authenticated
+    # end
+
+
+
+
+
+    # @message = Message.new
+    # @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
+
+
+
+
+    # if !@complaint
+    #   redirect_to custom_errors_no_match_path
+    # else
+    #   @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
+    #   @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+    #   1500.times {puts "Clear logs"} if !current_investigator
+    # end
+
+
+    render "show_pinprompt"
+
+
+
+
   end
 
   def edit
