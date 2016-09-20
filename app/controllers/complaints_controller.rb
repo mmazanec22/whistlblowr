@@ -38,7 +38,7 @@ class ComplaintsController < ApplicationController
           flash[:comp_pin] = @complaint.pin
           flash[:comp_message] = @complaint.content
           session[:complaint_pin] = @complaint.pin
-          redirect_to complaints_show_path(:complaint_key => @complaint.key)
+          redirect_to complaints_show_path(:complaint_key => @complaint.key), :status => 303
           1500.times {puts "Clear logs"}
         end
       end
