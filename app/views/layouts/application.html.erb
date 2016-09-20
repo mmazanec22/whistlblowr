@@ -10,15 +10,16 @@
 </head>
 
 
-
-
 <nav>
   <div class="nav-wrapper">
 
-    <a href=<%= root_path %> class="brand-logo logo-align">
+    <a href=<%= root_path %> class="brand-logo logo-align hide-on-med-and-up">
       <%= image_tag("p6.logo.svg") %>
     </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <a href=<%= root_path %> class="brand-logo left hide-on-small-only">
+      <%= image_tag("p6.logo.svg") %>
+    </a>
+    <ul id="nav-mobile" class="right hide-on-small-only">
     <% if investigator_signed_in? %>
       <li id="nav-investigator"><%= current_investigator.email %></li>
       <li><%= link_to "Complaints", complaints_path %></li>
