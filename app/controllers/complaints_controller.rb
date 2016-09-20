@@ -52,13 +52,15 @@ class ComplaintsController < ApplicationController
 
   def show
 
-    if !params[:complaint_pin] && !session[:complaint_pin]
+    if !params[:complaint_pin] && !session[:complaint_pin] && !current_investigator
       render "show_pinprompt"
     else
       @message = Message.new
 
       pin = params[:complaint_pin] ? params[:complaint_pin] : session[:complaint_pin]
       session[:complaint_pin] = nil
+
+      pin = Complaint.find_by(key: params[:complaint_key]).pin if current_investigator 
 
       @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: pin)
       if !@complaint
