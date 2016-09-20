@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   root "complaints#new"
 
-  get "complaints/:key" => 'complaints#show', as: "complaints_path"
+  get "complaints/:complaint_key" => 'complaints#show', as: "complaints_show"
 
   get "complaints/new" => "complaints#new"
 

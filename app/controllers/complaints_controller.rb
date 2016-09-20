@@ -25,10 +25,11 @@ class ComplaintsController < ApplicationController
     end
 
     if @complaint.save
+      puts "saved!"
       respond_to do |format|
         format.js do
           render json: @complaint, content_type: "application/json"
-          1500.times {puts "Clear logs"}
+          # 1500.times {puts "Clear logs"}
         end
 
         format.html do
@@ -37,8 +38,8 @@ class ComplaintsController < ApplicationController
           flash[:comp_key] = @complaint.key
           flash[:comp_pin] = @complaint.pin
           flash[:comp_message] = @complaint.content
-          redirect_to complaints_find_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
-          1500.times {puts "Clear logs"}
+          redirect_to complaints_show_path(:complaint_key => @complaint.key, :complaint_pin => @complaint.pin)
+          # 1500.times {puts "Clear logs"}
         end
       end
 
@@ -64,25 +65,21 @@ class ComplaintsController < ApplicationController
     # end
 
 
+    puts "key: #{params[:complaint_key]}, pin: #{params[:complaint_pin]}"
 
-
-
-    # @message = Message.new
-    # @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
-
-
-
-
-    # if !@complaint
-    #   redirect_to custom_errors_no_match_path
-    # else
-    #   @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
-    #   @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
-    #   1500.times {puts "Clear logs"} if !current_investigator
-    # end
-
-
-    render "show_pinprompt"
+    if !params[:complaint_pin]
+      render "show_pinprompt"
+    else
+      @message = Message.new
+      @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: params[:complaint_pin])
+      if !@complaint
+        redirect_to custom_errors_no_match_path
+      else
+        @messages = @complaint.messages.order("created_at DESC").page(params[:page]).per(10)
+        @complaint.messages.each {|m| m.update_attribute(:viewed, true)}
+        # 1500.times {puts "Clear logs"} if !current_investigator
+      end
+    end
 
 
 
