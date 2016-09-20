@@ -3,7 +3,7 @@ require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
   before_action :authenticate_investigator!, except: [:new, :show, :create]
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, :only => :create
   before_filter :cors_preflight_check, :only => :create
 
   def index
@@ -60,7 +60,7 @@ class ComplaintsController < ApplicationController
       pin = params[:complaint_pin] ? params[:complaint_pin] : session[:complaint_pin]
       session[:complaint_pin] = nil
 
-      pin = Complaint.find_by(key: params[:complaint_key]).pin if current_investigator 
+      pin = Complaint.find_by(key: params[:complaint_key]).pin if current_investigator
 
       @complaint = @complaint ? @complaint : Complaint.find_by(key: params[:complaint_key], pin: pin)
       if !@complaint
@@ -115,7 +115,7 @@ class ComplaintsController < ApplicationController
 
 
   def cors_preflight_check
-    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Origin'] = '*' #needs to get set to origin for form
     headers['Access-Control-Allow-Methods'] = 'POST'
     headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
