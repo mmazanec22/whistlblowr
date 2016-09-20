@@ -1,7 +1,7 @@
 %div.complaint-container
   %div.center-align
     %h2.montserrat-header Complaints
-  %table.bordered.responsive-table.complaint-table
+  %table.bordered.complaint-table
     %th
       = form_tag complaints_path, method: "get", class: "status-form" do
         = select_tag "filter[status]", options_for_select(Complaint.possible_statuses.concat(["All"])), class: "filter-menu"
