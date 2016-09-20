@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   root "complaints#new"
 
   get "complaints/:complaint_key" => 'complaints#show', as: "complaints_show"
+  post "complaints/:complaint_key" => 'complaints#show'
 
   get "complaints/new" => "complaints#new"
 

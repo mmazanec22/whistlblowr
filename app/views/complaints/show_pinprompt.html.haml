@@ -2,7 +2,7 @@
   %div.single-complaint.complaint-container.col.s12.z-depth-2
     %div.col.s12
       %h5.montserrat-header-bold Please provide a PIN:
-      = form_tag request.path, method: "GET" do
+      = form_tag request.path, method: "POST" do
         %div.row
           %div.input-field.col.s12
             = text_field_tag 'complaint_pin', nil, placeholder: 'PIN'
