@@ -24,18 +24,19 @@ Rails.application.routes.draw do
 
   get '/custom_errors/no_match' => 'custom_errors#no_match'
 
+  get 'complaints/download' => 'complaints#download'
+
   get '/complaints' => 'complaints#index'
 
   root "complaints#new"
 
   get "complaints/:complaint_key" => 'complaints#show', as: "complaints_show"
+
   post "complaints/:complaint_key" => 'complaints#show'
 
   get "complaints/new" => "complaints#new"
 
   get 'complaints/find' => 'complaints#show', as: 'complaints_find'
-
-  get 'complaints/download' => 'complaints#download'
 
   post "complaints" => "complaints#create"
 
