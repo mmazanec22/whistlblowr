@@ -2,7 +2,7 @@
 
 ## Summary
 
-WhistlBlowr is an interface that allows users to include media uploads with their tip/complaint submissions to the corruption investigation non-profit, [Project Six](https://thesecretsix.com/)
+WhistlBlowr is an interface that allows users to include media uploads with submissions to a generic Wordpress form.
 
 This project was created by Alex Stevenson, Ben Van Sickle, Joe Mazrimas, and Melanie Mazanec over 8 days in September 2016 for Project Six as part of their final project at Dev Bootcamp.  This repo contains our beta version.
 
@@ -21,9 +21,22 @@ see [Wikipedia](http://en.wikipedia.org/wiki/Markdown)
 * assign status to submissions
 * export reports into Podio workflow
 
+----
+## 
+Installation
 
+>Joe will fill this in.
 
 ----
+## Usage
+
+Devise gem for administrator management
+> (Further info for developers?)
+
+Upload limits
+> 
+
+
 ## Usage
 
 * Devise gem for administrator management
