@@ -22,10 +22,33 @@ see [Wikipedia](http://en.wikipedia.org/wiki/Markdown)
 * export reports into Podio workflow
 
 ----
-## 
-Installation
+## Installation
 
->Joe will fill this in.
+> Whistlblowr requires environment variables to enable connectivity to AWS, access to send email and integration with Podio. Below is a list of the ENV variables that need to be created, grouped by the function they support.
+
+Amazon Web Services (S3):
+
+* S3_KEY 
+* S3_SECRET
+* S3\_BUCKET_NAME
+
+Used for seed data to create an initial admin user:
+
+* INVESTIGATOR_USERNAME
+* INVESTIGATOR_EMAIL
+* INVESTIGATOR_PASSWORD
+
+Config from Podio to enable access to a specific app:
+
+* PODIO\_APP_ID
+* PODIO\_APP_TOKEN
+* PODIO\_CLIENT_ID
+* PODIO\_CLIENT_SECRET
+
+Email username and password. These were set up to use a gmail account, but could be set up for another provider with SMTP:
+
+* GMAIL_USERNAME
+* GMAIL_PASSWORD
 
 ----
 ## Usage
