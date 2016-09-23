@@ -26,6 +26,7 @@ gem 'pry'
 gem 'rubyzip'
 gem 'podio'
 gem 'kaminari'
+gem "recaptcha", require: "recaptcha/rails" #this needs to be configured with the specific URL of the deployed site
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
