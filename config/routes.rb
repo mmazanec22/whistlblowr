@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'complaints/download' => 'complaints#download'
 
+  get '/complaints/advice' => 'complaints#advice'
+
   get '/complaints' => 'complaints#index'
 
   root "complaints#new"

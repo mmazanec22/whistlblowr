@@ -20,7 +20,8 @@
 
       %div.row
         %div.input-field.col.s12
-          %p.montserrat-header Contact Info (Optional)
+          %p.montserrat-header Contact Info (Optional) 
+          = link_to 'Anoymity Concerns', '/complaints/advice', :target => '_blank'
           = f.fields_for :user do |field|
             = field.text_field :name, placeholder: "Name"
             %br
