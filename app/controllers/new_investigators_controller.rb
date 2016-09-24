@@ -10,7 +10,7 @@ class NewInvestigatorsController < ApplicationController
 
   def create
     email = params[:email]
-    @investigator = Investigator.new(email: email, password: SecureRandom.hex(4))
+    @investigator = Investigator.new(email: email, password: Devise.friendly_token.first(8))
     if @investigator.save
       UserMailer.new_investigator_email(@investigator.email, @investigator.password).deliver
       @errors = ["user saved"]
