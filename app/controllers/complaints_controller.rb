@@ -87,6 +87,12 @@ class ComplaintsController < ApplicationController
     end
   end
 
+  def destroy
+    complaint = Complaint.find_by(key: params[:complaint_key])
+    complaint.destroy
+    redirect_to '/complaints'
+  end
+
   def download
     @complaint = Complaint.find_by(key: params[:complaint_key])
     file = @complaint.zip_media

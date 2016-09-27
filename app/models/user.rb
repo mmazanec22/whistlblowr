@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :complaints
+  has_many :complaints, dependent: :destroy
   has_many :messages, as: :messageable
 
   def to_s
