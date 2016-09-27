@@ -2,7 +2,7 @@ require "cowsay"
 require_relative "../uploaders/media_uploader"
 
 class ComplaintsController < ApplicationController
-  before_action :authenticate_investigator!, except: [:new, :show, :create]
+  before_action :authenticate_investigator!, except: [:new, :show, :create, :advice]
   skip_before_action :verify_authenticity_token, :only => :create
   before_filter :cors_preflight_check, :only => :create
 
@@ -110,7 +110,10 @@ class ComplaintsController < ApplicationController
         format.js {}
       end
     end
+  end
 
+  def advice
+    # render 'advice'
   end
 
 
