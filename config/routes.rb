@@ -44,8 +44,6 @@ Rails.application.routes.draw do
 
   post 'messages' => 'messages#create', as: 'messages'
 
-  get 'messages' => 'messages#message_poll'
-
   put "complaints/:id" => "complaints#update", as: "update_complaint"
 
   delete "complaints" => "complaints#destroy", as: "destroy_complaint"
