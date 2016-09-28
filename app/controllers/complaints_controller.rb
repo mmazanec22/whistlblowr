@@ -7,6 +7,8 @@ class ComplaintsController < ApplicationController
   before_filter :cors_preflight_check, :only => :create
 
   def index
+    # this cleanup is disabled by default -- enable it here AND in the Complaint model
+    # Complaint.run_cleanup
     @complaints = Complaint.all.order("created_at DESC").page(params[:page]).per(10)
   end
 
