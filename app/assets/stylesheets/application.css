@@ -267,3 +267,6 @@ span.badge {
   line-height: 25px !important;
 }
 
+.delete-button .btn{
+  background-color: #ffd633;
+}

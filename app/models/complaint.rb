@@ -7,11 +7,11 @@ class Complaint < ApplicationRecord
   after_initialize :create_key
   after_initialize :create_pin
 
-  belongs_to :user
-  has_many :allegations
-  has_many :allegation_types, through: :allegations
-  has_many :messages
-  has_many :video_links
+  belongs_to :user, dependent: :destroy
+  # has_many :allegations
+  # has_many :allegation_types, through: :allegations
+  has_many :messages, dependent: :destroy
+  has_many :video_links, dependent: :destroy
 
   def self.possible_statuses
     ["New", "Non-Actionable", "Pending", "Initiated-Investigation"]

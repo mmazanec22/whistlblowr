@@ -10,25 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917211730) do
+ActiveRecord::Schema.define(version: 20160925210726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "allegation_types", force: :cascade do |t|
-    t.string   "allegation_nature", null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "allegations", force: :cascade do |t|
-    t.integer  "complaint_id"
-    t.integer  "allegation_type_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["allegation_type_id"], name: "index_allegations_on_allegation_type_id", using: :btree
-    t.index ["complaint_id"], name: "index_allegations_on_complaint_id", using: :btree
-  end
 
   create_table "complaints", force: :cascade do |t|
     t.string   "key",                        null: false
@@ -94,9 +79,7 @@ ActiveRecord::Schema.define(version: 20160917211730) do
     t.index ["complaint_id"], name: "index_video_links_on_complaint_id", using: :btree
   end
 
-  add_foreign_key "allegations", "allegation_types"
-  add_foreign_key "allegations", "complaints"
   add_foreign_key "complaints", "users"
   add_foreign_key "media", "complaints"
-  add_foreign_key "video_links", "complaints"
+  add_foreign_key "video_links", "complaints", on_delete: :cascade
 end

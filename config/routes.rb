@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   put "complaints/:id" => "complaints#update", as: "update_complaint"
 
+  delete "complaints" => "complaints#destroy", as: "destroy_complaint"
+
   get "/investigator_admin" => "new_investigators#new"
 
   put "/investigator_admin/:id" => "new_investigators#update"
