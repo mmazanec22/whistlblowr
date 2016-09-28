@@ -118,6 +118,12 @@ class Complaint < ApplicationRecord
     false
   end
 
+  def self.run_cleanup
+    complaints = Complaint.where("created_at < ?", 30.days.ago)
+    # comment this in if you want to clear records older than 30 days on all loads
+    # complaints.delete_all
+  end
+
   private
 
   def file_size
