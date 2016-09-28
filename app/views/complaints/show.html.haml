@@ -1,6 +1,6 @@
 %div.row
   %div.single-complaint.complaint-container.col.s12.z-depth-2
-  
+
     - if flash[:comp_key] && !current_investigator
       %div.new-complaint-notice.row.col.s12
         %p.montserrat-header-bold.complaint-key="Secret Complaint Key: #{flash[:comp_key]}"
@@ -44,6 +44,7 @@
   %a.waves-effect.waves-light.btn{ href: complaints_path } Back
   = link_to [:podio_export, @complaint], remote: true, class: "send-podio-button btn #{'disabled' if @complaint.exists_in_podio?}"  do
     Send to Podio
+  =button_to "Delete", destroy_complaint_path(id: @complaint.id, complaint_key: @complaint.key), method: 'delete', form_class: "waves-effect waves-light btn"
   %br
 %br
 %br
