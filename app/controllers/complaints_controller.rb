@@ -141,7 +141,7 @@ class ComplaintsController < ApplicationController
 
     def return_user
       up = user_params[:user]
-      User.find_or_create_by(up)
+      User.create(up)
     end
 
     def user_params
