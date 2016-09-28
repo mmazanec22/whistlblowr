@@ -66,27 +66,27 @@ $(document).ready(function(){
     }
   })
 
-  // $(".allegation-form").change(function(){
-  //   var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
-  //   $(".table-row").hide()
-  //   $("tr."+filterBy).show()
-  //   if(filterBy=="All"){
-  //     $("tr").show()
-  //   }
-  // })
+  $(".allegation-form").change(function(){
+    var filterBy = $(".allegation-form :selected").val().split(" ").join("-")
+    $(".table-row").hide()
+    $("tr."+filterBy).show()
+    if(filterBy=="All"){
+      $("tr").show()
+    }
+  })
 
-  if ($('#message-container').length>0) {
-    messagePoll();
-  }
+  // if ($('#message-container').length>0) {
+  //   messagePoll();
+  // }
 
   $('input#complaint_key').last().on('keyup', updateComplaintFindURL)
 
 })
 
-function messagePoll(){
-  pollMessages();
-  setTimeout(messagePoll,2000);
-};
+// function messagePoll(){
+//   pollMessages();
+//   setTimeout(messagePoll,2000);
+// };
 
 $(document).ready(function(){
   var num = 2
@@ -103,22 +103,22 @@ var getQueryString = function ( field, url ) {
     return string ? string[1] : null;
 };
 
-function pollMessages() {
+// function pollMessages() {
 
-  var complaint = getQueryString('complaint_key');
-  var count = $('#message-container .card-panel').length
-  var formData = { complaint_key: complaint, message_count: count }
+//   var complaint = getQueryString('complaint_key');
+//   var count = $('#message-container .card-panel').length
+//   var formData = { complaint_key: complaint, message_count: count }
 
-    $.ajax({
-      url: '/messages',
-      method: 'GET',
-      data: formData
-    })
-    .done( function(response) {
-      $('#message-container').prepend(response)
-    });
+//     $.ajax({
+//       url: '/messages',
+//       method: 'GET',
+//       data: formData
+//     })
+//     .done( function(response) {
+//       $('#message-container').prepend(response)
+//     });
 
-}
+// }
 
 
 function updateComplaintFindURL() {
