@@ -13,7 +13,6 @@ This project was created by Alex Stevenson, Ben Van Sickle, Joe Mazrimas, and Me
 
 ----
 ## Features
-see [Wikipedia](http://en.wikipedia.org/wiki/Markdown)
 
 * anonymous tip/complaint reporting from the public
 * option for anonymous message follow-ups from original tipster
@@ -24,11 +23,11 @@ see [Wikipedia](http://en.wikipedia.org/wiki/Markdown)
 ----
 ## Installation
 
-> Whistlblowr requires environment variables to enable connectivity to AWS, access to send email and integration with Podio. Below is a list of the ENV variables that need to be created, grouped by the function they support.
+> Whistlblowr requires environment variables to enable connectivity to AWS, access to send email and integration with Podio. Below is a list of the ENV variables that need to be created, grouped by the function they support.  We use the gem [Figaro](https://github.com/laserlemon/figaro) to manage these.
 
 Amazon Web Services (S3):
 
-* S3_KEY 
+* S3_KEY
 * S3_SECRET
 * S3\_BUCKET_NAME
 
@@ -53,11 +52,11 @@ Email username and password. These were set up to use a gmail account, but could
 ----
 ## Usage
 
-Devise gem for administrator management
+[Devise](https://github.com/plataformatec/devise) gem for administrator management
 > (Further info for developers?)
 
 Upload limits
-> 
+>
 
 
 ## Usage
