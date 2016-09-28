@@ -126,7 +126,7 @@ class ComplaintsController < ApplicationController
 
 
   def cors_preflight_check
-    headers['Access-Control-Allow-Origin'] = '*' #needs to get set to origin for form
+    headers['Access-Control-Allow-Origin'] = 'https://thesecretsix.com' #needs to get set to origin for form
     headers['Access-Control-Allow-Methods'] = 'POST'
     headers['Access-Control-Request-Method'] = '*'
     headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
