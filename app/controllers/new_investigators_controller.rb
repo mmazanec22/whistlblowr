@@ -13,34 +13,38 @@ class NewInvestigatorsController < ApplicationController
     @investigator = Investigator.new(email: email, password: Devise.friendly_token.first(8))
     if @investigator.save
       UserMailer.new_investigator_email(@investigator.email, @investigator.password).deliver
-      @errors = ["user saved"]
-      redirect_to '/investigator_admin'
+      @errors = ["User saved successfully."]
+      redirect_to '/investigator_admin', :flash => { :errors => @errors }
     else
-      @errors = ["user NOT saved"]
-      redirect_to '/investigator_admin'
+      @errors = ["User NOT saved.  Is this e-mail address already in use?"]
+      redirect_to '/investigator_admin', :flash => { :errors => @errors }
     end
   end
 
   def update
-    if @investigator.admin && @investigators.where(admin: true).count > 1 && @investigator != current_investigator
+    if @investigator.admin && @investigators.where(admin: true).count > 2 && @investigator != current_investigator
       @investigator.admin = false
     elsif @investigator.admin
-      @errors = ["At least one Investigator administrator is required."]
+      @errors = ["At least two administrators are required."]
     else
       @investigator.admin = true
     end
 
     @investigator.save
-    redirect_to '/investigator_admin'
+    redirect_to '/investigator_admin', :flash => { :errors => @errors }
   end
 
   def delete
-    if @investigator != current_investigator && @investigators.where(admin: true).count >= 1
-      @investigator.destroy
+    if @investigator != current_investigator && @investigators.where(admin: true).count >= 2
+      if @investigator.admin == true && @investigators.where(admin: true).count == 2
+        @errors = ["At least two administrators are required."]
+      else
+        @investigator.destroy
+      end
     else @investigator.admin
-      @errors = ["At least one investigator administrator is required."]
+      @errors = ["At least two administrators are required."]
     end
-    redirect_to '/investigator_admin'
+    redirect_to '/investigator_admin', :flash => { :errors => @errors }
   end
 
 

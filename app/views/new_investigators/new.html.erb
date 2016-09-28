@@ -16,6 +16,11 @@
 <div class="row">
   <div class="complaint-container col s12 z-depth-2">
     <h5 class="montserrat-header-bold">Existing Users</h5>
+    <%if flash[:errors]%>
+      <%flash[:errors].each do |error|%>
+        <p class = "error"><%=error%></p>
+      <%end%>
+    <%end%>
     <ul class="collection">
       <% @investigators.each do |invest| %>
         <%= render partial: "investigator", locals: {investigator: invest}  %>
