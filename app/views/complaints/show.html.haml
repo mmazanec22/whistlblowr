@@ -38,18 +38,21 @@
     %div.col.s12
       %br
 
-- if current_investigator
-  - if @complaint.media.length > 0
-    %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
-  %a.waves-effect.waves-light.btn{ href: complaints_path } Back
-  = link_to [:podio_export, @complaint], remote: true, class: "send-podio-button btn #{'disabled' if @complaint.exists_in_podio?}"  do
-    Send to Podio
-  ~button_to "Delete", destroy_complaint_path(id: @complaint.id, complaint_key: @complaint.key), method: 'delete', form_class: "waves-effect waves-light btn delete-button"
-  %br
+%ul.complaint-show-buttons
+  - if current_investigator
+    - if @complaint.media.length > 0
+      %li.complaint-show-buttons
+        %a.waves-effect.waves-light.btn{ href: complaints_download_path(complaint_key: @complaint.key) } Download
+    %li.complaint-show-buttons
+      %a.waves-effect.waves-light.btn{ href: complaints_path } Back
+    %li.complaint-show-buttons
+      = link_to [:podio_export, @complaint], remote: true, class: "send-podio-button btn #{'disabled' if @complaint.exists_in_podio?}"  do
+        Send to Podio
+    %li.complaint-show-buttons
+      ~ button_to "Delete", destroy_complaint_path(id: @complaint.id, complaint_key: @complaint.key), method: 'delete', form_class: "waves-effect waves-light btn delete-button"
 %br
 %br
-
-
+%br
 
 %div.row
   %div.single-complaint.complaint-container.col.s12.z-depth-2

@@ -66,7 +66,7 @@ class Complaint < ApplicationRecord
     self.created_at.to_formatted_s(:long)
   end
 
-  def zip_media #need to handle things with the same name
+  def zip_media
     image_names = []
     Zip::File.open("tmp/key-#{self.key}.zip", Zip::File::CREATE) do |z|
       self.media.each do |media|
