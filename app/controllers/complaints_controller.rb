@@ -91,7 +91,10 @@ class ComplaintsController < ApplicationController
 
   def destroy
     complaint = Complaint.find_by(key: params[:complaint_key])
+    puts complaint.content
+    puts 'BEFORE DESTROY!!!!!!!!!!!!'
     complaint.destroy
+    puts 'AFTER DESTROY!!!!!!!!!!!!'
     redirect_to '/complaints'
   end
 
