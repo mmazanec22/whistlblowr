@@ -9,4 +9,3 @@
       %th{class: "current complaint-id-#{complaint.id}"}=button_to complaint.status, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'put', form_class: "status-button", class: "btn status current-status status-button"
       -complaint.possible_other_statuses.each do |st|
         %th{class: "non-current complaint-id-#{complaint.id}"}= button_to st, update_complaint_path(id: complaint.id, complaint_key: complaint.key, status: st), method:'put',form_class: "status-button", class: "btn status status-button btn-greyed-out"
-      %th{class: "current complaint-id-#{complaint.id}"}=button_to "Delete", destroy_complaint_path(id: complaint.id, complaint_key: complaint.key, status: complaint.status), method:'delete', form_class: "btn-greyed-out", class: "btn btn-greyed-out"
