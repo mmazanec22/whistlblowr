@@ -75,18 +75,9 @@ $(document).ready(function(){
     }
   })
 
-  // if ($('#message-container').length>0) {
-  //   messagePoll();
-  // }
-
   $('input#complaint_key').last().on('keyup', updateComplaintFindURL)
 
 })
-
-// function messagePoll(){
-//   pollMessages();
-//   setTimeout(messagePoll,2000);
-// };
 
 $(document).ready(function(){
   var num = 2
@@ -102,23 +93,6 @@ var getQueryString = function ( field, url ) {
     var string = reg.exec(href);
     return string ? string[1] : null;
 };
-
-// function pollMessages() {
-
-//   var complaint = getQueryString('complaint_key');
-//   var count = $('#message-container .card-panel').length
-//   var formData = { complaint_key: complaint, message_count: count }
-
-//     $.ajax({
-//       url: '/messages',
-//       method: 'GET',
-//       data: formData
-//     })
-//     .done( function(response) {
-//       $('#message-container').prepend(response)
-//     });
-
-// }
 
 
 function updateComplaintFindURL() {
