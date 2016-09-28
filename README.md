@@ -50,16 +50,10 @@ Email username and password. These were set up to use a gmail account, but could
 * GMAIL_PASSWORD
 
 ----
-## Usage
+## Investigator Login/Logout
 
 [Devise](https://github.com/plataformatec/devise) gem for administrator management
-> (Further info for developers?)
-
-Upload limits
->
 
 
-## Usage
 
-* Devise gem for administrator management
 
